@@ -1,3 +1,3 @@
 <?php
-// define("AMBIENTE", 'desenvolvimento');
-define("AMBIENTE", 'producao');
+define("AMBIENTE", 'desenvolvimento');
+// define("AMBIENTE", 'producao');
