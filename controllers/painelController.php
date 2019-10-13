@@ -27,6 +27,10 @@ class painelController extends controller{
 	}
 
 	public function empresa(){
+		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
+			header("Location: ".URL_BASE);
+			exit();
+		}
 		switch ($_SESSION['tipo']) {
 			case 0:
 				$this->loadTemplate('admin/empresa');
@@ -48,6 +52,10 @@ class painelController extends controller{
 	}
 
 	public function faqs(){
+		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
+			header("Location: ".URL_BASE);
+			exit();
+		}
 		switch ($_SESSION['tipo']) {
 			case 0:
 				$this->loadTemplate('admin/faqs');
@@ -69,6 +77,10 @@ class painelController extends controller{
 	}
 
 	public function configuracoes(){
+		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
+			header("Location: ".URL_BASE);
+			exit();
+		}
 		switch ($_SESSION['tipo']) {
 			case 0:
 				$this->loadTemplate('admin/configuracoes');

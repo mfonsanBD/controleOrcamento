@@ -31,6 +31,16 @@ label{
     text-align: center !important;
     font-family: 'GoogleRegular' !important;
 }
+.notfound{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 40px 0 70px;
+    border-radius: 3.8%;
+}
+.notfound h1{
+    font-size: 5em;
+}
 .swal-title{
     font-weight: 500 !important;
 }

@@ -2,7 +2,7 @@
 require 'topo.php';
 ?>
 	</h1>
-	<p class="p-0 m-0 subtitulo">Cadastre as questões que os usuários possam ter.</p>
+	<p class="p-0 m-0 subtitulo">Faça as alterações da sua conta.</p>
 </div>
 <div class="container">
 	<div class="pt-5 pb-5">
@@ -22,25 +22,25 @@ require 'topo.php';
 			<div class="form-row text-left col-lg-12 m-0 p-0">
 				<div class="form-group col-lg-6">
 					<label for="email">E-mail:</label>
-					<input type="text" id="email" class="resposta">
+					<input type="email" id="email" class="resposta">
 				</div>
 				<div class="form-group col-lg-6">
 					<label for="telefone">Telefone:</label>
-					<input type="text" id="telefone" class="resposta">
+					<input type="text" id="telefone" class="resposta" maxlength="11" data-mask="(00) 0000-0000">
 				</div>
 			</div>
 			<div class="form-row text-left col-lg-12 mt-0 ml-0 mr-0 mb-5 p-0">
 				<div class="form-group col-lg-4">
 					<label for="atual">Senha Atual:</label>
-					<input type="text" id="atual" class="resposta">
+					<input type="password" id="atual" class="resposta">
 				</div>
 				<div class="form-group col-lg-4">
 					<label for="nova">Nova Senha:</label>
-					<input type="text" id="nova" class="resposta">
+					<input type="password" id="nova" class="resposta">
 				</div>
 				<div class="form-group col-lg-4">
 					<label for="cnova">Confirma Nova Senha:</label>
-					<input type="text" id="cnova" class="resposta">
+					<input type="password" id="cnova" class="resposta">
 				</div>
 			</div>
 			<button type="submit" class="btn bg-padrao">
