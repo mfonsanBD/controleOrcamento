@@ -2,7 +2,7 @@
 require 'topo.php';
 ?>
 	</h1>
-	<p class="p-0 m-0 subtitulo">Informações gerais do sistema</p>
+	<p class="p-0 m-0 subtitulo">Informações gerais do sistema.</p>
 </div>
 <div class="container">
 	<div class="pt-5 pb-5">

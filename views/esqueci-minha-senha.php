@@ -10,7 +10,10 @@
 	<h2 class="text-uppercase text-padrao">Esqueceu sua senha?</h2>
 	<span class="mb-4">Enviaremos um e-mail com os seus dados de acesso.</span>
 	<form method="POST" id="esqueci">
-		<input type="email" id="eemail" placeholder="E-mail" />
-		<button type="submit">Enviar</button>
+		<input type="email" id="eemail" class="mb-4" placeholder="E-mail" />
+		<button type="submit">
+			Enviar
+			<img src="<?=URL_BASE?>assets/img/enviar.svg" width="20" class="ml-1 icones" alt="Enviar">
+		</button>
 	</form>
 </div>

@@ -101,7 +101,7 @@ $(document).ready(function(){
 		var senha = $.trim($("#lsenha").val());
 
 		if(email.length == '' || senha == ''){
-			swal("Olá!", "Para acessar sua conta é necessário um e-mail e senha.", "warning");
+			swal("Aviso!", "Para acessar sua conta é necessário um e-mail e senha.", "warning");
 			return false;
 		}else{
 			$.ajax({

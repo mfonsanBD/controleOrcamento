@@ -9,9 +9,9 @@ require 'topo.php';
 		<h3 class="text-uppercase text-center titulo_pagina">Empresas</h3>
 	</div>
 	<div class="text-center mb-5">
-		<a data-filter="all" class="btn btn-outline-dark text-dark btn-sm btn_filtro">Todas</a>
-		<a data-filter="aa" class="btn btn-outline-secondary text-secondary btn-sm btn_filtro">Aguardando Aprovação</a>
-		<a data-filter="ea" class="btn btn-outline-success text-success btn-sm btn_filtro">Em Atividade</a>
+		<button data-filter="all" class="btn btn-outline-dark text-dark btn-sm btn_filtro">Todas</button>
+		<button data-filter="aa" class="btn btn-outline-secondary text-secondary btn-sm btn_filtro">Aguardando Aprovação</button>
+		<button data-filter="ea" class="btn btn-outline-success text-success btn-sm btn_filtro">Em Atividade</button>
 	</div>
 	<div class="row">
 		<div class="col-lg-4 mb-4 filterE aa">

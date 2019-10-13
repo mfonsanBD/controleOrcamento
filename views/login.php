@@ -19,7 +19,7 @@
 		        <div id="forca" class="w-12">
 		        	<p class="m-0 p-0 text-black-50" id="numeros">*Números</p>
 		        	<p class="m-0 p-0 text-black-50" id="maiuscula">*Letras Maiúsculas</p>
-		        	<p class="m-0 p-0 text-black-50" id="minuscula">*Letras Minusculas</p>
+		        	<p class="m-0 p-0 text-black-50" id="minuscula">*Letras Minúsculas</p>
 		        	<p class="m-0 p-0 text-black-50" id="oito">*Mínimo 8 caracteres</p>
 		        	<p class="mt-0 ml-0 mr-0 mb-2 p-0 text-black-50" id="especiais">*Caracteres Especiais</p>
 		        	<p class="m-0 p-0 text-danger" id="forcaSenha"></p>

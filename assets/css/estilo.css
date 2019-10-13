@@ -27,6 +27,20 @@ label{
 	align-items: center;
 	margin: -150px 0;
 }
+.swal-text{
+    text-align: center !important;
+    font-family: 'GoogleRegular' !important;
+}
+.swal-title{
+    font-weight: 500 !important;
+}
+.swal-footer{
+    text-align: center !important;
+    font-family: 'Montserrat', sans-serif !important;
+}
+.swal-icon--warning__dot{
+    margin-bottom: 0 !important;
+}
 #dados{
     background-color: transparent;
 }
@@ -162,12 +176,12 @@ a:hover{
     color: #005e76 !important;
 }
 
-a.btn{
+button.btn_filtro{
     text-decoration: none;
     font-family: 'GoogleRegular';
     cursor: pointer;
 }
-a.btn:hover{
+button.btn_filtro:hover{
     color: #FFFFFF !important;
 }
 .menuativo{
@@ -257,6 +271,16 @@ form {
     justify-content: center;
     flex-direction: column;
     padding: 0 50px;
+    height: 100%;
+    text-align: center;
+}
+form#esqueci{
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px 0;
     height: 100%;
     text-align: center;
 }
