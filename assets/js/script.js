@@ -10,7 +10,7 @@ signInButton.addEventListener('click', () => {
     container.classList.remove('right-panel-active');
 });
 
-$(function(){
+$(document).ready(function(){
 	$("#cadastro").on("submit", function(e){
 		e.preventDefault();
 		$("#erroNome").html('');
@@ -113,10 +113,6 @@ $(function(){
 				}
 			});
 		}
-	});
-
-	$("#esqueci").on("submit", function(e){
-		e.preventDefault();
 	});
 });
 

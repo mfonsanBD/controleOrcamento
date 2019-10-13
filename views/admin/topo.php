@@ -9,18 +9,17 @@ date_default_timezone_set('America/Sao_Paulo');
 			</a>
 			<ul class="nav justify-content-center">
 			  <li class="nav-item">
-			    <a class="nav-link" href="<?= URL_BASE ?>painel">Painel de Controle</a>
+			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel">Painel de Controle</a>
 			  </li>
 			  <li class="nav-item">
-			    <a class="nav-link" href="<?= URL_BASE ?>painel/empresa">Empresa</a>
+			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel/empresa">Empresa</a>
 			  </li>
 			  <li class="nav-item">
-			    <a class="nav-link" href="<?= URL_BASE ?>painel/perguntas-frequentes">FAQ's</a>
+			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel/faqs">FAQ's</a>
 			  </li>
 			</ul>
 			<button class="foto dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<img src="<?= URL_BASE ?>assets/img/<?= $_SESSION['foto']; ?>" width="70" alt="Usuário" class="d-inline-block align-top rounded-circle">
-				<img src="<?= URL_BASE ?>assets/img/seta-para-baixo.svg" width="15" alt="Seta" class="mt-4">
+				<img src="<?= URL_BASE ?>assets/img/<?= $_SESSION['foto'];?>" width="60" alt="Usuário" class="d-inline-block align-top rounded-circle">
 			</button>
 			
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -56,4 +55,4 @@ date_default_timezone_set('America/Sao_Paulo');
 				break;
 			}
 		?>
-		<?=$comprimento.", ".$usuario[0]." ".$usuario[3]; ?>!
+		<?=$comprimento.", ".$usuario[0]." ".$usuario[1]; ?>!

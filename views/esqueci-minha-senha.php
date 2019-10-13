@@ -1,4 +1,4 @@
-<header>
+<header class="entrar">
 	<div class="container text-center text-light pt-4">
 		<a href="<?=URL_BASE?>">
 			<img src="<?=URL_BASE?>assets/img/logo1.png" alt="LogoTipo">
