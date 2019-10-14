@@ -11,10 +11,15 @@ class loginController extends controller{
 
 			$usuario->login($email, $senha);
 		}
+
+		$this->titulo = "Acesse sua conta ou faça seu cadastro.";
+
 		$this->loadTemplate('login');
 	}
 
 	public function esqueci(){
+		$this->titulo = "Esqueci minha senha";
+
 		$this->loadTemplate('esqueci-minha-senha', $dados=array());
 	}
 

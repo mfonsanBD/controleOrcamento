@@ -12,7 +12,7 @@ date_default_timezone_set('America/Sao_Paulo');
 			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel">Painel de Controle</a>
 			  </li>
 			  <li class="nav-item">
-			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel/empresa">Empresa</a>
+			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel/empresa">Empresas</a>
 			  </li>
 			  <li class="nav-item">
 			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel/faqs">FAQ's</a>

@@ -6,6 +6,8 @@ class painelController extends controller{
 			exit();
 		}
 
+		$this->titulo = "Painel de Controle";
+
 		switch ($_SESSION['tipo']) {
 			case 0:
 				$this->loadTemplate('admin/painel');
@@ -31,6 +33,9 @@ class painelController extends controller{
 			header("Location: ".URL_BASE);
 			exit();
 		}
+
+		$this->titulo = "Empresas";
+
 		switch ($_SESSION['tipo']) {
 			case 0:
 				$this->loadTemplate('admin/empresa');
@@ -56,6 +61,9 @@ class painelController extends controller{
 			header("Location: ".URL_BASE);
 			exit();
 		}
+
+		$this->titulo = "Perguntas Frequentes";
+
 		switch ($_SESSION['tipo']) {
 			case 0:
 				$this->loadTemplate('admin/faqs');
@@ -81,6 +89,9 @@ class painelController extends controller{
 			header("Location: ".URL_BASE);
 			exit();
 		}
+
+		$this->titulo = "Configurações da Conta";
+
 		switch ($_SESSION['tipo']) {
 			case 0:
 				$this->loadTemplate('admin/configuracoes');
