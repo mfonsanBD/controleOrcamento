@@ -1,7 +1,7 @@
 <?php
 class Usuario extends model{
 	public function login($email, $senha){
-		$sql = $this->conexao->prepare("SELECT * FROM usuario WHERE email = ? AND senha = ? AND permissao = 1");
+		$sql = $this->conexao->prepare("SELECT * FROM usuario WHERE email = ? AND senha = ?");
 		$sql->execute(array($email, $senha));
 
 		if ($sql->rowCount() > 0) {
