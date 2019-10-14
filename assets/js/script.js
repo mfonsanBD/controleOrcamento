@@ -105,11 +105,19 @@ $(document).ready(function(){
 			return false;
 		}else{
 			$.ajax({
-				url: 'http://localhost/gcc/login/index',
+				url: 'http://localhost/gcc/login/logar',
 				type: 'POST',
 				data: {email:email, senha:senha},
 				success: function(dados){
-					window.location.href = 'http://localhost/gcc/painel/';
+					if(dados == 1){
+						window.location.href = 'http://localhost/gcc/painel/';
+					}else if (dados == 2){
+						swal("Aviso!", "Usuário ainda não confirmado. Verifique seu e-mail para confirmar seu cadastro.", "warning");
+						return false;
+					}else{
+						swal("Erro!", "Usuário inexistente.", "error");
+						return false;
+					}
 				}
 			});
 		}

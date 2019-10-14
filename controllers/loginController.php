@@ -4,17 +4,26 @@ use PHPMailer\PHPMailer\Exception;
 
 class loginController extends controller{
 	public function index(){
+		$this->titulo = "Acesse sua conta ou faça seu cadastro.";
+		$this->loadTemplate('login');
+	}
+
+	public function logar(){
 		$usuario = new Usuario();
 		if (isset($_POST['email']) && !empty($_POST['email'])) {
 			$email = addslashes($_POST['email']);
 			$senha = md5($_POST['senha']);
 
-			$usuario->login($email, $senha);
+			if($usuario->verificaPermissao($email, $senha)){
+				echo 2;
+			}else{
+				if($usuario->login($email, $senha)){
+					echo 1;
+				}else{
+					echo 0;
+				}
+			}
 		}
-
-		$this->titulo = "Acesse sua conta ou faça seu cadastro.";
-
-		$this->loadTemplate('login');
 	}
 
 	public function esqueci(){

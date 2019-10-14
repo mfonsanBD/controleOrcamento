@@ -19,6 +19,17 @@ class Usuario extends model{
 		}
 	}
 
+	public function verificaPermissao($email, $senha){
+		$sql = $this->conexao->prepare("SELECT * FROM usuario WHERE email = ? AND senha = ? AND permissao = 0");
+		$sql->execute(array($email, $senha));
+
+		if ($sql->rowCount() > 0) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	public function cadastrar($nome, $email, $senha, $codigo){
 		$sql = $this->conexao->prepare("INSERT INTO usuario SET nome = ?, email = ?, senha = ?, tipo = 1, permissao = 0, hash = ?");
 		$sql->execute(array($nome, $email, $senha, $codigo));
