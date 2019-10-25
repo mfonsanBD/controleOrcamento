@@ -45,7 +45,6 @@ $(document).ready(function(){
 		else if($("#cSenha").val() != $("#senha").val()){
 			$("#erroCSenha").html('*As senhas não coincidem.');
 		}else{
-
 			var nome = $("#nome").val();
 			var email = $("#email").val();
 			var senha = $("#senha").val();
@@ -112,10 +111,20 @@ $(document).ready(function(){
 					if(dados == 1){
 						window.location.href = 'http://localhost/gcc/painel/';
 					}else if (dados == 2){
-						swal("Aviso!", "Usuário ainda não confirmado. Verifique seu e-mail para confirmar seu cadastro.", "warning");
+						swal("Aviso!", "Usuário ainda não confirmado. Verifique seu e-mail para confirmar seu cadastro.", "warning",{
+							button: {
+								text: "Okay",
+								className: "btn btn-warning",
+							},
+						});
 						return false;
 					}else{
-						swal("Erro!", "Usuário inexistente.", "error");
+						swal("Erro!", "Usuário ou senha incorretos.", "error",{
+							button: {
+								text: "Corrigir",
+								className: "btn btn-danger",
+							},
+						});
 						return false;
 					}
 				}
