@@ -9,7 +9,7 @@ if (AMBIENTE == 'desenvolvimento') {
 	$config['banco'] 		= 'gcc';
 	$config['host'] 		= 'localhost';
 	$config['usuario'] 		= 'root';
-	$config['senha'] 		= '';
+	$config['senha'] 		= 'root';
 }else{
 	define("URL_BASE", 'http://controle.clientes/');
 	$config['banco'] 		= 'gcc';

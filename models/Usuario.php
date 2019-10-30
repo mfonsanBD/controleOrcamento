@@ -30,6 +30,30 @@ class Usuario extends model{
 		}
 	}
 
+	public function qtdUsuarios(){
+		$array = array();
+		$sql = $this->conexao->prepare("SELECT COUNT(*) AS c FROM usuario");
+		$sql->execute();
+
+		if ($sql->rowCount() > 0) {
+			$array = $sql->fetch();
+		}
+
+		return $array['c'];
+	}
+
+	public function listaUsuarios(){
+		$array = array();
+		$sql = $this->conexao->prepare("SELECT * FROM usuario");
+		$sql->execute();
+
+		if ($sql->rowCount() > 0) {
+			$array = $sql->fetchAll();
+		}
+
+		return $array;
+	}
+
 	public function cadastrar($nome, $email, $senha, $codigo){
 		$sql = $this->conexao->prepare("INSERT INTO usuario SET nome = ?, email = ?, senha = ?, tipo = 1, permissao = 0, hash = ?");
 		$sql->execute(array($nome, $email, $senha, $codigo));

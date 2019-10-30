@@ -38,6 +38,9 @@ label{
     padding: 40px 0 70px;
     border-radius: 3.8%;
 }
+.btn-status{
+    font-size: 12px !important;
+}
 .notfound h1{
     font-size: 5em;
 }
@@ -134,13 +137,10 @@ label.label_foto{
     margin-bottom: 120px;
 }
 .esqueci{
-    width: 30%;
-    position: absolute;
-    top: 50%;
+    margin-top: -10%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffffff;
-    padding: 0 50px;
+    transform: translateX(-50%);
+    margin-bottom: 150px;
 }
 .text-padrao{
 	color: #005e76;

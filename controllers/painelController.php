@@ -10,7 +10,14 @@ class painelController extends controller{
 
 		switch ($_SESSION['tipo']) {
 			case 0:
-				$this->loadTemplate('admin/painel');
+				$u = new Usuario();
+				$qtdUsuarios = $u->qtdUsuarios();
+				$listaUsuarios = $u->listaUsuarios();
+
+				$dados['qtdUsuarios'] = $qtdUsuarios;
+				$dados['listaUsuarios'] = $listaUsuarios;
+
+				$this->loadTemplate('admin/painel', $dados);
 			break;
 
 			case 1:

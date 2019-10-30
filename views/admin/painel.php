@@ -9,8 +9,45 @@ require 'topo.php';
 		<h3 class="text-uppercase text-center titulo_pagina">Painel de Controle</h3>
 	</div>
 	<div class="row base">
-		<div class="col-lg-8 bg-success">
-			...
+		<div class="col-lg-8">
+			<?php foreach ($listaUsuarios as $lu): ?>
+				<div class="col-md-12 bg-white rounded-lg pt-3 pb-3 mb-2 shadow-sm">
+					<div class="row">
+						<div class="col-md-3">
+							<h6 class="mb-1">Nome:</h6>
+							<p class="p-0 m-0 text-black-50">
+								<?php
+									$usuario = explode(" ", $lu['nome']);
+									echo $usuario[0]." ".$usuario[1];
+								?>
+							</p>
+						</div>
+						<div class="col-md-3">
+							<h6 class="mb-1">E-mail:</h6>
+							<p class="p-0 m-0 text-black-50"><?= $lu['email']; ?></p>
+						</div>
+						<div class="col-md-3">
+							<h6 class="mb-1">Status:</h6>
+							<?php
+								switch($lu['permissao']) {
+									case '0':
+										echo '<button type="button" class="btn btn-danger btn-sm btn-status">Não Confirmado</button>';
+									break;
+									
+									default:
+										echo '<button type="button" class="btn btn-success btn-sm btn-status">Confirmado</button>';
+									break;
+								}
+							?>
+						</div>
+						<div class="col-md-3">
+							<h6 class="mb-1">Ação:</h6>
+							<button type="button" class="btn btn-primary btn-sm btn-status">Editar</button>
+							<button type="button" class="btn btn-danger btn-sm btn-status">Excluir</button>
+						</div>
+					</div>
+				</div>
+			<?php endforeach; ?>
 		</div>
 		<div class="col-lg-4">
 			<div class="row">
@@ -19,11 +56,11 @@ require 'topo.php';
 						<h4 class="text-uppercase nomedaempresa mb-3">Informações</h4>
 						<div class="row">
 							<div class="col-lg-6">
-								<h1 class="text-center p-0 m-0">5</h1>
+								<h1 class="text-center p-0 m-0"><?= $qtdUsuarios; ?></h1>
 								<p class="text-center p-0 m-0">Usuários Cadastrados</p>
 							</div>
 							<div class="col-lg-6">
-								<h1 class="text-center p-0 m-0">13</h1>
+								<h1 class="text-center p-0 m-0">0</h1>
 								<p class="text-center p-0 m-0">Empresas Cadastradas</p>							
 							</div>
 						</div>

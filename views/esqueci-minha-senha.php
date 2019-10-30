@@ -6,7 +6,7 @@
 	</div>
 </header>
 
-<div class="esqueci p-5 text-center rounded-lg">
+<div class="col-md-5 p-5 text-center rounded-lg bg-white esqueci">
 	<h2 class="text-uppercase text-padrao">Esqueceu sua senha?</h2>
 	<span class="mb-4">Enviaremos um e-mail com os seus dados de acesso.</span>
 	<form method="POST" id="esqueci">
