@@ -20,7 +20,7 @@ class Usuario extends model{
 	}
 
 	public function verificaPermissao($email, $senha){
-		$sql = $this->conexao->prepare("SELECT * FROM usuario WHERE email = ? AND senha = ? AND permissao = 0");
+		$sql = $this->conexao->prepare("SELECT * FROM usuario WHERE email = ? AND senha = ? AND permissao = 1");
 		$sql->execute(array($email, $senha));
 
 		if ($sql->rowCount() > 0) {

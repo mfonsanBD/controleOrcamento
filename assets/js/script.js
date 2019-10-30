@@ -113,7 +113,7 @@ $(document).ready(function(){
 					}else if (dados == 2){
 						swal("Aviso!", "Usuário ainda não confirmado. Verifique seu e-mail para confirmar seu cadastro.", "warning",{
 							button: {
-								text: "Okay",
+								text: "Vou Confirmar",
 								className: "btn btn-warning",
 							},
 						});
