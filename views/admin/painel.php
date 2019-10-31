@@ -41,7 +41,7 @@ require 'topo.php';
 						</div>
 						<div class="col-md-3">
 							<h6 class="mb-1">Ação:</h6>
-							<button id="ueditar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEdUs" data-whatever="<?= $lu['id']; ?>" data-whatevernome="<?= $lu['nome']; ?>" data-whateversenha="<?= $lu['senha']; ?>">Editar</button>
+							<button id="ueditar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEdUs" data-id="<?= $lu['id']; ?>" data-nome="<?= $lu['nome']; ?>">Editar</button>
 							<button id="uexcluir" value="<?= $lu['id']; ?>" type="button" class="btn btn-danger btn-sm">Excluir</button>
 						</div>
 					</div>

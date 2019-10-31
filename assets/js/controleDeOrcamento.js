@@ -32,15 +32,57 @@ $(document).ready(function(){
 	});
 
 	$('#modalEdUs').on('show.bs.modal', function(event){
-	  var button = $(event.relatedTarget); // Button that triggered the modal
-	  var id = button.data('whatever'); // Extract info from data-* attributes
-	  var nome = button.data('whatevernome'); // Extract info from data-* attributes
-	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-	  var modal = $(this);
-	  modal.find('.modal-title').text('Editando '+nome);
-	  modal.find('.modal-body input').val(id);
+		var button = $(event.relatedTarget); // Button that triggered the modal
+		var id = button.data('id'); // Extract info from data-* attributes
+		var nome = button.data('nome'); // Extract info from data-* attributes
+		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		var modal = $(this);
+		modal.find('.modal-title').text('Alterar senha de: '+nome);
 
+		$("#salvarAlteracoes").on("click", function(){
+		  	var novaSenha = $("#nsenha").val();
+		  	var cNovaSenha = $("#cnsenha").val();
+
+			if(novaSenha == '' && cNovaSenha == ''){
+				swal({
+					title: "Erro!", 
+					text: "Os campos não podem estar vazios.", 
+					icon: "error"
+				});
+			}else{
+				if(novaSenha != cNovaSenha){
+					swal({
+						title: "Aviso!", 
+						text: "As senhas não coincidem!", 
+						icon: "warning"
+					});
+				}else{
+					$.ajax({
+						url: 'http://localhost/gcc/painel/adminEdita',
+						type: 'POST',
+						data: {senha:novaSenha, id:id},
+						success: function(dados){
+							if(dados == 1){
+								swal({
+									title: "Parabéns!", 
+									text: "Senha alterada com sucesso!", 
+									icon: "success"
+								});
+							}else{
+								swal({
+									title: "Erro!", 
+									text: "A senha não pôde ser alterada.", 
+									icon: "error"
+								});
+							}
+						}
+					});
+				}
+			}
+
+			$("#editaSU")[0].reset();
+		});
 	});
 
 	$("#voltaAoInicio").click(function(){

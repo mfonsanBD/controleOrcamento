@@ -24,14 +24,16 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="bg-light">
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
+        <form class="bg-light" id="editaSU">
+          <div class="form-group text-left">
+            <label for="nsenha" class="col-form-label">Nova Senha:</label>
+            <input type="password" id="nsenha">
+            <label for="cnsenha" class="col-form-label">Confirmar Nova Senha:</label>
+            <input type="password" id="cnsenha">
           </div>
 		  <div class="modal-footer">
 		    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-		    <button type="button" class="btn bg-padrao">Salvar Alterações</button>
+		    <button type="button" id="salvarAlteracoes" class="btn bg-padrao">Salvar Alterações</button>
 		  </div>
         </form>
       </div>

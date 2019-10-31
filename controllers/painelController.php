@@ -119,6 +119,26 @@ class painelController extends controller{
 		}
 	}
 
+	public function adminEdita(){
+		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
+			header("Location: ".URL_BASE);
+			exit();
+		}
+
+		if (isset($_POST['senha']) && !empty($_POST['senha'])) {
+			$id = $_POST['id'];
+			$senha = md5($_POST['senha']);
+
+			$u = new Usuario();
+			
+			if($u->alteraSenhaUsuario($senha, $id)){
+				echo "1";
+			}else{
+				echo "0";
+			}
+		}
+	}
+
 	public function sair(){
 		unset($_SESSION['logado']);
 		unset($_SESSION['nome_do_usuario']);

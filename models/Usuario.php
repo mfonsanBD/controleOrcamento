@@ -54,6 +54,17 @@ class Usuario extends model{
 		return $array;
 	}
 
+	public function alteraSenhaUsuario($senha, $id){
+		$sql = $this->conexao->prepare("UPDATE usuario SET senha = ? WHERE id = ?");
+		$sql->execute(array($senha, $id));
+
+		if ($sql->rowCount() > 0) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	public function cadastrar($nome, $email, $senha, $codigo){
 		$sql = $this->conexao->prepare("INSERT INTO usuario SET nome = ?, email = ?, senha = ?, tipo = 1, permissao = 0, hash = ?");
 		$sql->execute(array($nome, $email, $senha, $codigo));
