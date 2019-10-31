@@ -11,11 +11,11 @@ require 'topo.php';
 	<div class="row base">
 		<div class="col-lg-8">
 			<?php foreach ($listaUsuarios as $lu): ?>
-				<div class="col-md-12 bg-white rounded-lg pt-3 pb-3 mb-2 shadow-sm">
+				<div class="col-md-12 bg-white rounded-lg pt-3 pb-3 mb-3 shadow-sm">
 					<div class="row">
 						<div class="col-md-3">
 							<h6 class="mb-1">Nome:</h6>
-							<p class="p-0 m-0 text-black-50">
+							<p class="p-0 m-0 text-padrao">
 								<?php
 									$usuario = explode(" ", $lu['nome']);
 									echo $usuario[0]." ".$usuario[1];
@@ -24,30 +24,25 @@ require 'topo.php';
 						</div>
 						<div class="col-md-3">
 							<h6 class="mb-1">E-mail:</h6>
-							<p class="p-0 m-0 text-black-50"><?= $lu['email']; ?></p>
+							<p class="p-0 m-0 text-padrao"><?= $lu['email']; ?></p>
 						</div>
 						<div class="col-md-3">
 							<h6 class="mb-1">Status:</h6>
 							<?php
 								switch($lu['permissao']) {
 									case '0':
-										echo '
-										<img src="assets/img/circulo-vermelho.svg" alt="" width="10">
-										<span class="btn-status text-danger">Não Confirmado</span>';
+										echo '<img src="'.URL_BASE.'assets/img/circulo-vermelho.svg" alt="" width="10"> <span class="btn-status text-danger">Não Confirmado</span>';
 									break;
-									
 									default:
-										echo '
-										<img src="assets/img/circulo-verde.svg" alt="" width="10">
-										<span class="btn-status text-success">Confirmado</span>';
+										echo '<img src="'.URL_BASE.'assets/img/circulo-verde.svg" alt="" width="10"> <span class="btn-status text-success">Confirmado</span>';
 									break;
 								}
 							?>
 						</div>
 						<div class="col-md-3">
 							<h6 class="mb-1">Ação:</h6>
-							<button id="ueditar" type="button" class="btn btn-primary btn-sm">Editar</button>
-							<button id="uexcluir" type="button" class="btn btn-danger btn-sm">Excluir</button>
+							<button id="ueditar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEdUs" data-whatever="<?= $lu['id']; ?>" data-whatevernome="<?= $lu['nome']; ?>" data-whateversenha="<?= $lu['senha']; ?>">Editar</button>
+							<button id="uexcluir" value="<?= $lu['id']; ?>" type="button" class="btn btn-danger btn-sm">Excluir</button>
 						</div>
 					</div>
 				</div>

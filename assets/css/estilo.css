@@ -76,6 +76,9 @@ label{
 .swal-icon--warning__dot{
     margin-bottom: 0 !important;
 }
+.swal-overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+}
 #dados{
     background-color: transparent;
 }
