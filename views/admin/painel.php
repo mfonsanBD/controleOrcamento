@@ -51,7 +51,7 @@ require 'topo.php';
 		<div class="col-lg-4">
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="bg-white text-center shadow-sm pt-4 pb-4 widget_infos mb-4">
+					<div class="bg-white text-center shadow-sm pt-4 pb-4 widget_infos mb-3">
 						<h4 class="text-uppercase nomedaempresa mb-3">Informações</h4>
 						<div class="row">
 							<div class="col-lg-6">
@@ -66,13 +66,13 @@ require 'topo.php';
 					</div>
 				</div>
 				<div class="col-lg-12">
-					<div class="bg-white text-center shadow-sm relatorios pt-4 pb-4 mb-4">
+					<div class="bg-white text-center shadow-sm relatorios pt-4 pb-4 mb-3">
 						<h4 class="text-uppercase nomedaempresa mb-2">Empresas</h4>
 						<canvas height="250" id="graficoEmpresas"></canvas>
 					</div>
 				</div>
 				<div class="col-lg-12">
-					<div class="bg-white text-center shadow-sm relatorios pt-4 pb-4 mb-4">
+					<div class="bg-white text-center shadow-sm relatorios pt-4 pb-4 mb-3">
 						<h4 class="text-uppercase nomedaempresa mb-2">Orçamentos</h4>
 						<canvas height="290" id="graficoOrcamentos"></canvas>
 					</div>

@@ -15,7 +15,7 @@
 ?>
 
 <div class="modal fade" id="modalEdUs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content bg-light">
       <div class="modal-header bg-padrao">
         <h5 class="modal-title" id="exampleModalLabel"></h5>

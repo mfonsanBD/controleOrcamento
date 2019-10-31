@@ -30,6 +30,9 @@ label{
     display: none;
     z-index: 9999;
 }
+.close span{
+    color: #FFFFFF !important;
+}
 .uEditar{
     position: fixed;
     top: 50%;
