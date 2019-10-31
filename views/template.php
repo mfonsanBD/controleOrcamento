@@ -13,6 +13,10 @@
 <?php
 	$this->loadViewInTemplate($viewNome, $dados);
 ?>
+<div id="lightboxUEditar"></div>
+<div class="uEditar p-5 bg-white rounded-lg text-black col-md-4 mt-5 mb-5">
+    Lightbox
+</div>
 
 <footer class="text-padrao text-center bg-white fixed-bottom pt-3 pb-3">&copy; 2019 - Controle de Orçamentos</footer>
 <script type="text/javascript" src="<?= URL_BASE ?>assets/js/jquery.min.js"></script>

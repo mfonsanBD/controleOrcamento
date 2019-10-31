@@ -31,19 +31,23 @@ require 'topo.php';
 							<?php
 								switch($lu['permissao']) {
 									case '0':
-										echo '<button type="button" class="btn btn-danger btn-sm btn-status">Não Confirmado</button>';
+										echo '
+										<img src="assets/img/circulo-vermelho.svg" alt="" width="10">
+										<span class="btn-status text-danger">Não Confirmado</span>';
 									break;
 									
 									default:
-										echo '<button type="button" class="btn btn-success btn-sm btn-status">Confirmado</button>';
+										echo '
+										<img src="assets/img/circulo-verde.svg" alt="" width="10">
+										<span class="btn-status text-success">Confirmado</span>';
 									break;
 								}
 							?>
 						</div>
 						<div class="col-md-3">
 							<h6 class="mb-1">Ação:</h6>
-							<button type="button" class="btn btn-primary btn-sm btn-status">Editar</button>
-							<button type="button" class="btn btn-danger btn-sm btn-status">Excluir</button>
+							<button id="ueditar" type="button" class="btn btn-primary btn-sm">Editar</button>
+							<button id="uexcluir" type="button" class="btn btn-danger btn-sm">Excluir</button>
 						</div>
 					</div>
 				</div>

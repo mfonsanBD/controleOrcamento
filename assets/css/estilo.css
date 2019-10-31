@@ -20,6 +20,24 @@ body{
 label{
     margin-bottom: 0;
 }
+#lightboxUEditar{
+    background-color: rgba(0, 0, 0, .7);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 9999;
+}
+.uEditar{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 10000;
+}
 .login-cadastro{
 	display: flex;
 	flex-direction: column;
@@ -38,8 +56,12 @@ label{
     padding: 40px 0 70px;
     border-radius: 3.8%;
 }
+.circulo{
+    width: 30px;
+    height: 30px;
+}
 .btn-status{
-    font-size: 12px !important;
+    font-size: 14px !important;
 }
 .notfound h1{
     font-size: 5em;

@@ -31,6 +31,11 @@ $(document).ready(function(){
 		}
 	});
 
+	$("#ueditar").on("click", function(){
+		$("#lightboxUEditar").show("1000");
+		$(".uEditar").show("1000");
+	});
+
 	$("#voltaAoInicio").click(function(){
 		window.location.href="http://localhost/gcc";
 	});
