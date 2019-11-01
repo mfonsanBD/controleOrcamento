@@ -6,7 +6,7 @@ require 'topo.php';
 </div>
 <div class="container">
 	<div class="pt-5 pb-5">
-		<h3 class="text-uppercase text-center titulo_pagina">Configurações</h3>
+		<h3 class="text-uppercase text-center titulo_pagina"><?=$this->titulo;?></h3>
 	</div>
 	<div class="col-lg-8 text-center pag">
 		<img src="<?= URL_BASE ?>assets/img/<?= $_SESSION['foto']; ?>" width="120" alt="Usuário" class="d-inline-block align-top rounded-circle mb-4">

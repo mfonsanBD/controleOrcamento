@@ -8,13 +8,13 @@ date_default_timezone_set('America/Sao_Paulo');
 				<img src="<?= URL_BASE ?>assets/img/logo2.png" width="150" alt="Logotipo Controle de Orçamento" class="d-inline-block align-top">
 			</a>
 			<ul class="nav justify-content-center">
-			  <li class="nav-item">
+			  <li class="nav-item <?=($this->titulo == "Painel de Controle") ? 'ativo' : ''?>">
 			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel">Painel de Controle</a>
 			  </li>
-			  <li class="nav-item">
+			  <li class="nav-item <?=($this->titulo == "Empresas") ? 'ativo' : ''?>">
 			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel/empresa">Empresas</a>
 			  </li>
-			  <li class="nav-item">
+			  <li class="nav-item <?=($this->titulo == "Perguntas Frequentes") ? 'ativo' : ''?>">
 			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel/faqs">FAQ's</a>
 			  </li>
 			</ul>
@@ -43,16 +43,16 @@ date_default_timezone_set('America/Sao_Paulo');
 
 			switch ($hora) {
 				case ($hora >= "00:00:00" && $hora < "12:00:00"):
-					$comprimento = "Bom dia";
+					$cumprimento = "Bom dia";
 				break;
 
 				case ($hora >= "12:00:00" && $hora < "18:00:00"):
-					$comprimento = "Boa tarde";
+					$cumprimento = "Boa tarde";
 				break;
 				
 				default:
-					$comprimento = "Boa noite";
+					$cumprimento = "Boa noite";
 				break;
 			}
 		?>
-		<?=$comprimento.", ".$usuario[0]." ".$usuario[1]; ?>!
+		<?=$cumprimento.", ".$usuario[0]." ".$usuario[1]; ?>!

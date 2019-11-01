@@ -6,7 +6,7 @@ require 'topo.php';
 </div>
 <div class="container">
 	<div class="pt-5 pb-5">
-		<h3 class="text-uppercase text-center titulo_pagina">Painel de Controle</h3>
+		<h3 class="text-uppercase text-center titulo_pagina"><?=$this->titulo;?></h3>
 	</div>
 	<div class="row base">
 		<div class="col-lg-8">

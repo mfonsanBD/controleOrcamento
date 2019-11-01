@@ -6,7 +6,7 @@ require 'topo.php';
 </div>
 <div class="container">
 	<div class="pt-5 pb-5">
-		<h3 class="text-uppercase text-center titulo_pagina">Empresas</h3>
+		<h3 class="text-uppercase text-center titulo_pagina"><?=$this->titulo;?></h3>
 	</div>
 	<div class="text-center mb-5">
 		<button data-filter="all" class="btn btn-outline-dark text-dark btn-sm btn_filtro">Todas</button>

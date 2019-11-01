@@ -20,6 +20,11 @@ body{
 label{
     margin-bottom: 0;
 }
+.ativo{
+    border:thin solid #6c757d;
+    color: #6c757d !important;
+    border-radius: 5px;
+}
 #lightboxUEditar{
     background-color: rgba(0, 0, 0, .7);
     position: fixed;
@@ -171,7 +176,7 @@ label.label_foto{
     margin-bottom: 150px;
 }
 .text-padrao{
-	color: #005e76;
+	color: #005e76 !important;
 }
 .borda-padrao{
     color: #005e76;
