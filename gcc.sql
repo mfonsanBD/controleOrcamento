@@ -42,8 +42,8 @@
 -- Copiando dados para a tabela gcc.usuario: ~12 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 REPLACE INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `foto`, `permissao`, `hash`) VALUES
-	(1, 'Mike Fonseca dos Santos', 'mike@gmail.com', '202cb962ac59075b964b07152d234b70', 0, 'usuario.jpg', 1, NULL),
-	(10, 'Wigoc Shadow', 'wigoc@net1mail.com', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 0, '1e5c79e39cf43e3dc5396cde93ebdf4e'),
+	(1, 'Mike Fonseca dos Santos', 'mike@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, 'usuario.jpg', 1, NULL),
+	(10, 'Wigoc Shadow', 'wigoc@net1mail.com', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 1, '1e5c79e39cf43e3dc5396cde93ebdf4e'),
 	(11, 'Mike Robert', 'mike@j.com', 'fddebb9cdc650bb7e1efa6998e4f9b77', 1, 'usuario.jpg', 0, 'e13462fb5dc7a7e8ed216aab8e0186c2'),
 	(12, 'José Carlos', 'js@s.com', '1ee9ba2625af553585bb92fca5f10f4e', 1, 'usuario.jpg', 0, '27a30944dc910cfa5d3e5720e93f2166'),
 	(13, 'Romário Peixe', 'roma@g.com', 'd16fac18ab9f327f502b8d991be5de2a', 1, 'usuario.jpg', 0, '989774e4edd2bf16195b3966e11a2998'),
