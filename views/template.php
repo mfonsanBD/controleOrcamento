@@ -14,33 +14,6 @@
 	$this->loadViewInTemplate($viewNome, $dados);
 ?>
 
-<div class="modal fade" id="modalEdUs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content bg-light">
-      <div class="modal-header bg-padrao">
-        <h5 class="modal-title" id="exampleModalLabel"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="bg-light" id="editaSU">
-          <div class="form-group text-left">
-            <label for="nsenha" class="col-form-label">Nova Senha:</label>
-            <input type="password" id="nsenha">
-            <label for="cnsenha" class="col-form-label">Confirmar Nova Senha:</label>
-            <input type="password" id="cnsenha">
-          </div>
-		  <div class="modal-footer">
-		    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-		    <button type="button" id="salvarAlteracoes" class="btn bg-padrao">Salvar Alterações</button>
-		  </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
 <footer class="text-padrao text-center bg-white fixed-bottom pt-3 pb-3">&copy; 2019 - Controle de Orçamentos</footer>
 <script type="text/javascript" src="<?= URL_BASE ?>assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="<?= URL_BASE ?>assets/js/Chart.min.js"></script>

@@ -29,6 +29,9 @@
 
 -- Copiando dados para a tabela gcc.perguntas_frequentes: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `perguntas_frequentes` DISABLE KEYS */;
+REPLACE INTO `perguntas_frequentes` (`id`, `pergunta`, `resposta`) VALUES
+	(1, 'Qual?', 'Essa'),
+	(2, 'Foi você?', 'Claro que sim!');
 /*!40000 ALTER TABLE `perguntas_frequentes` ENABLE KEYS */;
 
 -- Copiando dados para a tabela gcc.resposta: ~0 rows (aproximadamente)
