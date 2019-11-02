@@ -12,10 +12,7 @@ class painelController extends controller{
 			case 0:
 				$u = new Usuario();
 				$qtdUsuarios = $u->qtdUsuarios();
-				$listaUsuarios = $u->listaUsuarios();
-
 				$dados['qtdUsuarios'] = $qtdUsuarios;
-				$dados['listaUsuarios'] = $listaUsuarios;
 
 				$this->loadTemplate('admin/painel', $dados);
 			break;
@@ -34,7 +31,21 @@ class painelController extends controller{
 			break;
 		}
 	}
+	public function usuario(){
+		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
+			header("Location: ".URL_BASE);
+			exit();
+		}
 
+		$this->titulo = "Usuários";
+		
+		$u = new Usuario();
+		
+		$listaUsuarios = $u->listaUsuarios();
+		$dados['listaUsuarios'] = $listaUsuarios;
+
+		$this->loadTemplate('admin/usuario', $dados);
+	}
 	public function empresa(){
 		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
 			header("Location: ".URL_BASE);
@@ -62,7 +73,22 @@ class painelController extends controller{
 			break;
 		}
 	}
+	public function addFaqs(){
 
+		$pf = new PerguntasFrequentes();
+
+		if(isset($_POST['pergunta']) && isset($_POST['resposta']) && !empty($_POST['pergunta']) && !empty($_POST['resposta'])){
+			
+			$pergunta = addslashes($_POST['pergunta']);
+			$resposta = addslashes($_POST['resposta']);
+
+			if($pf->adicionaPF($pergunta, $resposta)){
+				echo "1";
+			}else{
+				echo "0";
+			}
+		}
+	}
 	public function faqs(){
 		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
 			header("Location: ".URL_BASE);
@@ -90,7 +116,6 @@ class painelController extends controller{
 			break;
 		}
 	}
-
 	public function configuracoes(){
 		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
 			header("Location: ".URL_BASE);
@@ -118,18 +143,17 @@ class painelController extends controller{
 			break;
 		}
 	}
-
 	public function adminEdita(){
 		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
 			header("Location: ".URL_BASE);
 			exit();
 		}
 
+		$u = new Usuario();
+
 		if (isset($_POST['senha']) && !empty($_POST['senha'])) {
 			$id = $_POST['id'];
 			$senha = md5($_POST['senha']);
-
-			$u = new Usuario();
 			
 			if($u->alteraSenhaUsuario($senha, $id)){
 				echo "1";
@@ -138,7 +162,6 @@ class painelController extends controller{
 			}
 		}
 	}
-
 	public function sair(){
 		unset($_SESSION['logado']);
 		unset($_SESSION['nome_do_usuario']);

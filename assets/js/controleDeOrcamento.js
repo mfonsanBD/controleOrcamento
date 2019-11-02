@@ -85,6 +85,48 @@ $(document).ready(function(){
 		});
 	});
 
+	$('#addPF').on('show.bs.modal', function(event){
+		var button = $(event.relatedTarget); // Button that triggered the modal
+		var modal = $(this);
+		modal.find('.modal-title').text('Adicionar Pergunta Frequete');
+
+		$("#add").on("click", function(){
+			var pergunta = $("#pergunta").val();
+			var resposta = $("#resposta").val();
+
+			if(pergunta == '' && resposta == ''){
+				swal({
+					title: "Atenção!", 
+					text: "Os campos não podem estar vazios.", 
+					icon: "warning"
+				});
+			}else{
+				$.ajax({
+					url: 'http://localhost/gcc/painel/addFaqs',
+					type: 'POST',
+					data: {pergunta:pergunta, resposta:resposta},
+					success: function(dados){
+						if(dados == "1"){
+							swal({
+								title: "Parabéns!", 
+								text: "Pergunta Frequente adicionada com sucesso.", 
+								icon: "success"
+							});
+						}else{
+							swal({
+								title: "Erro!",
+								text: "Pergunta Frequente não pôde ser adicionada.", 
+								icon: "error"
+							});
+						}
+					}
+				});
+			}
+
+		  	$("#adcPF")[0].reset();
+		});
+	});
+
 	$("#voltaAoInicio").click(function(){
 		window.location.href="http://localhost/gcc";
 	});
