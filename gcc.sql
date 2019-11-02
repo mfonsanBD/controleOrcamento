@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           10.1.37-MariaDB - mariadb.org binary distribution
+-- Versão do servidor:           10.1.32-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win32
 -- HeidiSQL Versão:              10.2.0.5599
 -- --------------------------------------------------------
@@ -11,8 +11,14 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Copiando dados para a tabela gcc.empresa: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela gcc.empresa: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
+INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `email_empresa`, `site_empresa`, `telefone_empresa`, `whatsapp_empresa`, `foto_empresa`, `permissao_empresa`, `id_usuario`) VALUES
+	(1, 'Grupo HR Segurança', 'contato@grupohrseguranca.com.br', 'https://grupohrseguranca.com.br', '(22) 99929-5067', '(22) 99929-5067', 'imagem-de-apresentacao.jpg', 0, 22),
+	(2, 'Clean Lagos', 'contato@cleanlagos.com', 'https://cleanlagos.com', '(22) 99929-5067', '(22) 99929-5067', 'imagem-de-apresentacao.jpg', 1, 22),
+	(3, 'Grupo HR Segurança', 'contato@grupohrseguranca.com.br', 'https://grupohrseguranca.com.br', '(22) 99929-5067', '(22) 99929-5067', 'imagem-de-apresentacao.jpg', 0, 22),
+	(4, 'Grupo HR Segurança', 'contato@grupohrseguranca.com.br', 'https://grupohrseguranca.com.br', '(22) 99929-5067', '(22) 99929-5067', 'imagem-de-apresentacao.jpg', 0, 22),
+	(5, 'Clean Lagos', 'contato@cleanlagos.com', 'https://cleanlagos.com', '(22) 99929-5067', '(22) 99929-5067', 'imagem-de-apresentacao.jpg', 1, 22);
 /*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
 
 -- Copiando dados para a tabela gcc.orcamento_c: ~0 rows (aproximadamente)
@@ -27,15 +33,12 @@
 /*!40000 ALTER TABLE `pergunta` DISABLE KEYS */;
 /*!40000 ALTER TABLE `pergunta` ENABLE KEYS */;
 
--- Copiando dados para a tabela gcc.perguntas_frequentes: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela gcc.perguntas_frequentes: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `perguntas_frequentes` DISABLE KEYS */;
-<<<<<<< HEAD
-REPLACE INTO `perguntas_frequentes` (`id`, `pergunta`, `resposta`) VALUES
-=======
-INSERT INTO `perguntas_frequentes` (`id`, `pergunta`, `resposta`) VALUES
->>>>>>> 699601ea0d1e71ee0340524e8ecae8f07409dc73
+INSERT INTO `perguntas_frequentes` (`id_pf`, `pergunta_pf`, `resposta_pf`) VALUES
 	(1, 'Qual?', 'Essa'),
-	(2, 'Foi você?', 'Claro que sim!');
+	(2, 'Foi você?', 'Claro que sim!'),
+	(3, 'Tudo bem?', 'Sim!');
 /*!40000 ALTER TABLE `perguntas_frequentes` ENABLE KEYS */;
 
 -- Copiando dados para a tabela gcc.resposta: ~0 rows (aproximadamente)
@@ -46,25 +49,12 @@ INSERT INTO `perguntas_frequentes` (`id`, `pergunta`, `resposta`) VALUES
 /*!40000 ALTER TABLE `servico` DISABLE KEYS */;
 /*!40000 ALTER TABLE `servico` ENABLE KEYS */;
 
--- Copiando dados para a tabela gcc.usuario: ~12 rows (aproximadamente)
+-- Copiando dados para a tabela gcc.usuario: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-<<<<<<< HEAD
-REPLACE INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `foto`, `permissao`, `hash`) VALUES
-=======
 INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `foto`, `permissao`, `hash`) VALUES
->>>>>>> 699601ea0d1e71ee0340524e8ecae8f07409dc73
-	(1, 'Mike Fonseca dos Santos', 'mike@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, 'usuario.jpg', 1, NULL),
-	(10, 'Wigoc Shadow', 'wigoc@net1mail.com', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 1, '1e5c79e39cf43e3dc5396cde93ebdf4e'),
-	(11, 'Mike Robert', 'mike@j.com', 'fddebb9cdc650bb7e1efa6998e4f9b77', 1, 'usuario.jpg', 0, 'e13462fb5dc7a7e8ed216aab8e0186c2'),
-	(12, 'José Carlos', 'js@s.com', '1ee9ba2625af553585bb92fca5f10f4e', 1, 'usuario.jpg', 0, '27a30944dc910cfa5d3e5720e93f2166'),
-	(13, 'Romário Peixe', 'roma@g.com', 'd16fac18ab9f327f502b8d991be5de2a', 1, 'usuario.jpg', 0, '989774e4edd2bf16195b3966e11a2998'),
-	(14, 'Ronaldo Fenômeno', 'rona@r.com', 'abdac627903723582c7254823e72f58f', 1, 'usuario.jpg', 0, '854703c1cb0a5e25249ac8a1cccc37a9'),
-	(15, 'Ronaldinho Gaúcho', 'dinho@ro.com', 'abdac627903723582c7254823e72f58f', 1, 'usuario.jpg', 0, '5bdd30d6f94f14820ce0872db517d2fc'),
-	(16, 'Robinho Pedalada', 'binho@rob.com.br', 'e8c6ac54f11b0dd2c3f9b55237e1e041', 1, 'usuario.jpg', 1, '18d5c9c7ff92469b1da8c7e4621947d5'),
-	(17, 'Jubicleison Rapadura', 'jub@clei.com', '982153573889b16b07d9b7b7874a3e00', 1, 'usuario.jpg', 0, 'f98f82dffa5c73842a77f289c4252e5f'),
-	(18, 'Jabiraca Veia', 'jabi@raca.com', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 0, 'dad9d9cababf5019a0596f6900d970f3'),
-	(19, 'Rosenilde Creusidia', 'rose@nilde.com', '1ee9ba2625af553585bb92fca5f10f4e', 1, 'usuario.jpg', 0, 'c8a5278c22ab0d436cca3f4e1938561e'),
-	(20, 'Cata Vento', 'cata@vento.com', '4d1a387396e2b5d7f421a203133c5e2c', 1, 'usuario.jpg', 0, '9035a62f34f1af0f92ea2faed44b48d6');
+	(1, 'Mike Fonseca dos Santos', 'mike@gmail.com', '202cb962ac59075b964b07152d234b70', 0, 'usuario.jpg', 1, NULL),
+	(21, 'André Luis Castro', 'andreluis.castro@hotmail.com', 'd2e66a2f1c7aff96cee5470dbaa59e8e', 0, 'usuario.jpg', 1, 'b91f1a7d6ed9e097c174844687ee480f'),
+	(22, 'Vladmir Rijo', 'ceo@grupohrseguranca.com.br', '6fd671f8824a60d924bee98f5bdcaf86', 1, 'usuario.jpg', 1, '64105d5d58da0e4446022b0e4017fb34');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
