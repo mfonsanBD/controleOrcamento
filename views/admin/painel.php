@@ -115,8 +115,8 @@ var configE = {
 	data: {
 		datasets: [{
 			data: [
-				5,
-				8
+				1,
+				0
 			],
 			backgroundColor: [
 				'#6C757D',
