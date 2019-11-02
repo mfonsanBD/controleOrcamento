@@ -27,9 +27,13 @@
 /*!40000 ALTER TABLE `pergunta` DISABLE KEYS */;
 /*!40000 ALTER TABLE `pergunta` ENABLE KEYS */;
 
--- Copiando dados para a tabela gcc.perguntas_frequentes: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela gcc.perguntas_frequentes: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `perguntas_frequentes` DISABLE KEYS */;
+<<<<<<< HEAD
 REPLACE INTO `perguntas_frequentes` (`id`, `pergunta`, `resposta`) VALUES
+=======
+INSERT INTO `perguntas_frequentes` (`id`, `pergunta`, `resposta`) VALUES
+>>>>>>> 699601ea0d1e71ee0340524e8ecae8f07409dc73
 	(1, 'Qual?', 'Essa'),
 	(2, 'Foi você?', 'Claro que sim!');
 /*!40000 ALTER TABLE `perguntas_frequentes` ENABLE KEYS */;
@@ -44,7 +48,11 @@ REPLACE INTO `perguntas_frequentes` (`id`, `pergunta`, `resposta`) VALUES
 
 -- Copiando dados para a tabela gcc.usuario: ~12 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+<<<<<<< HEAD
 REPLACE INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `foto`, `permissao`, `hash`) VALUES
+=======
+INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `foto`, `permissao`, `hash`) VALUES
+>>>>>>> 699601ea0d1e71ee0340524e8ecae8f07409dc73
 	(1, 'Mike Fonseca dos Santos', 'mike@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, 'usuario.jpg', 1, NULL),
 	(10, 'Wigoc Shadow', 'wigoc@net1mail.com', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 1, '1e5c79e39cf43e3dc5396cde93ebdf4e'),
 	(11, 'Mike Robert', 'mike@j.com', 'fddebb9cdc650bb7e1efa6998e4f9b77', 1, 'usuario.jpg', 0, 'e13462fb5dc7a7e8ed216aab8e0186c2'),
