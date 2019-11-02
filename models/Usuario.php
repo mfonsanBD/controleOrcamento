@@ -66,7 +66,7 @@ class Usuario extends model{
 	}
 
 	public function cadastrar($nome, $email, $senha, $codigo){
-		$sql = $this->conexao->prepare("INSERT INTO usuario SET nome = ?, email = ?, senha = ?, tipo = 1, permissao = 0, hash = ?");
+		$sql = $this->conexao->prepare("INSERT INTO usuario SET nome = ?, email = ?, senha = ?, tipo = 1, foto = 'usuario.jpg', permissao = 0, hash = ?");
 		$sql->execute(array($nome, $email, $senha, $codigo));
 	}
 }

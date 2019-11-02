@@ -11,6 +11,9 @@ date_default_timezone_set('America/Sao_Paulo');
 			  <li class="nav-item <?=($this->titulo == "Painel de Controle") ? 'ativo' : ''?>">
 			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel">Painel de Controle</a>
 			  </li>
+			  <li class="nav-item <?=($this->titulo == "Usuários") ? 'ativo' : ''?>">
+			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel/usuario">Usuários</a>
+			  </li>
 			  <li class="nav-item <?=($this->titulo == "Empresas") ? 'ativo' : ''?>">
 			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel/empresa">Empresas</a>
 			  </li>

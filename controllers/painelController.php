@@ -12,10 +12,7 @@ class painelController extends controller{
 			case 0:
 				$u = new Usuario();
 				$qtdUsuarios = $u->qtdUsuarios();
-				$listaUsuarios = $u->listaUsuarios();
-
 				$dados['qtdUsuarios'] = $qtdUsuarios;
-				$dados['listaUsuarios'] = $listaUsuarios;
 
 				$this->loadTemplate('admin/painel', $dados);
 			break;
@@ -33,6 +30,21 @@ class painelController extends controller{
 				exit();
 			break;
 		}
+	}
+	public function usuario(){
+		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
+			header("Location: ".URL_BASE);
+			exit();
+		}
+
+		$this->titulo = "Usuários";
+		
+		$u = new Usuario();
+		
+		$listaUsuarios = $u->listaUsuarios();
+		$dados['listaUsuarios'] = $listaUsuarios;
+
+		$this->loadTemplate('admin/usuario', $dados);
 	}
 	public function empresa(){
 		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
