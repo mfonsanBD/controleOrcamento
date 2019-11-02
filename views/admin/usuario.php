@@ -41,10 +41,10 @@ require 'topo.php';
 			<?php foreach ($listaUsuarios as $lu): ?>
 				<div class="col-md-12 bg-white rounded-lg pt-3 pb-3 mb-3 shadow-sm">
 					<div class="row">
-						<div class="col-md-1">
-							<img src="<?=URL_BASE?>assets/img/<?=$lu['foto']?>" class="rounded-circle" width="50" alt="">
+						<div class="col-md-1 align-self-center">
+							<img src="<?=URL_BASE?>assets/img/<?=$lu['foto']?>" class="rounded-circle" width="70" alt="">
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-2 align-self-center">
 							<h6 class="mb-1">Nome:</h6>
 							<p class="p-0 m-0 text-padrao">
 								<?php
@@ -53,11 +53,11 @@ require 'topo.php';
 								?>
 							</p>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-4 align-self-center">
 							<h6 class="mb-1">E-mail:</h6>
 							<p class="p-0 m-0 text-padrao"><?= $lu['email']; ?></p>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-2 align-self-center">
 							<h6 class="mb-1">Status:</h6>
 							<?php
 								switch($lu['permissao']) {
@@ -70,10 +70,12 @@ require 'topo.php';
 								}
 							?>
 						</div>
-						<div class="col-md-2">
+						<div class="col-md-3 align-self-center">
 							<h6 class="mb-1">Ação:</h6>
-							<button id="ueditar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEdUs" data-id="<?= $lu['id']; ?>" data-nome="<?= $lu['nome']; ?>">Editar</button>
-							<button id="uexcluir" value="<?= $lu['id']; ?>" type="button" class="btn btn-danger btn-sm">Excluir</button>
+							<button id="ueditar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEdUs" data-id="<?= $lu['id']; ?>" data-nome="<?= $lu['nome']; ?>">
+								<img src="<?=URL_BASE?>assets/img/editar.svg" width="17" class="mr-1 icones" alt="Editar"> Editar
+							</button>
+							<button id="uexcluir" value="<?= $lu['id']; ?>" type="button" class="btn btn-danger btn-sm"><img src="<?=URL_BASE?>assets/img/rejeitar.svg" width="15" class="mr-1 icones" alt="Excluir"> Excluir</button>
 						</div>
 					</div>
 				</div>

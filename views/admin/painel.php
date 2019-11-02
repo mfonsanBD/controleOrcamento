@@ -50,7 +50,7 @@ require 'topo.php';
 								<p class="text-center p-0 m-0">Usuários Cadastrados</p>
 							</div>
 							<div class="col-lg-6">
-								<h1 class="text-center p-0 m-0">0</h1>
+								<h1 class="text-center p-0 m-0"><?= $qtdEmpresas; ?></h1>
 								<p class="text-center p-0 m-0">Empresas Cadastradas</p>							
 							</div>
 						</div>
@@ -78,8 +78,8 @@ var configE = {
 	data: {
 		datasets: [{
 			data: [
-				1,
-				0
+				<?= $aguardandoAprovacao; ?>,
+				<?= $emAtividade; ?>
 			],
 			backgroundColor: [
 				'#6C757D',

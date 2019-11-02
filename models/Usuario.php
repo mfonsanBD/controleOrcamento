@@ -18,7 +18,6 @@ class Usuario extends model{
 			return false;
 		}
 	}
-
 	public function verificaPermissao($email, $senha){
 		$sql = $this->conexao->prepare("SELECT * FROM usuario WHERE email = ? AND senha = ? AND permissao = 0");
 		$sql->execute(array($email, $senha));
@@ -29,7 +28,6 @@ class Usuario extends model{
 			return false;
 		}
 	}
-
 	public function qtdUsuarios(){
 		$array = array();
 		$sql = $this->conexao->prepare("SELECT COUNT(*) AS c FROM usuario");
@@ -41,7 +39,6 @@ class Usuario extends model{
 
 		return $array['c'];
 	}
-
 	public function listaUsuarios(){
 		$array = array();
 		$sql = $this->conexao->prepare("SELECT * FROM usuario WHERE tipo = 1 LIMIT 10");
@@ -53,7 +50,6 @@ class Usuario extends model{
 
 		return $array;
 	}
-
 	public function alteraSenhaUsuario($senha, $id){
 		$sql = $this->conexao->prepare("UPDATE usuario SET senha = ? WHERE id = ?");
 		$sql->execute(array($senha, $id));
@@ -68,5 +64,11 @@ class Usuario extends model{
 	public function cadastrar($nome, $email, $senha, $codigo){
 		$sql = $this->conexao->prepare("INSERT INTO usuario SET nome = ?, email = ?, senha = ?, tipo = 1, foto = 'usuario.jpg', permissao = 0, hash = ?");
 		$sql->execute(array($nome, $email, $senha, $codigo));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }

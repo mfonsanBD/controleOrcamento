@@ -20,10 +20,24 @@ body{
 label{
     margin-bottom: 0;
 }
+.dropdown-toggle::after{
+    display: none;
+}
 .ativo{
     border:thin solid #6c757d;
     color: #6c757d !important;
     border-radius: 5px;
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color:#005e76 !important;
+    border-color:#005e76 !important;
+}
+.page-item.active:hover .page-link {
+    color: #FFF !important;
+    background-color:#004c5f !important;
+    border-color:#004c5f !important;
 }
 #lightboxUEditar{
     background-color: rgba(0, 0, 0, .7);
@@ -122,9 +136,6 @@ label.label_foto{
     border-radius: 3.8%;
 }
 .pag{
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
     margin-bottom: 120px;
 }
 .widget_infos h4{
@@ -176,7 +187,7 @@ label.label_foto{
     margin-bottom: 150px;
 }
 .text-padrao{
-	color: #005e76 !important;
+	color: #005e76;
 }
 .borda-padrao{
     color: #005e76;

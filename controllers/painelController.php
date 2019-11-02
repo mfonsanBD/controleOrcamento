@@ -11,8 +11,18 @@ class painelController extends controller{
 		switch ($_SESSION['tipo']) {
 			case 0:
 				$u = new Usuario();
-				$qtdUsuarios = $u->qtdUsuarios();
-				$dados['qtdUsuarios'] = $qtdUsuarios;
+				$e = new Empresa();
+
+				$qtdUsuarios 						= $u->qtdUsuarios();
+				$qtdEmpresas 						= $e->qtdEmpresas();
+
+				$empresasAguardandoAprovacao 		= $e->aguardandoAprovacao();
+				$empresasEmAtividade 				= $e->empresasEmAtividade();
+
+				$dados['qtdUsuarios'] 				= $qtdUsuarios;
+				$dados['qtdEmpresas'] 				= $qtdEmpresas;
+				$dados['aguardandoAprovacao'] 		= $empresasAguardandoAprovacao;
+				$dados['emAtividade'] 				= $empresasEmAtividade;
 
 				$this->loadTemplate('admin/painel', $dados);
 			break;
@@ -56,7 +66,12 @@ class painelController extends controller{
 
 		switch ($_SESSION['tipo']) {
 			case 0:
-				$this->loadTemplate('admin/empresa');
+				$e = new Empresa();
+				
+				$listaEmpresas = $e->listaEmpresas();
+				$dados['listaEmpresas'] = $listaEmpresas;
+
+				$this->loadTemplate('admin/empresa', $dados);
 			break;
 
 			case 1:

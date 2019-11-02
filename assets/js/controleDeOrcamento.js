@@ -88,7 +88,7 @@ $(document).ready(function(){
 	$('#addPF').on('show.bs.modal', function(event){
 		var button = $(event.relatedTarget); // Button that triggered the modal
 		var modal = $(this);
-		modal.find('.modal-title').text('Adicionar Pergunta Frequete');
+		modal.find('.modal-title').text('Adicionar Pergunta Frequente');
 
 		$("#add").on("click", function(){
 			var pergunta = $("#pergunta").val();
