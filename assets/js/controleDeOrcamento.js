@@ -49,6 +49,9 @@ $(document).ready(function(){
 					title: "Erro!", 
 					text: "Os campos não podem estar vazios.", 
 					icon: "error"
+				})
+				.then((resposta) => {
+					$('#modalEdUs').modal('hide');
 				});
 			}else{
 				if(novaSenha != cNovaSenha){
@@ -56,6 +59,9 @@ $(document).ready(function(){
 						title: "Aviso!", 
 						text: "As senhas não coincidem!", 
 						icon: "warning"
+					})
+					.then((resposta) => {
+						$('#modalEdUs').modal('hide');
 					});
 				}else{
 					$.ajax({
@@ -68,12 +74,18 @@ $(document).ready(function(){
 									title: "Parabéns!", 
 									text: "Senha alterada com sucesso!", 
 									icon: "success"
+								})
+								.then((resposta) => {
+									$('#modalEdUs').modal('hide');
 								});
 							}else{
 								swal({
 									title: "Erro!", 
 									text: "A senha não pôde ser alterada.", 
 									icon: "error"
+								})
+								.then((resposta) => {
+									$('#modalEdUs').modal('hide');
 								});
 							}
 						}
@@ -82,6 +94,47 @@ $(document).ready(function(){
 			}
 
 			$("#editaSU")[0].reset();
+		});
+	});
+
+	$('#modalExUs').on('show.bs.modal', function(event){
+		var button = $(event.relatedTarget); // Button that triggered the modal
+		var id = button.data('id'); // Extract info from data-* attributes
+		var nome = button.data('nome'); // Extract info from data-* attributes
+		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		var modal = $(this);
+		modal.find('.modal-title').text('Excluir usuário!');
+		modal.find('.texto-confirmacao').text('Tem certeza que deseja excluir '+nome+'?');
+
+		$("#excluirSU").on("click", function(){
+			$.ajax({
+				url: 'http://localhost/gcc/painel/adminExcluiU',
+				type: 'POST',
+				data: {id:id},
+				success: function(dados){
+					if(dados == 1){
+						swal({
+							title: "Parabéns!", 
+							text: "Usuário excluído com sucesso!", 
+							icon: "success"
+						})
+						.then((resposta) => {
+							$('#modalExUs').modal('hide');
+							window.location.reload();
+						});
+					}else{
+						swal({
+							title: "Erro!", 
+							text: "Usuário não pôde ser excluído.", 
+							icon: "error"
+						})
+						.then((resposta) => {
+							$('#modalExUs').modal('hide');
+						});
+					}
+				}
+			});
 		});
 	});
 
@@ -99,6 +152,9 @@ $(document).ready(function(){
 					title: "Atenção!", 
 					text: "Os campos não podem estar vazios.", 
 					icon: "warning"
+				})
+				.then((resposta) => {
+					$('#addPF').modal('hide');
 				});
 			}else{
 				$.ajax({
@@ -113,6 +169,7 @@ $(document).ready(function(){
 								icon: "success"
 							})
 							.then((atualizou) => {
+								$('#addPF').modal('hide');
 								window.location.reload();
 							});
 						}else{
@@ -120,6 +177,9 @@ $(document).ready(function(){
 								title: "Erro!",
 								text: "Pergunta Frequente não pôde ser adicionada.", 
 								icon: "error"
+							})
+							.then((resposta) => {
+								$('#addPF').modal('hide');
 							});
 						}
 					}

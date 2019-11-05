@@ -32,6 +32,28 @@ require 'topo.php';
   </div>
 </div>
 
+<div class="modal fade" id="modalExUs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content bg-light">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title text-white" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="bg-light" id="excluiSU"> 
+      		<p class="texto-confirmacao"></p>       
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Não, desejo cancelar.</button>
+				<button type="button" id="excluirSU" class="btn bg-danger text-white">Sim, desejo excluir.</button>
+			</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
 	<div class="pt-5 pb-5">
 		<h3 class="text-uppercase text-center titulo_pagina"><?=$this->titulo;?></h3>
@@ -49,7 +71,7 @@ require 'topo.php';
 							<p class="p-0 m-0 text-padrao">
 								<?php
 									$usuario = explode(" ", $lu['nome']);
-									echo $usuario[0]." ".$usuario[1];
+									echo $usuario[0];
 								?>
 							</p>
 						</div>
@@ -75,7 +97,8 @@ require 'topo.php';
 							<button id="ueditar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEdUs" data-id="<?= $lu['id']; ?>" data-nome="<?= $lu['nome']; ?>">
 								<img src="<?=URL_BASE?>assets/img/editar.svg" width="17" class="mr-1 icones" alt="Editar"> Editar
 							</button>
-							<button id="uexcluir" value="<?= $lu['id']; ?>" type="button" class="btn btn-danger btn-sm"><img src="<?=URL_BASE?>assets/img/rejeitar.svg" width="15" class="mr-1 icones" alt="Excluir"> Excluir</button>
+							<button id="uexcluir" value="<?= $lu['id']; ?>" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalExUs" data-id="<?= $lu['id']; ?>" data-nome="<?= $lu['nome']; ?>">
+								<img src="<?=URL_BASE?>assets/img/rejeitar.svg" width="15" class="mr-1 icones" alt="Excluir"> Excluir</button>
 						</div>
 					</div>
 				</div>

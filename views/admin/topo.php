@@ -49,7 +49,7 @@ date_default_timezone_set('America/Sao_Paulo');
 					$cumprimento = "Bom dia";
 				break;
 
-				case ($hora >= "12:00:00" && $hora < "18:00:00"):
+				case ($hora >= "12:00:00" && $hora < "19:00:00"):
 					$cumprimento = "Boa tarde";
 				break;
 				
@@ -58,4 +58,4 @@ date_default_timezone_set('America/Sao_Paulo');
 				break;
 			}
 		?>
-		<?=$cumprimento.", ".$usuario[0]." ".$usuario[1]; ?>!
+		<?=$cumprimento.", ".$usuario[0]; ?>!

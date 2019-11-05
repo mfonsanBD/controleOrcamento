@@ -88,22 +88,6 @@ class painelController extends controller{
 			break;
 		}
 	}
-	public function addFaqs(){
-
-		$pf = new PerguntasFrequentes();
-
-		if(isset($_POST['pergunta']) && isset($_POST['resposta']) && !empty($_POST['pergunta']) && !empty($_POST['resposta'])){
-			
-			$pergunta = addslashes($_POST['pergunta']);
-			$resposta = addslashes($_POST['resposta']);
-
-			if($pf->adicionaPF($pergunta, $resposta)){
-				echo "1";
-			}else{
-				echo "0";
-			}
-		}
-	}
 	public function faqs(){
 		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
 			header("Location: ".URL_BASE);
@@ -178,6 +162,40 @@ class painelController extends controller{
 			$senha = md5($_POST['senha']);
 			
 			if($u->alteraSenhaUsuario($senha, $id)){
+				echo "1";
+			}else{
+				echo "0";
+			}
+		}
+	}
+	public function adminExcluiU(){
+		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
+			header("Location: ".URL_BASE);
+			exit();
+		}
+
+		$u = new Usuario();
+
+		if(isset($_POST['id']) && !empty($_POST['id'])){
+			$id = $_POST['id'];
+
+			if($u->excluiU($id)){
+				echo "1";
+			}else{
+				echo "0";
+			}
+		}
+	}
+	public function addFaqs(){
+
+		$pf = new PerguntasFrequentes();
+
+		if(isset($_POST['pergunta']) && isset($_POST['resposta']) && !empty($_POST['pergunta']) && !empty($_POST['resposta'])){
+			
+			$pergunta = addslashes($_POST['pergunta']);
+			$resposta = addslashes($_POST['resposta']);
+
+			if($pf->adicionaPF($pergunta, $resposta)){
 				echo "1";
 			}else{
 				echo "0";

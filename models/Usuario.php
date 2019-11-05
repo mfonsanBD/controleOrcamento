@@ -60,12 +60,21 @@ class Usuario extends model{
 			return false;
 		}
 	}
-
 	public function cadastrar($nome, $email, $senha, $codigo){
 		$sql = $this->conexao->prepare("INSERT INTO usuario SET nome = ?, email = ?, senha = ?, tipo = 1, foto = 'usuario.jpg', permissao = 0, hash = ?");
 		$sql->execute(array($nome, $email, $senha, $codigo));
 
 		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function excluiU($id){
+		$sql = $this->conexao->prepare("DELETE FROM usuario WHERE id = ?");
+		$sql->execute(array($id));
+
+		if ($sql->rowCount() > 0) {
 			return true;
 		}else{
 			return false;
