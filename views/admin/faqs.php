@@ -16,9 +16,9 @@ require 'topo.php';
 	</div>
 
   <div class="accordion mt-5 pag" id="accordionExample">
-      <div class="card">
+      <div class="card bg-transparent border-0">
         <?php foreach ($listaDePF as $lpf):?>
-          <div class="card-header bg-padrao" id="heading<?=$lpf['id_pf']?>" data-toggle="collapse" data-target="#collapse<?=$lpf['id_pf']?>" aria-expanded="true" aria-controls="collapse<?=$lpf['id_pf']?>">
+          <div class="card-header bg-padrao mb-1 rounded-lg" id="heading<?=$lpf['id_pf']?>" data-toggle="collapse" data-target="#collapse<?=$lpf['id_pf']?>" aria-expanded="true" aria-controls="collapse<?=$lpf['id_pf']?>">
             <h2 class="mb-0">
               <button class="btn text-white family-titulo" type="button">
                 <?=$lpf['pergunta_pf']?>
