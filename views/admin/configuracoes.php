@@ -8,7 +8,7 @@ require 'topo.php';
 	<div class="pt-5 pb-5">
 		<h3 class="text-uppercase text-center titulo_pagina"><?=$this->titulo;?></h3>
 	</div>
-	<div class="col-lg-8 text-center pag">
+	<div class="col-lg-8 offset-lg-2 text-center pag">
 		<img src="<?= URL_BASE ?>assets/img/<?= $_SESSION['foto']; ?>" width="120" alt="Usuário" class="d-inline-block align-top rounded-circle mb-4">
 		<form method="POST" enctype="multipart/form-data" id="dados" class="col-lg-12">
 			<label for="foto" class="text-black-50 label_foto">Clique aqui e escolha uma imagem para o seu perfil</label>

@@ -10,4 +10,15 @@ class PerguntasFrequentes extends model{
 			return false;
 		}
 	}
+	public function listaFaqs(){
+		$array = array();
+		$sql = $this->conexao->prepare("SELECT * FROM perguntas_frequentes");
+		$sql->execute();
+
+		if($sql->rowCount() > 0){
+			$array = $sql->fetchAll();
+		}
+
+		return $array;
+	}
 }

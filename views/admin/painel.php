@@ -46,12 +46,32 @@ require 'topo.php';
 						<h4 class="text-uppercase nomedaempresa mb-3">Informações</h4>
 						<div class="row">
 							<div class="col-lg-6">
-								<h1 class="text-center p-0 m-0"><?= $qtdUsuarios; ?></h1>
-								<p class="text-center p-0 m-0">Usuários Cadastrados</p>
+								<a href="<?=URL_BASE?>painel/usuario/" class="text-white family-titulo">
+									<h1 class="text-center p-0 m-0"><?= $qtdUsuarios; ?></h1>
+									<p class="text-center p-0 m-0">
+										<?php
+											if($qtdUsuarios == 1){
+												echo "Usuário<br>Cadastrado";
+											}else{
+												echo "Usuários<br>Cadastrados";
+											}
+										?>
+									</p>
+								</a>
 							</div>
 							<div class="col-lg-6">
-								<h1 class="text-center p-0 m-0"><?= $qtdEmpresas; ?></h1>
-								<p class="text-center p-0 m-0">Empresas Cadastradas</p>							
+								<a href="<?=URL_BASE?>painel/empresa/" class="text-white family-titulo">
+									<h1 class="text-center p-0 m-0"><?= $qtdEmpresas; ?></h1>
+									<p class="text-center p-0 m-0">
+										<?php
+											if($qtdEmpresas == 1){
+												echo "Empresa<br>Cadastrada";
+											}else{
+												echo "Empresas<br>Cadastradas";
+											}
+										?>
+									</p>
+								</a>							
 							</div>
 						</div>
 					</div>

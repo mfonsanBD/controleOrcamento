@@ -17,11 +17,17 @@ body{
 	font-family: 'Montserrat', sans-serif;
     background-color: #f9f9f9 !important;
 }
+.family-titulo{
+    font-family: 'Montserrat', sans-serif !important;
+}
 label{
     margin-bottom: 0;
 }
 .dropdown-toggle::after{
     display: none;
+}
+.card-header{
+    cursor: pointer;
 }
 .ativo{
     border:thin solid #6c757d;

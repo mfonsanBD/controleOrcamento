@@ -14,6 +14,26 @@ require 'topo.php';
 			<p class="m-0 p-0 text-secondary">Adicionar Perguntas Frequentes</p>
 		</button>
 	</div>
+
+  <div class="accordion mt-5 pag" id="accordionExample">
+      <div class="card">
+        <?php foreach ($listaDePF as $lpf):?>
+          <div class="card-header bg-padrao" id="heading<?=$lpf['id_pf']?>" data-toggle="collapse" data-target="#collapse<?=$lpf['id_pf']?>" aria-expanded="true" aria-controls="collapse<?=$lpf['id_pf']?>">
+            <h2 class="mb-0">
+              <button class="btn text-white family-titulo" type="button">
+                <?=$lpf['pergunta_pf']?>
+              </button>
+            </h2>
+          </div>
+
+          <div id="collapse<?=$lpf['id_pf']?>" class="collapse <?=($lpf['id_pf'] == 1) ? 'show' : 'collapsed'?>" aria-labelledby="heading<?=$lpf['id_pf']?>" data-parent="#accordionExample">
+            <div class="card-body">
+              <p><?=$lpf['resposta_pf']?></p>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
+  </div>
 </div>
 
 

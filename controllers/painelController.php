@@ -114,7 +114,14 @@ class painelController extends controller{
 
 		switch ($_SESSION['tipo']) {
 			case 0:
-				$this->loadTemplate('admin/faqs');
+
+				$pf = new PerguntasFrequentes();
+				
+				$listaDePF = $pf->listaFaqs();
+
+				$dados['listaDePF'] = $listaDePF;
+
+				$this->loadTemplate('admin/faqs', $dados);
 			break;
 
 			case 1:

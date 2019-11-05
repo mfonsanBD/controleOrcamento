@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           10.1.32-MariaDB - mariadb.org binary distribution
+-- Versão do servidor:           10.1.37-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win32
 -- HeidiSQL Versão:              10.2.0.5599
 -- --------------------------------------------------------
@@ -29,11 +29,7 @@ CREATE TABLE IF NOT EXISTS `empresa` (
 -- Copiando dados para a tabela gcc.empresa: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
 INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `email_empresa`, `site_empresa`, `telefone_empresa`, `whatsapp_empresa`, `foto_empresa`, `permissao_empresa`, `id_usuario`) VALUES
-	(1, 'Grupo HR Segurança', 'contato@grupohrseguranca.com.br', 'https://grupohrseguranca.com.br', '(22) 99929-5067', '(22) 99929-5067', 'imagem-de-apresentacao.jpg', 0, 22),
-	(2, 'Clean Lagos', 'contato@cleanlagos.com', 'https://cleanlagos.com', '(22) 99929-5067', '(22) 99929-5067', 'imagem-de-apresentacao.jpg', 1, 22),
-	(3, 'Grupo HR Segurança', 'contato@grupohrseguranca.com.br', 'https://grupohrseguranca.com.br', '(22) 99929-5067', '(22) 99929-5067', 'imagem-de-apresentacao.jpg', 0, 22),
-	(4, 'Grupo HR Segurança', 'contato@grupohrseguranca.com.br', 'https://grupohrseguranca.com.br', '(22) 99929-5067', '(22) 99929-5067', 'imagem-de-apresentacao.jpg', 0, 22),
-	(5, 'Clean Lagos', 'contato@cleanlagos.com', 'https://cleanlagos.com', '(22) 99929-5067', '(22) 99929-5067', 'imagem-de-apresentacao.jpg', 1, 22);
+	(1, 'Grupo HR Segurança', 'contato@grupohrseguranca.com.br', 'https://grupohrseguranca.com.br', '(22) 99929-5067', '(22) 99929-5067', 'imagem-de-apresentacao.jpg', 0, 22);
 /*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela gcc.orcamento_c
@@ -92,14 +88,18 @@ CREATE TABLE IF NOT EXISTS `perguntas_frequentes` (
   `pergunta_pf` varchar(100) NOT NULL,
   `resposta_pf` text NOT NULL,
   PRIMARY KEY (`id_pf`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela gcc.perguntas_frequentes: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `perguntas_frequentes` DISABLE KEYS */;
 INSERT INTO `perguntas_frequentes` (`id_pf`, `pergunta_pf`, `resposta_pf`) VALUES
 	(1, 'Qual?', 'Essa'),
-	(2, 'Foi você?', 'Claro que sim!'),
-	(3, 'Tudo bem?', 'Sim!');
+	(7, 'Testando?', 'Sim'),
+	(8, 'Eu', 'Tu'),
+	(9, 'Teste', 'yah!'),
+	(10, 'Mike?', 'Sim, eu.'),
+	(11, 'É você?', 'Sim'),
+	(12, 'Oi?', 'oi');
 /*!40000 ALTER TABLE `perguntas_frequentes` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela gcc.resposta

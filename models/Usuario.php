@@ -30,7 +30,7 @@ class Usuario extends model{
 	}
 	public function qtdUsuarios(){
 		$array = array();
-		$sql = $this->conexao->prepare("SELECT COUNT(*) AS c FROM usuario");
+		$sql = $this->conexao->prepare("SELECT COUNT(*) AS c FROM usuario WHERE tipo = 1");
 		$sql->execute();
 
 		if ($sql->rowCount() > 0) {

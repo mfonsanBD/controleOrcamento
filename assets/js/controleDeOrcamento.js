@@ -111,6 +111,9 @@ $(document).ready(function(){
 								title: "Parabéns!", 
 								text: "Pergunta Frequente adicionada com sucesso.", 
 								icon: "success"
+							})
+							.then((atualizou) => {
+								window.location.reload();
 							});
 						}else{
 							swal({
