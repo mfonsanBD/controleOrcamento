@@ -97,6 +97,120 @@ $(document).ready(function(){
 		});
 	});
 
+	$('#addU').on('show.bs.modal', function(event){
+		var button = $(event.relatedTarget); // Button that triggered the modal
+		var id = button.data('id'); // Extract info from data-* attributes
+		var nome = button.data('nome'); // Extract info from data-* attributes
+		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		var modal = $(this);
+		modal.find('.modal-title').text('Adicionar Usuário');
+
+		$("#adicionarUsuario").on("click", function(e){
+			e.preventDefault();
+			var nome 		= $("#nomeu").val();
+			var email 		= $("#emailu").val();
+			var senha 		= $("#senhau").val();
+			var csenha 		= $("#csenhau").val();
+
+			if(nome == ''){
+				swal({
+					title: "Aviso!", 
+					text: "O campo NOME COMPLETO é obrigatório.", 
+					icon: "warning"
+				});
+			}
+			else if(!isNaN(nome)){
+				swal({
+					title: "Aviso!", 
+					text: "O campo NOME COMPLETO não permite números.",
+					icon: "warning"
+				});
+			}
+			else if(nome.length < 3){
+				swal({
+					title: "Aviso!", 
+					text: "O campo NOME COMPLETO deve conter pelo menos 3 caracteres.",
+					icon: "warning"
+				});
+			}
+			else if(email == ''){
+				swal({
+					title: "Aviso!", 
+					text: "O campo E-MAIL é obrigatório.", 
+					icon: "warning"
+				});
+			}
+			else if(!emailValido(email)){
+				swal({
+					title: "Aviso!", 
+					text: "Digite um e-mail válido.", 
+					icon: "warning"
+				});
+			}
+			else if(senha == ''){
+				swal({
+					title: "Aviso!", 
+					text: "O campo SENHA é obrigatório.", 
+					icon: "warning"
+				});
+			}
+			else if(csenha == ''){
+				swal({
+					title: "Aviso!", 
+					text: "O campo COMFIRMAR SENHA é obrigatório.", 
+					icon: "warning"
+				});
+			}
+			else if(csenha != senha){
+				swal({
+					title: "Aviso!", 
+					text: "As senhas não coincidem.", 
+					icon: "warning"
+				});
+			}else{
+				// alert(nome+' - '+email+' - '+senha+' - '+csenha);
+				$.ajax({
+					url: 'http://localhost/gcc/painel/adminAddU/',
+					type: 'POST',
+					data: {nome:nome, email:email, senha:senha},
+					success: function(dados){
+						if(dados == 1){
+							swal({
+								title: "Parabéns!", 
+								text: "Usuário adicionado com sucesso!", 
+								icon: "success"
+							})
+							.then((resposta) => {
+								$('#modalEdUs').modal('hide');
+								window.location.reload();
+							});
+						}else{
+							swal({
+								title: "Erro!", 
+								text: "O usuário não pôde ser adicionado.", 
+								icon: "error"
+							})
+							.then((resposta) => {
+								$('#modalEdUs').modal('hide');
+							});
+						};
+					}
+				});
+
+				$("#adicionaUsuario")[0].reset();
+			}
+
+			function emailValido($email){
+				var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+				return emailReg.test($email);
+			}
+		});
+		$("#cancela").on("click", function(){
+			$("#adicionaUsuario")[0].reset();
+		});
+	});
+
 	$('#modalExUs').on('show.bs.modal', function(event){
 		var button = $(event.relatedTarget); // Button that triggered the modal
 		var id = button.data('id'); // Extract info from data-* attributes

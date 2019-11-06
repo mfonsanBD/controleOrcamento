@@ -186,6 +186,25 @@ class painelController extends controller{
 			}
 		}
 	}
+	public function adminAddU(){
+		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
+			header("Location: ".URL_BASE);
+			exit();
+		}
+		$u = new Usuario();
+		if(isset($_POST) && !empty($_POST)){
+			$nome 		= $_POST['nome'];
+			$email 		= $_POST['email'];
+			$senha 		= $_POST['senha'];
+			$codigo		= md5(time().rand(0, 9999));
+
+			if($u->addU($nome, $email, md5($senha), $codigo)){
+				echo "1";
+			}else{
+				echo "0";
+			}
+		}
+	}
 	public function addFaqs(){
 
 		$pf = new PerguntasFrequentes();

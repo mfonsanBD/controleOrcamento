@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   PRIMARY KEY (`id_empresa`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela gcc.empresa: ~5 rows (aproximadamente)
+-- Copiando dados para a tabela gcc.empresa: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
 INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `email_empresa`, `site_empresa`, `telefone_empresa`, `whatsapp_empresa`, `foto_empresa`, `permissao_empresa`, `id_usuario`) VALUES
 	(1, 'Grupo HR Segurança', 'contato@grupohrseguranca.com.br', 'https://grupohrseguranca.com.br', '(22) 99929-5067', '(22) 99929-5067', 'imagem-de-apresentacao.jpg', 0, 22);
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `perguntas_frequentes` (
   PRIMARY KEY (`id_pf`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela gcc.perguntas_frequentes: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela gcc.perguntas_frequentes: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `perguntas_frequentes` DISABLE KEYS */;
 INSERT INTO `perguntas_frequentes` (`id_pf`, `pergunta_pf`, `resposta_pf`) VALUES
 	(1, 'Qual?', 'Essa'),
@@ -144,14 +144,15 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `permissao` int(1) NOT NULL,
   `hash` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela gcc.usuario: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela gcc.usuario: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `foto`, `permissao`, `hash`) VALUES
 	(1, 'Mike Fonseca dos Santos', 'mike@gmail.com', '202cb962ac59075b964b07152d234b70', 0, 'usuario.jpg', 1, NULL),
 	(21, 'André Luis Castro', 'andreluis.castro@hotmail.com', 'd2e66a2f1c7aff96cee5470dbaa59e8e', 0, 'usuario.jpg', 1, 'b91f1a7d6ed9e097c174844687ee480f'),
-	(22, 'Vladmir Rijo', 'ceo@grupohrseguranca.com.br', '6fd671f8824a60d924bee98f5bdcaf86', 1, 'usuario.jpg', 1, '64105d5d58da0e4446022b0e4017fb34');
+	(22, 'Vladmir Rijo', 'ceo@grupohrseguranca.com.br', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 1, '64105d5d58da0e4446022b0e4017fb34'),
+	(26, 'Márcio Ortiz', 'mo@m8d.com.br', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 1, '71a6702523e4d51f0d7e617b6e8e2997');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -10,7 +10,7 @@ require 'topo.php';
 	</div>
 	<div class="col-lg-6 text-center offset-lg-3">
 		<button class="btn bg-white shadow-sm ml-1 p-3 pt-2 rounded-lg" data-toggle="modal" data-target="#addPF">
-			<img src="<?=URL_BASE?>assets/img/mais.svg" width="20" class="mr-1 icones" alt="Adicionar">
+			<img src="<?=URL_BASE?>assets/img/mais-cinza.svg" width="20" class="mr-1 icones" alt="Adicionar">
 			<p class="m-0 p-0 text-secondary">Adicionar Perguntas Frequentes</p>
 		</button>
 	</div>
