@@ -18,17 +18,17 @@ require 'topo.php';
   <div class="accordion mt-5 pag" id="accordionExample">
       <div class="card bg-transparent border-0">
         <?php foreach ($listaDePF as $lpf):?>
-          <div class="card-header bg-padrao mb-1 rounded-lg" id="heading<?=$lpf['id_pf']?>" data-toggle="collapse" data-target="#collapse<?=$lpf['id_pf']?>" aria-expanded="true" aria-controls="collapse<?=$lpf['id_pf']?>">
+          <div class="card-header bg-white mb-2 rounded-lg shadow-sm" id="heading<?=$lpf['id_pf']?>" data-toggle="collapse" data-target="#collapse<?=$lpf['id_pf']?>" aria-expanded="true" aria-controls="collapse<?=$lpf['id_pf']?>">
             <h2 class="mb-0">
-              <button class="btn text-white family-titulo" type="button">
+              <button class="btn text-dark family-titulo" type="button">
                 <?=$lpf['pergunta_pf']?>
               </button>
             </h2>
           </div>
 
-          <div id="collapse<?=$lpf['id_pf']?>" class="collapse <?=($lpf['id_pf'] == 1) ? 'show' : 'collapsed'?>" aria-labelledby="heading<?=$lpf['id_pf']?>" data-parent="#accordionExample">
+          <div id="collapse<?=$lpf['id_pf']?>" class="collapse collapsed" aria-labelledby="heading<?=$lpf['id_pf']?>" data-parent="#accordionExample">
             <div class="card-body">
-              <p><?=$lpf['resposta_pf']?></p>
+              <p class="text-secondary"><?=$lpf['resposta_pf']?></p>
             </div>
           </div>
         <?php endforeach; ?>
