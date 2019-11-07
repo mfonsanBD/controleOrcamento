@@ -26,11 +26,11 @@ date_default_timezone_set('America/Sao_Paulo');
 			</button>
 			
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a class="dropdown-item pt-3 pb-3 icones" href="<?= URL_BASE ?>painel/configuracoes">
-					<img src="<?= URL_BASE ?>assets/img/configuracoes.svg" width="20" alt="Configurações" class="mr-2">Configurações
+				<a class="dropdown-item pt-3 pb-3 icones text-secondary" href="<?= URL_BASE ?>painel/configuracoes">
+					<i class="fas fa-cog"></i> Configurações
 				</a>
 				<a class="dropdown-item pt-3 pb-3 bg-danger text-light icones" href="<?=URL_BASE?>painel/sair">
-					<img src="<?= URL_BASE ?>assets/img/sair.svg" width="15" alt="Configurações" class="mr-2">Sair
+					<i class="fas fa-power-off"></i> Sair
 				</a>
 			</div>
 		</nav>

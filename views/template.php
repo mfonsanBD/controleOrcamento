@@ -7,6 +7,7 @@
     <title><?= NOME_DO_SITE ?> - <?=$this->titulo;?></title>
     <link rel="stylesheet" href="<?= URL_BASE ?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= URL_BASE ?>assets/css/estilo.css">
+    <script src="https://kit.fontawesome.com/9e8cae89ef.js" crossorigin="anonymous"></script>
 </head>
 <body>
 

@@ -36,7 +36,7 @@ $(document).ready(function(){
 		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 		var modal = $(this);
-		modal.find('.modal-title').text('Alterar senha de: '+nome);
+		modal.find('.modal-title').text('Editar a senha de: '+nome);
 
 		$("#salvarAlteracoes").on("click", function(){
 		  	var novaSenha = $("#nsenha").val();
@@ -44,9 +44,9 @@ $(document).ready(function(){
 
 			if(novaSenha == '' && cNovaSenha == ''){
 				swal({
-					title: "Erro!", 
+					title: "Aviso!", 
 					text: "Os campos não podem estar vazios.", 
-					icon: "error"
+					icon: "warning"
 				});
 			}else{
 				if(novaSenha != cNovaSenha){
@@ -293,11 +293,105 @@ $(document).ready(function(){
 			}
 		});
 	});
+	$('#modalEdPF').on('show.bs.modal', function(event){
+		var button = $(event.relatedTarget); // Button that triggered the modal
+		var id = button.data('id'); // Extract info from data-* attributes
+		var pergunta = button.data('pergunta'); // Extract info from data-* attributes
+		var resposta = button.data('resposta'); // Extract info from data-* attributes
+		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		var modal = $(this);
+		modal.find('.modal-title').text('Editar: '+pergunta);
 
+		$("#salvarAlteracoes").on("click", function(){
+		  	var novapergunta = $("#novapergunta").val();
+		  	var novaresposta = $("#novaresposta").val();
+
+			if(novapergunta == '' && novaresposta != ''){
+				novapergunta = pergunta;
+			}else if(novapergunta != '' && novaresposta == ''){
+				novaresposta = resposta;
+			}else{
+				swal({
+					title: "Aviso!", 
+					text: "Para editar é necessário que pelo menos um campo seja preenchido.", 
+					icon: "warning"
+				});
+			}
+			
+			$.ajax({
+				url: 'http://localhost/gcc/painel/adminEditaPF',
+				type: 'POST',
+				data: {pergunta:novapergunta, resposta:novaresposta, id:id},
+				success: function(dados){
+					if(dados == 1){
+						swal({
+							title: "Parabéns!", 
+							text: "Senha alterada com sucesso!", 
+							icon: "success"
+						})
+						.then((resposta) => {
+							$('#modalEdPF').modal('hide');
+							window.location.reload();
+						});
+					}else{
+						swal({
+							title: "Erro!", 
+							text: "A senha não pôde ser alterada.", 
+							icon: "error"
+						})
+						.then((resposta) => {
+							$('#modalEdPF').modal('hide');
+						});
+					}
+					$("#editaPF")[0].reset();
+				}
+			});
+		});
+	});
+	$('#modalExPF').on('show.bs.modal', function(event){
+		var button = $(event.relatedTarget); // Button that triggered the modal
+		var id = button.data('id'); // Extract info from data-* attributes
+		var pergunta = button.data('pergunta'); // Extract info from data-* attributes
+		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		var modal = $(this);
+		modal.find('.modal-title').text('Excluir Pergunta Frequente!');
+		modal.find('.texto-confirmacao').text('Tem certeza que deseja excluir "'+pergunta+'"?');
+
+		$("#cExcluirPF").on("click", function(){
+			$.ajax({
+				url: 'http://localhost/gcc/painel/adminExcluiPF',
+				type: 'POST',
+				data: {id:id},
+				success: function(dados){
+					if(dados == 1){
+						swal({
+							title: "Parabéns!", 
+							text: "Pergunta excluída com sucesso!", 
+							icon: "success"
+						})
+						.then((resposta) => {
+							$('#modalExUs').modal('hide');
+							window.location.reload();
+						});
+					}else{
+						swal({
+							title: "Erro!", 
+							text: "A pergunta não pôde ser excluída.", 
+							icon: "error"
+						})
+						.then((resposta) => {
+							$('#modalExUs').modal('hide');
+						});
+					}
+				}
+			});
+		});
+	});
 	$("#voltaAoInicio").click(function(){
 		window.location.href="http://localhost/gcc/painel";
 	});
-	
 	var SPMaskBehavior = function (val) {
 	  return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
 	},
@@ -306,6 +400,5 @@ $(document).ready(function(){
 	      field.mask(SPMaskBehavior.apply({}, arguments), options);
 	    }
 	};
-
 	$('#telefone').mask(SPMaskBehavior, spOptions);
 });

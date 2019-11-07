@@ -4,7 +4,6 @@ require 'topo.php';
 	</h1>
 	<p class="p-0 m-0 subtitulo">Esses são os usuários cadastrados no sistema.</p>
 </div>
-
 <div class="modal fade" id="modalEdUs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content bg-light">
@@ -23,8 +22,8 @@ require 'topo.php';
             <input type="password" id="cnsenha">
           </div>
 		  <div class="modal-footer">
-		    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-		    <button type="button" id="salvarAlteracoes" class="btn bg-padrao">Salvar Alterações</button>
+		    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+		    <button type="button" id="salvarAlteracoes" class="btn bg-padrao"><i class="fas fa-check"></i> Salvar Alterações</button>
 		  </div>
         </form>
       </div>
@@ -44,8 +43,8 @@ require 'topo.php';
         <form class="bg-light" id="excluiSU"> 
       		<p class="texto-confirmacao"></p>       
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Não, cancelar.</button>
-				<button type="button" id="excluirSU" class="btn bg-danger text-white">Sim, excluir.</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i>  Não, cancelar.</button>
+				<button type="button" id="excluirSU" class="btn bg-danger text-white"><i class="fas fa-trash-alt"></i> Sim, excluir.</button>
 			</div>
         </form>
       </div>
@@ -74,20 +73,19 @@ require 'topo.php';
             <input type="password" id="csenhau">
           </div>
 		  <div class="modal-footer">
-		    <button type="button" id="cancela" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-		    <button type="button" id="adicionarUsuario" class="btn bg-padrao">Adicionar</button>
+		    <button type="button" id="cancela" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+		    <button type="button" id="adicionarUsuario" class="btn bg-padrao"><i class="fa fa-check"></i> Adicionar</button>
 		  </div>
         </form>
       </div>
     </div>
   </div>
 </div>
-
 <div class="container">
 	<div class="pt-5 pb-5 text-center">
 		<h3 class="text-uppercase titulo_pagina mb-5"><?=$this->titulo;?></h3>
 		<button class="btn bg-padrao shadow-sm ml-1 rounded-lg" data-toggle="modal" data-target="#addU">
-			<img src="<?=URL_BASE?>assets/img/mais-branco.svg" width="15" class="mr-1 icones" alt="Adicionar">
+			<i class="fa fa-plus"></i>
 			<span class="m-0 p-0 text-white">Adicionar Usuário</span>
 		</button>
 	</div>
@@ -117,10 +115,10 @@ require 'topo.php';
 							<?php
 								switch($lu['permissao']) {
 									case '0':
-										echo '<img src="'.URL_BASE.'assets/img/circulo-vermelho.svg" alt="" width="10"> <span class="btn-status text-danger">Não Confirmado</span>';
+										echo '<i class="fas fa-circle text-danger fa-xs"></i> <span class="btn-status text-danger">Não Confirmado</span>';
 									break;
 									default:
-										echo '<img src="'.URL_BASE.'assets/img/circulo-verde.svg" alt="" width="10"> <span class="btn-status text-success">Confirmado</span>';
+										echo '<i class="fas fa-circle text-success fa-xs"></i> <span class="btn-status text-success">Confirmado</span>';
 									break;
 								}
 							?>
@@ -128,10 +126,10 @@ require 'topo.php';
 						<div class="col-md-3 align-self-center">
 							<h6 class="mb-1">Ação:</h6>
 							<button id="ueditar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEdUs" data-id="<?= $lu['id']; ?>" data-nome="<?= $lu['nome']; ?>">
-								<img src="<?=URL_BASE?>assets/img/editar.svg" width="17" class="mr-1 icones" alt="Editar"> Editar
+								<i class="fa fa-edit"></i> Editar
 							</button>
 							<button id="uexcluir" value="<?= $lu['id']; ?>" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalExUs" data-id="<?= $lu['id']; ?>" data-nome="<?= $lu['nome']; ?>">
-								<img src="<?=URL_BASE?>assets/img/rejeitar.svg" width="15" class="mr-1 icones" alt="Excluir"> Excluir</button>
+								<i class="fas fa-trash-alt"></i> Excluir</button>
 						</div>
 					</div>
 				</div>

@@ -42,10 +42,10 @@ require 'topo.php';
 							<?php
 								switch($le['permissao_empresa']) {
 									case '0':
-										echo '<img src="'.URL_BASE.'assets/img/circulo-cinza.svg" alt="" width="10"> <span class="btn-status text-secondary">Aguardando Aprovação</span>';
+										echo '<i class="fas fa-circle text-secondary fa-xs"></i> <span class="btn-status text-secondary">Aguardando Aprovação</span>';
 									break;
 									default:
-										echo '<img src="'.URL_BASE.'assets/img/circulo-verde.svg" alt="" width="10"> <span class="btn-status text-success">Em Atividade</span>';
+										echo '<i class="fas fa-circle text-success fa-xs"></i> <span class="btn-status text-success">Em Atividade</span>';
 									break;
 								}
 							?>
@@ -57,19 +57,19 @@ require 'topo.php';
 									switch($le['permissao_empresa']) {
 										case '0':
 											echo '<button type="button" class="btn btn-success btn-sm pl-4 pr-4">
-													<img src="'.URL_BASE.'assets/img/aceitar.svg" width="15" class="mr-1 icones" alt="Aceitar">Aceitar
+													<i class="fa fa-check"></i> Aceitar
 												</button>
 												<button type="button" class="btn btn-danger btn-sm pl-4 pr-4">
-													<img src="'.URL_BASE.'assets/img/rejeitar.svg" width="15" class="mr-1 icones" alt="Rejeitar">Rejeitar
+													<i class="fas fa-trash-alt"></i> Rejeitar
 												</button>
 											';
 										break;
 										default:
 											echo '<button type="button" class="btn btn-primary btn-sm pl-4 pr-4">
-													<img src="'.URL_BASE.'assets/img/editar.svg" width="17" class="mr-1 icones" alt="Editar">Editar
+													<i class="fa fa-edit"></i> Editar
 												</button>
 												<button type="button" class="btn btn-danger btn-sm pl-4 pr-4">
-													<img src="'.URL_BASE.'assets/img/rejeitar.svg" width="15" class="mr-1 icones" alt="Excluir">Excluir
+													<i class="fas fa-trash-alt"></i> Excluir
 												</button>
 											';
 										break;
