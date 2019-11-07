@@ -303,46 +303,47 @@ $(document).ready(function(){
 		  	var novapergunta = $("#novapergunta").val();
 		  	var novaresposta = $("#novaresposta").val();
 
-			if(novapergunta == '' && novaresposta != ''){
-				novapergunta = pergunta;
-			}else if(novapergunta != '' && novaresposta == ''){
-				novaresposta = resposta;
-			}else{
+			if(novapergunta == '' && novaresposta == ''){
 				swal({
 					title: "Aviso!", 
 					text: "Para editar é necessário que pelo menos um campo seja preenchido.", 
 					icon: "warning"
 				});
-			}
-			
-			$.ajax({
-				url: 'http://localhost/gcc/painel/adminEditaPF',
-				type: 'POST',
-				data: {pergunta:novapergunta, resposta:novaresposta, id:id},
-				success: function(dados){
-					if(dados == 1){
-						swal({
-							title: "Parabéns!", 
-							text: "Senha alterada com sucesso!", 
-							icon: "success"
-						})
-						.then((resposta) => {
-							$('#modalEdPF').modal('hide');
-							window.location.reload();
-						});
-					}else{
-						swal({
-							title: "Erro!", 
-							text: "A senha não pôde ser alterada.", 
-							icon: "error"
-						})
-						.then((resposta) => {
-							$('#modalEdPF').modal('hide');
-						});
-					}
-					$("#editaPF")[0].reset();
+			}else{
+				if(novapergunta == '' && novaresposta != ''){
+					novapergunta = pergunta;
+				}else if(novapergunta != '' && novaresposta == ''){
+					novaresposta = resposta;
 				}
-			});
+				$.ajax({
+					url: 'http://localhost/gcc/painel/adminEditaPF',
+					type: 'POST',
+					data: {pergunta:novapergunta, resposta:novaresposta, id:id},
+					success: function(dados){
+						if(dados == 1){
+							swal({
+								title: "Parabéns!", 
+								text: "Pergunta Frequente alterada com sucesso!", 
+								icon: "success"
+							})
+							.then((resposta) => {
+								$('#modalEdPF').modal('hide');
+								window.location.reload();
+							});
+						}else{
+							swal({
+								title: "Erro!", 
+								text: "A pergunta frequente não pôde ser alterada.", 
+								icon: "error"
+							})
+							.then((resposta) => {
+								$('#modalEdPF').modal('hide');
+							});
+						}
+						$("#editaPF")[0].reset();
+					}
+				});
+			}
 		});
 	});
 	$('#modalExPF').on('show.bs.modal', function(event){
@@ -363,7 +364,7 @@ $(document).ready(function(){
 					if(dados == 1){
 						swal({
 							title: "Parabéns!", 
-							text: "Pergunta excluída com sucesso!", 
+							text: "Pergunta Frequente excluída com sucesso!", 
 							icon: "success"
 						})
 						.then((resposta) => {
@@ -373,7 +374,7 @@ $(document).ready(function(){
 					}else{
 						swal({
 							title: "Erro!", 
-							text: "A pergunta não pôde ser excluída.", 
+							text: "A pergunta frequente não pôde ser excluída.", 
 							icon: "error"
 						})
 						.then((resposta) => {

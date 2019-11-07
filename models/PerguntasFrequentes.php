@@ -21,4 +21,24 @@ class PerguntasFrequentes extends model{
 
 		return $array;
 	}
+	public function editaPF($pergunta, $resposta, $id){
+		$sql = $this->conexao->prepare("UPDATE perguntas_frequentes SET pergunta_pf = ?, resposta_pf = ? WHERE id_pf = ?");
+		$sql->execute(array($pergunta, $resposta, $id));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function excluiPF($id){
+		$sql = $this->conexao->prepare("DELETE FROM perguntas_frequentes WHERE id_pf = ?");
+		$sql->execute(array($id));
+
+		if ($sql->rowCount() > 0) {
+			return true;
+		}else{
+			return false;
+		}
+	}
 }
