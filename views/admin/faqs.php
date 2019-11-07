@@ -5,17 +5,15 @@ require 'topo.php';
 	<p class="p-0 m-0 subtitulo">Cadastre as questões que os usuários possam ter.</p>
 </div>
 <div class="container">
-	<div class="pt-5 pb-5">
-		<h3 class="text-uppercase text-center titulo_pagina"><?=$this->titulo;?></h3>
-	</div>
-	<div class="col-lg-6 text-center offset-lg-3">
-		<button class="btn bg-white shadow-sm ml-1 p-3 pt-2 rounded-lg" data-toggle="modal" data-target="#addPF">
-			<img src="<?=URL_BASE?>assets/img/mais-cinza.svg" width="20" class="mr-1 icones" alt="Adicionar">
-			<p class="m-0 p-0 text-secondary">Adicionar Perguntas Frequentes</p>
-		</button>
+	<div class="pt-5 pb-5 text-center">
+		<h3 class="text-uppercase text-center titulo_pagina mb-5"><?=$this->titulo;?></h3>
+    <button class="btn bg-white shadow-sm ml-1 rounded-lg" data-toggle="modal" data-target="#addPF">
+      <img src="<?=URL_BASE?>assets/img/mais-cinza.svg" width="15" class="mr-1 icones" alt="Adicionar">
+      <span class="m-0 p-0 text-secondary">Adicionar Perguntas Frequentes</span>
+    </button>
 	</div>
 
-  <div class="accordion mt-5 pag" id="accordionExample">
+  <div class="accordion pag" id="accordionExample">
       <div class="card bg-transparent border-0">
         <?php foreach ($listaDePF as $lpf):?>
           <div class="card-header bg-white mb-2 rounded-lg shadow-sm" id="heading<?=$lpf['id_pf']?>" data-toggle="collapse" data-target="#collapse<?=$lpf['id_pf']?>" aria-expanded="true" aria-controls="collapse<?=$lpf['id_pf']?>">

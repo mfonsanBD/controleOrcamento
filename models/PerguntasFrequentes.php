@@ -12,7 +12,7 @@ class PerguntasFrequentes extends model{
 	}
 	public function listaFaqs(){
 		$array = array();
-		$sql = $this->conexao->prepare("SELECT * FROM perguntas_frequentes");
+		$sql = $this->conexao->prepare("SELECT * FROM perguntas_frequentes ORDER BY id_pf DESC");
 		$sql->execute();
 
 		if($sql->rowCount() > 0){

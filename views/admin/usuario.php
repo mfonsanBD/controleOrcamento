@@ -84,18 +84,12 @@ require 'topo.php';
 </div>
 
 <div class="container">
-	<div class="pt-5 pb-5">
-		<div class="row">
-			<div class="col-lg-6 text-left">
-				<h3 class="text-uppercase titulo_pagina"><?=$this->titulo;?></h3>
-			</div>
-			<div class="col-lg-6 text-right">
-				<button class="btn bg-padrao shadow-sm ml-1 rounded-lg" data-toggle="modal" data-target="#addU">
-					<img src="<?=URL_BASE?>assets/img/mais-branco.svg" width="15" class="mr-1 icones" alt="Adicionar">
-					<span class="m-0 p-0 text-white">Adicionar Usuário</span>
-				</button>
-			</div>
-		</div>
+	<div class="pt-5 pb-5 text-center">
+		<h3 class="text-uppercase titulo_pagina mb-5"><?=$this->titulo;?></h3>
+		<button class="btn bg-padrao shadow-sm ml-1 rounded-lg" data-toggle="modal" data-target="#addU">
+			<img src="<?=URL_BASE?>assets/img/mais-branco.svg" width="15" class="mr-1 icones" alt="Adicionar">
+			<span class="m-0 p-0 text-white">Adicionar Usuário</span>
+		</button>
 	</div>
 	<div class="row">
 		<div class="col-lg-12">

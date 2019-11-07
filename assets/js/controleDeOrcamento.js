@@ -9,7 +9,6 @@ $(document).ready(function(){
 			$(".filterE").filter("."+valor).show("1000");
 		}
 	});
-
 	$("#esqueci").on("submit", function(e){
 		e.preventDefault();
 
@@ -30,7 +29,6 @@ $(document).ready(function(){
 			});
 		}
 	});
-
 	$('#modalEdUs').on('show.bs.modal', function(event){
 		var button = $(event.relatedTarget); // Button that triggered the modal
 		var id = button.data('id'); // Extract info from data-* attributes
@@ -49,9 +47,6 @@ $(document).ready(function(){
 					title: "Erro!", 
 					text: "Os campos não podem estar vazios.", 
 					icon: "error"
-				})
-				.then((resposta) => {
-					$('#modalEdUs').modal('hide');
 				});
 			}else{
 				if(novaSenha != cNovaSenha){
@@ -59,9 +54,6 @@ $(document).ready(function(){
 						title: "Aviso!", 
 						text: "As senhas não coincidem!", 
 						icon: "warning"
-					})
-					.then((resposta) => {
-						$('#modalEdUs').modal('hide');
 					});
 				}else{
 					$.ajax({
@@ -88,15 +80,13 @@ $(document).ready(function(){
 									$('#modalEdUs').modal('hide');
 								});
 							}
+							$("#editaSU")[0].reset();
 						}
 					});
 				}
 			}
-
-			$("#editaSU")[0].reset();
 		});
 	});
-
 	$('#addU').on('show.bs.modal', function(event){
 		var button = $(event.relatedTarget); // Button that triggered the modal
 		var id = button.data('id'); // Extract info from data-* attributes
@@ -210,7 +200,6 @@ $(document).ready(function(){
 			$("#adicionaUsuario")[0].reset();
 		});
 	});
-
 	$('#modalExUs').on('show.bs.modal', function(event){
 		var button = $(event.relatedTarget); // Button that triggered the modal
 		var id = button.data('id'); // Extract info from data-* attributes
@@ -251,7 +240,6 @@ $(document).ready(function(){
 			});
 		});
 	});
-
 	$('#addPF').on('show.bs.modal', function(event){
 		var button = $(event.relatedTarget); // Button that triggered the modal
 		var modal = $(this);
@@ -261,14 +249,17 @@ $(document).ready(function(){
 			var pergunta = $("#pergunta").val();
 			var resposta = $("#resposta").val();
 
-			if(pergunta == '' && resposta == ''){
+			if(pergunta == ''){
 				swal({
 					title: "Atenção!", 
-					text: "Os campos não podem estar vazios.", 
+					text: "O campo PERGUNTA não pode estar vazio.", 
 					icon: "warning"
-				})
-				.then((resposta) => {
-					$('#addPF').modal('hide');
+				});
+			}else if(resposta == ''){
+				swal({
+					title: "Atenção!", 
+					text: "O campo RESPOSTA não pode estar vazio.", 
+					icon: "warning"
 				});
 			}else{
 				$.ajax({
@@ -296,16 +287,15 @@ $(document).ready(function(){
 								$('#addPF').modal('hide');
 							});
 						}
+		  				$("#adcPF")[0].reset();
 					}
 				});
 			}
-
-		  	$("#adcPF")[0].reset();
 		});
 	});
 
 	$("#voltaAoInicio").click(function(){
-		window.location.href="http://localhost/gcc";
+		window.location.href="http://localhost/gcc/painel";
 	});
 	
 	var SPMaskBehavior = function (val) {

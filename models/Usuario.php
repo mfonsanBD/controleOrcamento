@@ -41,7 +41,7 @@ class Usuario extends model{
 	}
 	public function listaUsuarios(){
 		$array = array();
-		$sql = $this->conexao->prepare("SELECT * FROM usuario WHERE tipo = 1 LIMIT 10");
+		$sql = $this->conexao->prepare("SELECT * FROM usuario WHERE tipo = 1 ORDER BY id DESC LIMIT 10");
 		$sql->execute();
 
 		if ($sql->rowCount() > 0) {
