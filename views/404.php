@@ -10,8 +10,7 @@
 			<h1 class="text-padrao p-0 m-0">Oops...!</h1>
 			<p class="p-0 m-0 text-black-50 mb-4"> A pagina que você tentou acessar não foi encontrada.</p>
 			<button class="btn bg-padrao text-white" id="voltaAoInicio">
-				<img src="<?= URL_BASE ?>assets/img/voltar.svg" width="15" alt="Voltar">
-				Voltar ao inicio
+				<i class="fa fa-angle-left fa-lg"></i> Voltar ao inicio
 			</button>
 		</div>
 	</div>

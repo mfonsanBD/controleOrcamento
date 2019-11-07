@@ -29,71 +29,12 @@ $(document).ready(function(){
 			});
 		}
 	});
-	$('#modalEdUs').on('show.bs.modal', function(event){
-		var button = $(event.relatedTarget); // Button that triggered the modal
-		var id = button.data('id'); // Extract info from data-* attributes
-		var nome = button.data('nome'); // Extract info from data-* attributes
-		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-		var modal = $(this);
-		modal.find('.modal-title').text('Editar a senha de: '+nome);
-
-		$("#salvarAlteracoes").on("click", function(){
-		  	var novaSenha = $("#nsenha").val();
-		  	var cNovaSenha = $("#cnsenha").val();
-
-			if(novaSenha == '' && cNovaSenha == ''){
-				swal({
-					title: "Aviso!", 
-					text: "Os campos não podem estar vazios.", 
-					icon: "warning"
-				});
-			}else{
-				if(novaSenha != cNovaSenha){
-					swal({
-						title: "Aviso!", 
-						text: "As senhas não coincidem!", 
-						icon: "warning"
-					});
-				}else{
-					$.ajax({
-						url: 'http://localhost/gcc/painel/adminEdita',
-						type: 'POST',
-						data: {senha:novaSenha, id:id},
-						success: function(dados){
-							if(dados == 1){
-								swal({
-									title: "Parabéns!", 
-									text: "Senha alterada com sucesso!", 
-									icon: "success"
-								})
-								.then((resposta) => {
-									$('#modalEdUs').modal('hide');
-								});
-							}else{
-								swal({
-									title: "Erro!", 
-									text: "A senha não pôde ser alterada.", 
-									icon: "error"
-								})
-								.then((resposta) => {
-									$('#modalEdUs').modal('hide');
-								});
-							}
-							$("#editaSU")[0].reset();
-						}
-					});
-				}
-			}
-		});
-	});
 	$('#addU').on('show.bs.modal', function(event){
-		var button = $(event.relatedTarget); // Button that triggered the modal
-		var id = button.data('id'); // Extract info from data-* attributes
-		var nome = button.data('nome'); // Extract info from data-* attributes
-		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		var button = $(event.relatedTarget);
+		var id = button.data('id');
+		var nome = button.data('nome');
 		var modal = $(this);
+
 		modal.find('.modal-title').text('Adicionar Usuário');
 
 		$("#adicionarUsuario").on("click", function(e){
@@ -200,15 +141,71 @@ $(document).ready(function(){
 			$("#adicionaUsuario")[0].reset();
 		});
 	});
-	$('#modalExUs').on('show.bs.modal', function(event){
-		var button = $(event.relatedTarget); // Button that triggered the modal
-		var id = button.data('id'); // Extract info from data-* attributes
-		var nome = button.data('nome'); // Extract info from data-* attributes
-		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+	$('#modalEdUs').on('show.bs.modal', function(event){
+		var button = $(event.relatedTarget);
+		var id = button.data('id');
+		var nome = button.data('nome');
 		var modal = $(this);
+
+		modal.find('.modal-title').text('Editar a senha de: '+nome);
+
+		$("#salvarAlteracoes").on("click", function(){
+		  	var novaSenha = $("#nsenha").val();
+		  	var cNovaSenha = $("#cnsenha").val();
+
+			if(novaSenha == '' && cNovaSenha == ''){
+				swal({
+					title: "Aviso!", 
+					text: "Os campos não podem estar vazios.", 
+					icon: "warning"
+				});
+			}else{
+				if(novaSenha != cNovaSenha){
+					swal({
+						title: "Aviso!", 
+						text: "As senhas não coincidem!", 
+						icon: "warning"
+					});
+				}else{
+					$.ajax({
+						url: 'http://localhost/gcc/painel/adminEdita',
+						type: 'POST',
+						data: {senha:novaSenha, id:id},
+						success: function(dados){
+							if(dados == 1){
+								swal({
+									title: "Parabéns!", 
+									text: "Senha alterada com sucesso!", 
+									icon: "success"
+								})
+								.then((resposta) => {
+									$('#modalEdUs').modal('hide');
+								});
+							}else{
+								swal({
+									title: "Erro!", 
+									text: "A senha não pôde ser alterada.", 
+									icon: "error"
+								})
+								.then((resposta) => {
+									$('#modalEdUs').modal('hide');
+								});
+							}
+							$("#editaSU")[0].reset();
+						}
+					});
+				}
+			}
+		});
+	});
+	$('#modalExUs').on('show.bs.modal', function(event){
+		var button = $(event.relatedTarget);
+		var id = button.data('id');
+		var nome = button.data('nome');
+		var modal = $(this);
+
 		modal.find('.modal-title').text('Excluir usuário!');
-		modal.find('.texto-confirmacao').text('Tem certeza que deseja excluir '+nome+'?');
+		modal.find('.texto-confirmacao').html("Tem certeza que deseja excluir <span class=text-danger>'"+nome+"'</span>?");
 
 		$("#excluirSU").on("click", function(){
 			$.ajax({
@@ -294,13 +291,12 @@ $(document).ready(function(){
 		});
 	});
 	$('#modalEdPF').on('show.bs.modal', function(event){
-		var button = $(event.relatedTarget); // Button that triggered the modal
-		var id = button.data('id'); // Extract info from data-* attributes
-		var pergunta = button.data('pergunta'); // Extract info from data-* attributes
-		var resposta = button.data('resposta'); // Extract info from data-* attributes
-		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		var button = $(event.relatedTarget);
+		var id = button.data('id');
+		var pergunta = button.data('pergunta');
+		var resposta = button.data('resposta');
 		var modal = $(this);
+		
 		modal.find('.modal-title').text('Editar: '+pergunta);
 
 		$("#salvarAlteracoes").on("click", function(){
@@ -350,14 +346,13 @@ $(document).ready(function(){
 		});
 	});
 	$('#modalExPF').on('show.bs.modal', function(event){
-		var button = $(event.relatedTarget); // Button that triggered the modal
-		var id = button.data('id'); // Extract info from data-* attributes
-		var pergunta = button.data('pergunta'); // Extract info from data-* attributes
-		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		var button = $(event.relatedTarget);
+		var id = button.data('id');
+		var pergunta = button.data('pergunta');
 		var modal = $(this);
+
 		modal.find('.modal-title').text('Excluir Pergunta Frequente!');
-		modal.find('.texto-confirmacao').text('Tem certeza que deseja excluir "'+pergunta+'"?');
+		modal.find('.texto-confirmacao').html("Tem certeza que deseja excluir <span class=text-danger>'"+pergunta+"'</span>?");
 
 		$("#cExcluirPF").on("click", function(){
 			$.ajax({
@@ -372,7 +367,7 @@ $(document).ready(function(){
 							icon: "success"
 						})
 						.then((resposta) => {
-							$('#modalExUs').modal('hide');
+							$('#modalExPF').modal('hide');
 							window.location.reload();
 						});
 					}else{
@@ -382,7 +377,7 @@ $(document).ready(function(){
 							icon: "error"
 						})
 						.then((resposta) => {
-							$('#modalExUs').modal('hide');
+							$('#modalExPF').modal('hide');
 						});
 					}
 				}

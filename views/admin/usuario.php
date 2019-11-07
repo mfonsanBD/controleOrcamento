@@ -23,7 +23,7 @@ require 'topo.php';
           </div>
 		  <div class="modal-footer">
 		    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-		    <button type="button" id="salvarAlteracoes" class="btn bg-padrao"><i class="fas fa-check"></i> Salvar Alterações</button>
+		    <button type="button" id="salvarAlteracoes" class="btn bg-padrao"><i class="fas fa-check"></i> Salvar</button>
 		  </div>
         </form>
       </div>
