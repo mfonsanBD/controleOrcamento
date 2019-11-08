@@ -33,7 +33,6 @@ class Empresa extends model{
 
 		return $array['ea'];
 	}
-
 	public function listaEmpresas(){
 		$array = array();
 		$sql = $this->conexao->prepare("
@@ -50,7 +49,36 @@ class Empresa extends model{
 
 		return $array;
 	}
+	public function aceitaEmpresa($id){
+		$sql = $this->conexao->prepare("UPDATE empresa SET permissao_empresa = 1 WHERE id_empresa = ?");
+		$sql->execute(array($id));
 
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function desativaEmpresa($id){
+		$sql = $this->conexao->prepare("UPDATE empresa SET permissao_empresa = 2 WHERE id_empresa = ?");
+		$sql->execute(array($id));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function excluiEmpresa($id){
+		$sql = $this->conexao->prepare("DELETE FROM empresa WHERE id_empresa = ?");
+		$sql->execute(array($id));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	// public function cadastrar($nome, $email, $senha, $codigo){
 	// 	$sql = $this->conexao->prepare("INSERT INTO empresa SET nome = ?, email = ?, senha = ?, tipo = 1, foto = 'usuario.jpg', permissao = 0, hash = ?");
 	// 	$sql->execute(array($nome, $email, $senha, $codigo));

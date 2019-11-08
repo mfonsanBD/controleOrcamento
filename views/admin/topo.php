@@ -12,13 +12,13 @@ date_default_timezone_set('America/Sao_Paulo');
 			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel">Painel de Controle</a>
 			  </li>
 			  <li class="nav-item <?=($this->titulo == "Usuários") ? 'ativo' : ''?>">
-			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel/usuario">Usuários</a>
+			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>usuario">Usuários</a>
 			  </li>
 			  <li class="nav-item <?=($this->titulo == "Empresas") ? 'ativo' : ''?>">
-			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel/empresa">Empresas</a>
+			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>empresa">Empresas</a>
 			  </li>
 			  <li class="nav-item <?=($this->titulo == "Perguntas Frequentes") ? 'ativo' : ''?>">
-			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>painel/faqs">FAQ's</a>
+			    <a class="nav-link text-secondary" href="<?= URL_BASE ?>faqs">FAQ's</a>
 			  </li>
 			</ul>
 			<button class="foto dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -26,10 +26,10 @@ date_default_timezone_set('America/Sao_Paulo');
 			</button>
 			
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a class="dropdown-item pt-3 pb-3 icones text-secondary" href="<?= URL_BASE ?>painel/configuracoes">
+				<a class="dropdown-item pt-3 pb-3 icones text-secondary" href="<?= URL_BASE ?>configuracoes">
 					<i class="fas fa-cog"></i> Configurações
 				</a>
-				<a class="dropdown-item pt-3 pb-3 bg-danger text-light icones" href="<?=URL_BASE?>painel/sair">
+				<a class="dropdown-item pt-3 pb-3 bg-danger text-light icones" href="<?=URL_BASE?>login/sair">
 					<i class="fas fa-power-off"></i> Sair
 				</a>
 			</div>

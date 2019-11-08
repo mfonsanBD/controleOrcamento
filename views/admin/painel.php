@@ -4,34 +4,6 @@ require 'topo.php';
 	</h1>
 	<p class="p-0 m-0 subtitulo">Informações gerais do sistema.</p>
 </div>
-
-<div class="modal fade" id="modalEdUs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content bg-light">
-      <div class="modal-header bg-padrao">
-        <h5 class="modal-title" id="exampleModalLabel"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="bg-light" id="editaSU">
-          <div class="form-group text-left">
-            <label for="nsenha" class="col-form-label">Nova Senha:</label>
-            <input type="password" id="nsenha">
-            <label for="cnsenha" class="col-form-label">Confirmar Nova Senha:</label>
-            <input type="password" id="cnsenha">
-          </div>
-		  <div class="modal-footer">
-		    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-		    <button type="button" id="salvarAlteracoes" class="btn bg-padrao">Salvar Alterações</button>
-		  </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="container">
 	<div class="pt-5 pb-5">
 		<h3 class="text-uppercase text-center titulo_pagina"><?=$this->titulo;?></h3>
@@ -46,7 +18,7 @@ require 'topo.php';
 						<h4 class="text-uppercase nomedaempresa mb-3">Informações</h4>
 						<div class="row">
 							<div class="col-lg-6">
-								<a href="<?=URL_BASE?>painel/usuario/" class="text-white family-titulo">
+								<a href="<?=URL_BASE?>usuario" class="text-white family-titulo">
 									<h1 class="text-center p-0 m-0"><?= $qtdUsuarios; ?></h1>
 									<p class="text-center p-0 m-0">
 										<?php
@@ -60,7 +32,7 @@ require 'topo.php';
 								</a>
 							</div>
 							<div class="col-lg-6">
-								<a href="<?=URL_BASE?>painel/empresa/" class="text-white family-titulo">
+								<a href="<?=URL_BASE?>empresa" class="text-white family-titulo">
 									<h1 class="text-center p-0 m-0"><?= $qtdEmpresas; ?></h1>
 									<p class="text-center p-0 m-0">
 										<?php

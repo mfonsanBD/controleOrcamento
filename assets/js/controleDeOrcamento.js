@@ -29,6 +29,8 @@ $(document).ready(function(){
 			});
 		}
 	});
+
+	//Controle de Usuário
 	$('#addU').on('show.bs.modal', function(event){
 		var button = $(event.relatedTarget);
 		var id = button.data('id');
@@ -102,7 +104,7 @@ $(document).ready(function(){
 			}else{
 				// alert(nome+' - '+email+' - '+senha+' - '+csenha);
 				$.ajax({
-					url: 'http://localhost/gcc/painel/adminAddU/',
+					url: 'http://localhost/gcc/usuario/adminAddU/',
 					type: 'POST',
 					data: {nome:nome, email:email, senha:senha},
 					success: function(dados){
@@ -168,7 +170,7 @@ $(document).ready(function(){
 					});
 				}else{
 					$.ajax({
-						url: 'http://localhost/gcc/painel/adminEdita',
+						url: 'http://localhost/gcc/usuario/adminEdita',
 						type: 'POST',
 						data: {senha:novaSenha, id:id},
 						success: function(dados){
@@ -209,7 +211,7 @@ $(document).ready(function(){
 
 		$("#excluirSU").on("click", function(){
 			$.ajax({
-				url: 'http://localhost/gcc/painel/adminExcluiU',
+				url: 'http://localhost/gcc/usuario/adminExcluiU',
 				type: 'POST',
 				data: {id:id},
 				success: function(dados){
@@ -237,6 +239,8 @@ $(document).ready(function(){
 			});
 		});
 	});
+
+	//Controle de Perguntas Frequentes
 	$('#addPF').on('show.bs.modal', function(event){
 		var button = $(event.relatedTarget); // Button that triggered the modal
 		var modal = $(this);
@@ -260,7 +264,7 @@ $(document).ready(function(){
 				});
 			}else{
 				$.ajax({
-					url: 'http://localhost/gcc/painel/addFaqs',
+					url: 'http://localhost/gcc/faqs/addFaqs',
 					type: 'POST',
 					data: {pergunta:pergunta, resposta:resposta},
 					success: function(dados){
@@ -316,7 +320,7 @@ $(document).ready(function(){
 					novaresposta = resposta;
 				}
 				$.ajax({
-					url: 'http://localhost/gcc/painel/adminEditaPF',
+					url: 'http://localhost/gcc/faqs/adminEditaPF',
 					type: 'POST',
 					data: {pergunta:novapergunta, resposta:novaresposta, id:id},
 					success: function(dados){
@@ -357,7 +361,7 @@ $(document).ready(function(){
 
 		$("#cExcluirPF").on("click", function(){
 			$.ajax({
-				url: 'http://localhost/gcc/painel/adminExcluiPF',
+				url: 'http://localhost/gcc/faqs/adminExcluiPF',
 				type: 'POST',
 				data: {id:id},
 				success: function(dados){
@@ -385,6 +389,7 @@ $(document).ready(function(){
 			});
 		});
 	});
+
 	$("#voltaAoInicio").click(function(){
 		window.location.href="http://localhost/gcc/painel";
 	});
@@ -398,3 +403,94 @@ $(document).ready(function(){
 	};
 	$('#telefone').mask(SPMaskBehavior, spOptions);
 });
+
+//Controle de Empresas
+function aceitaEmpresa(id){
+	$.ajax({
+		url: 'http://localhost/gcc/empresa/aceita',
+		type: 'POST',
+		data: {id:id},
+		success: function(dados){
+			if(dados == "1"){
+				swal({
+					title: "Parabéns!", 
+					text: "Empresa aceita com sucesso.",
+					icon: "success"
+				})
+				.then((resposta) => {
+					window.location.reload();
+				});
+			}else{
+				swal({
+					title: "Erro!", 
+					text: "Empresa não pôde ser aceita.",
+					icon: "error"
+				});
+			}
+		}
+	});
+}
+function excluiEmpresa(id){
+	swal({
+		title: "Atenção!",
+		text: "Tem certeza que deseja excluir esta empresa?",
+		icon: "warning"
+	})
+	.then((resposta) => {
+		$.ajax({
+			url: 'http://localhost/gcc/empresa/exclui',
+			type: 'POST',
+			data: {id:id},
+			success: function(dados){
+				if(dados == "1"){
+					swal({
+						title: "Parabéns!", 
+						text: "Empresa excluida com sucesso.",
+						icon: "success"
+					})
+					.then((resposta) => {
+						window.location.reload();
+					});
+				}else{
+					swal({
+						title: "Erro!", 
+						text: "Empresa não pôde ser excluida.",
+						icon: "error"
+					});
+				}
+			}
+		});
+	});
+}
+function desativarEmpresa(id){
+	swal({
+		title: "Atenção!",
+		text: "Tem certeza que deseja desativar esta empresa?",
+		icon: "warning"
+	})
+	.then((resposta) => {
+		$.ajax({
+			url: 'http://localhost/gcc/empresa/desativar',
+			type: 'POST',
+			data: {id:id},
+			success: function(dados){
+				if(dados == "1"){
+					swal({
+						title: "Parabéns!",
+						text: "Empresa desativada com sucesso.",
+						icon: "success"
+					})
+					.then((resposta) => {
+						window.location.reload();
+					});
+				}else{
+					swal({
+						title: "Erro!",
+						text: "Empresa não pôde ser desativada.",
+						icon: "error"
+					});
+				}
+			}
+		});
+	});
+}

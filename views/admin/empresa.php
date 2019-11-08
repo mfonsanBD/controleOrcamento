@@ -12,6 +12,7 @@ require 'topo.php';
 		<button data-filter="all" class="btn btn-outline-dark text-dark btn-sm btn_filtro">Todas</button>
 		<button data-filter="aa" class="btn btn-outline-secondary text-secondary btn-sm btn_filtro">Aguardando Aprovação</button>
 		<button data-filter="ea" class="btn btn-outline-success text-success btn-sm btn_filtro">Em Atividade</button>
+		<button data-filter="ed" class="btn btn-outline-danger text-danger btn-sm btn_filtro">Desativada</button>
 	</div>
 	<div class="row">
 		<?php foreach ($listaEmpresas as $le): ?>
@@ -21,8 +22,11 @@ require 'topo.php';
 					case '0':
 						echo 'aa';
 					break;
+					case '1':
+						echo 'aa';
+					break;
 					default:
-						echo 'ea';
+						echo 'ed';
 					break;
 				}
 			?>
@@ -44,8 +48,11 @@ require 'topo.php';
 									case '0':
 										echo '<i class="fas fa-circle text-secondary fa-xs"></i> <span class="btn-status text-secondary">Aguardando Aprovação</span>';
 									break;
-									default:
+									case '1':
 										echo '<i class="fas fa-circle text-success fa-xs"></i> <span class="btn-status text-success">Em Atividade</span>';
+									break;
+									default:
+										echo '<i class="fas fa-circle text-danger fa-xs"></i> <span class="btn-status text-danger">Desativada</span>';
 									break;
 								}
 							?>
@@ -56,19 +63,22 @@ require 'topo.php';
 								<?php
 									switch($le['permissao_empresa']) {
 										case '0':
-											echo '<button type="button" class="btn btn-success btn-sm pl-4 pr-4">
+											echo '<button type="button" class="btn btn-success btn-sm pl-4 pr-4" onclick="aceitaEmpresa('.$le['id_empresa'].')">
 													<i class="fa fa-check"></i> Aceitar
 												</button>
-												<button type="button" class="btn btn-danger btn-sm pl-4 pr-4">
-													<i class="fas fa-trash-alt"></i> Rejeitar
+											';
+										break;
+										case '1':
+											echo '<button type="button" class="btn btn-danger btn-sm pl-4 pr-4" onclick="excluiEmpresa('.$le['id_empresa'].')">
+													<i class="fas fa-trash-alt"></i> Excluir
+												</button>
+												<button type="button" class="btn btn-warning btn-sm pl-4 pr-4 text-white" onclick="desativarEmpresa('.$le['id_empresa'].')">
+													<i class="fa fa-times fa-lg"></i> Dasativar
 												</button>
 											';
 										break;
 										default:
-											echo '<button type="button" class="btn btn-primary btn-sm pl-4 pr-4">
-													<i class="fa fa-edit"></i> Editar
-												</button>
-												<button type="button" class="btn btn-danger btn-sm pl-4 pr-4">
+											echo '<button type="button" class="btn btn-danger btn-sm pl-4 pr-4" onclick="excluiEmpresa('.$le['id_empresa'].')">
 													<i class="fas fa-trash-alt"></i> Excluir
 												</button>
 											';

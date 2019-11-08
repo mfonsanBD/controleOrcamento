@@ -7,7 +7,6 @@ class loginController extends controller{
 		$this->titulo = "Acesse sua conta ou faça seu cadastro.";
 		$this->loadTemplate('login');
 	}
-
 	public function logar(){
 		$usuario = new Usuario();
 		if (isset($_POST['email']) && !empty($_POST['email'])) {
@@ -25,13 +24,11 @@ class loginController extends controller{
 			}
 		}
 	}
-
 	public function esqueci(){
 		$this->titulo = "Esqueci minha senha";
 
 		$this->loadTemplate('esqueci-minha-senha', $dados=array());
 	}
-
 	public function cadastro(){
 		$usuario = new Usuario();
 		if (isset($_POST) && !empty($_POST)) {
@@ -109,5 +106,12 @@ class loginController extends controller{
 				<?php
 			}
 		}
+	}
+	public function sair(){
+		unset($_SESSION['logado']);
+		unset($_SESSION['nome_do_usuario']);
+		unset($_SESSION['permissao']);
+		unset($_SESSION['tipo']);
+		header("Location: ".URL_BASE);
 	}
 }
