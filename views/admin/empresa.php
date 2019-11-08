@@ -23,7 +23,7 @@ require 'topo.php';
 						echo 'aa';
 					break;
 					case '1':
-						echo 'aa';
+						echo 'ea';
 					break;
 					default:
 						echo 'ed';
@@ -69,16 +69,19 @@ require 'topo.php';
 											';
 										break;
 										case '1':
-											echo '<button type="button" class="btn btn-danger btn-sm pl-4 pr-4" onclick="excluiEmpresa('.$le['id_empresa'].')">
-													<i class="fas fa-trash-alt"></i> Excluir
-												</button>
-												<button type="button" class="btn btn-warning btn-sm pl-4 pr-4 text-white" onclick="desativarEmpresa('.$le['id_empresa'].')">
+											echo '<button type="button" class="btn btn-warning btn-sm pl-4 pr-4 text-white" onclick="desativarEmpresa('.$le['id_empresa'].')">
 													<i class="fa fa-times fa-lg"></i> Dasativar
+												</button>
+												<button type="button" class="btn btn-danger btn-sm pl-4 pr-4" onclick="excluiEmpresa('.$le['id_empresa'].')">
+													<i class="fas fa-trash-alt"></i> Excluir
 												</button>
 											';
 										break;
 										default:
-											echo '<button type="button" class="btn btn-danger btn-sm pl-4 pr-4" onclick="excluiEmpresa('.$le['id_empresa'].')">
+											echo '<button type="button" class="btn btn-success btn-sm pl-4 pr-4" onclick="reativarEmpresa('.$le['id_empresa'].')">
+													<i class="fa fa-check"></i> Reativar
+												</button>
+												<button type="button" class="btn btn-danger btn-sm pl-4 pr-4" onclick="excluiEmpresa('.$le['id_empresa'].')">
 													<i class="fas fa-trash-alt"></i> Excluir
 												</button>
 											';

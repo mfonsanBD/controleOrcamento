@@ -415,7 +415,16 @@ function aceitaEmpresa(id){
 				swal({
 					title: "Parabéns!", 
 					text: "Empresa aceita com sucesso.",
-					icon: "success"
+					icon: "success",
+					buttons: {
+						confirm: {
+						    text: "Obrigado! 🙌🏼",
+						    value: true,
+						    visible: true,
+						    className: "bg-success",
+						    closeModal: true
+						}
+					}
 				})
 				.then((resposta) => {
 					window.location.reload();
@@ -424,7 +433,16 @@ function aceitaEmpresa(id){
 				swal({
 					title: "Erro!", 
 					text: "Empresa não pôde ser aceita.",
-					icon: "error"
+					icon: "error",
+					buttons: {
+						confirm: {
+						    text: "Ok",
+						    value: true,
+						    visible: true,
+						    className: "bg-danger",
+						    closeModal: true
+						}
+					}
 				});
 			}
 		}
@@ -434,63 +452,166 @@ function excluiEmpresa(id){
 	swal({
 		title: "Atenção!",
 		text: "Tem certeza que deseja excluir esta empresa?",
-		icon: "warning"
+		icon: "warning",
+		buttons: ["Não, cancelar.", "Sim, excluir."],
+		dangerMode: true,
 	})
-	.then((resposta) => {
-		$.ajax({
-			url: 'http://localhost/gcc/empresa/exclui',
-			type: 'POST',
-			data: {id:id},
-			success: function(dados){
-				if(dados == "1"){
-					swal({
-						title: "Parabéns!", 
-						text: "Empresa excluida com sucesso.",
-						icon: "success"
-					})
-					.then((resposta) => {
-						window.location.reload();
-					});
-				}else{
-					swal({
-						title: "Erro!", 
-						text: "Empresa não pôde ser excluida.",
-						icon: "error"
-					});
+	.then((deleta) => {
+		if(deleta){
+			$.ajax({
+				url: 'http://localhost/gcc/empresa/exclui',
+				type: 'POST',
+				data: {id:id},
+				success: function(dados){
+					if(dados == "1"){
+						swal({
+							title: "Parabéns!", 
+							text: "Empresa excluida com sucesso.",
+							icon: "success",
+							buttons: {
+								confirm: {
+								    text: "Obrigado! 🙌🏼",
+								    value: true,
+								    visible: true,
+								    className: "bg-success",
+								    closeModal: true
+								}
+							}
+						})
+						.then((resposta) => {
+							window.location.reload();
+						});
+					}else{
+						swal({
+							title: "Erro!", 
+							text: "Empresa não pôde ser excluida.",
+							icon: "error",
+							buttons: {
+								confirm: {
+								    text: "Ok",
+								    value: true,
+								    visible: true,
+								    className: "bg-danger",
+								    closeModal: true
+								}
+							}
+						});
+					}
 				}
-			}
-		});
+			});
+		}
 	});
 }
 function desativarEmpresa(id){
 	swal({
 		title: "Atenção!",
 		text: "Tem certeza que deseja desativar esta empresa?",
-		icon: "warning"
-	})
-	.then((resposta) => {
-		$.ajax({
-			url: 'http://localhost/gcc/empresa/desativar',
-			type: 'POST',
-			data: {id:id},
-			success: function(dados){
-				if(dados == "1"){
-					swal({
-						title: "Parabéns!",
-						text: "Empresa desativada com sucesso.",
-						icon: "success"
-					})
-					.then((resposta) => {
-						window.location.reload();
-					});
-				}else{
-					swal({
-						title: "Erro!",
-						text: "Empresa não pôde ser desativada.",
-						icon: "error"
-					});
-				}
+		icon: "warning",
+		buttons: {
+			cancel: {
+			    text: "Não, cancelar.",
+			    value: false,
+			    visible: true,
+			    className: "",
+			    closeModal: true,
+			},
+			confirm: {
+			    text: "Sim, desativar.",
+			    value: true,
+			    visible: true,
+			    className: "bg-warning",
+			    closeModal: true
 			}
-		});
+		}
+	})
+	.then((desativa) => {
+		if(desativa){
+			$.ajax({
+				url: 'http://localhost/gcc/empresa/desativar',
+				type: 'POST',
+				data: {id:id},
+				success: function(dados){
+					if(dados == "1"){
+						swal({
+							title: "Parabéns!",
+							text: "Empresa desativada com sucesso.",
+							icon: "success",
+							buttons: {
+								confirm: {
+								    text: "Obrigado! 🙌🏼",
+								    value: true,
+								    visible: true,
+								    className: "bg-success",
+								    closeModal: true
+								}
+							}
+						})
+						.then((resposta) => {
+							window.location.reload();
+						});
+					}else{
+						swal({
+							title: "Erro!",
+							text: "Empresa não pôde ser desativada.",
+							icon: "error",
+							buttons: {
+								confirm: {
+								    text: "Ok",
+								    value: true,
+								    visible: true,
+								    className: "bg-danger",
+								    closeModal: true
+								}
+							}
+						});
+					}
+				}
+			});
+		}else{
+
+		}
+	});
+}
+function reativarEmpresa(id){
+	$.ajax({
+		url: 'http://localhost/gcc/empresa/aceita',
+		type: 'POST',
+		data: {id:id},
+		success: function(dados){
+			if(dados == "1"){
+				swal({
+					title: "Parabéns!", 
+					text: "Empresa reativada com sucesso.",
+					icon: "success",
+					buttons: {
+						confirm: {
+						    text: "Obrigado! 🙌🏼",
+						    value: true,
+						    visible: true,
+						    className: "bg-success",
+						    closeModal: true
+						}
+					}
+				})
+				.then((resposta) => {
+					window.location.reload();
+				});
+			}else{
+				swal({
+					title: "Erro!", 
+					text: "Empresa não pôde ser reativada.",
+					icon: "error",
+					buttons: {
+						confirm: {
+						    text: "Ok",
+						    value: true,
+						    visible: true,
+						    className: "bg-danger",
+						    closeModal: true
+						}
+					}
+				});
+			}
+		}
 	});
 }
