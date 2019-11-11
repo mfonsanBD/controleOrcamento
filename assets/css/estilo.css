@@ -12,6 +12,7 @@
 }
 *{
 	box-sizing: border-box;
+    outline: none !important;
 }
 body{
 	font-family: 'Montserrat', sans-serif;

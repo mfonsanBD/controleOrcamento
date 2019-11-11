@@ -5,6 +5,14 @@ class empresaController extends controller{
 			header("Location: ".URL_BASE);
 			exit();
 		}
+		
+		$u = new Usuario();
+
+		$id = $_SESSION['logado'];
+		$infoContas = $u->contaInfos($id);
+
+		$this->foto = $infoContas['foto'];
+
 		$this->titulo = "Empresas";
 		switch ($_SESSION['tipo']) {
 			case 0:

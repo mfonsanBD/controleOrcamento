@@ -6,9 +6,18 @@ class configuracoesController extends controller{
 			exit();
 		}
 		$this->titulo = "Configurações da Conta";
+
 		switch ($_SESSION['tipo']) {
 			case 0:
-				$this->loadTemplate('admin/configuracoes');
+				$u = new Usuario();
+
+				$id = $_SESSION['logado'];
+				$infoContas = $u->contaInfos($id);
+
+				$this->foto = $infoContas['foto'];
+
+				$dados['mostraInfos'] = $infoContas;
+				$this->loadTemplate('admin/configuracoes', $dados);
 			break;
 
 			case 1:

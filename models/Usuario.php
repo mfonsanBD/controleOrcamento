@@ -90,4 +90,15 @@ class Usuario extends model{
 			return false;
 		}
 	}
+	public function contaInfos($id){
+		$array = array();
+		$sql = $this->conexao->prepare("SELECT * FROM usuario WHERE id = ?");
+		$sql->execute(array($id));
+
+		if($sql->rowCount() > 0){
+			$array = $sql->fetch();
+		}
+
+		return $array;
+	}
 }

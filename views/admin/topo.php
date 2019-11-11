@@ -22,7 +22,7 @@ date_default_timezone_set('America/Sao_Paulo');
 			  </li>
 			</ul>
 			<button class="foto dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<img src="<?= URL_BASE ?>assets/img/<?= $_SESSION['foto'];?>" width="60" alt="Usuário" class="d-inline-block align-top rounded-circle">
+				<img src="<?= URL_BASE ?>assets/img/<?= $this->foto; ?>" width="60" alt="Usuário" class="d-inline-block align-top rounded-circle">
 			</button>
 			
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

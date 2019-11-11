@@ -13,6 +13,11 @@ class usuarioController extends controller{
 		$this->titulo = "Usuários";
 		
 		$u = new Usuario();
+
+		$id = $_SESSION['logado'];
+		$infoContas = $u->contaInfos($id);
+
+		$this->foto = $infoContas['foto'];
 		
 		$listaUsuarios = $u->listaUsuarios();
 		$dados['listaUsuarios'] = $listaUsuarios;
