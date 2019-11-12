@@ -101,8 +101,10 @@ require 'topo.php';
 							<h6 class="mb-1">Nome:</h6>
 							<p class="p-0 m-0 text-padrao">
 								<?php
-									$usuario = explode(" ", $lu['nome']);
-									echo $usuario[0];
+									$nome 		= $lu['nome'];
+									$sobrenome 	= $lu['sobrenome'];
+
+									echo $nome." ".$sobrenome;
 								?>
 							</p>
 						</div>
@@ -125,10 +127,10 @@ require 'topo.php';
 						</div>
 						<div class="col-md-3 align-self-center">
 							<h6 class="mb-1">Ação:</h6>
-							<button id="ueditar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEdUs" data-id="<?= $lu['id']; ?>" data-nome="<?= $lu['nome']; ?>">
+							<button id="ueditar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEdUs" data-id="<?= $lu['id']; ?>" data-nome="<?= $lu['nome']." ".$lu['sobrenome'];?>">
 								<i class="fa fa-edit"></i> Editar
 							</button>
-							<button id="uexcluir" value="<?= $lu['id']; ?>" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalExUs" data-id="<?= $lu['id']; ?>" data-nome="<?= $lu['nome']; ?>">
+							<button id="uexcluir" value="<?= $lu['id']; ?>" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalExUs" data-id="<?= $lu['id']; ?>" data-nome="<?= $lu['nome']." ".$lu['sobrenome'];?>">
 								<i class="fas fa-trash-alt"></i> Excluir</button>
 						</div>
 					</div>

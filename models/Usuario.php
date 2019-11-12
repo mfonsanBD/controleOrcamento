@@ -7,11 +7,11 @@ class Usuario extends model{
 		if ($sql->rowCount() > 0) {
 			$dado = $sql->fetch();
 
-			$_SESSION['logado'] 			= $dado['id'];
-			$_SESSION['nome_do_usuario'] 	= $dado['nome'];
-			$_SESSION['permissao'] 			= $dado['permissao'];
-			$_SESSION['tipo'] 				= $dado['tipo'];
-			$_SESSION['foto'] 				= $dado['foto'];
+			$_SESSION['logado'] 					= $dado['id'];
+			$_SESSION['nome_do_usuario'] 			= $dado['nome'];
+			$_SESSION['sobrenome_do_usuario'] 		= $dado['sobrenome'];
+			$_SESSION['permissao'] 					= $dado['permissao'];
+			$_SESSION['tipo'] 						= $dado['tipo'];
 
 			return true;
 		}else{

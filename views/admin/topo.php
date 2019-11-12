@@ -1,5 +1,10 @@
 <?php
 date_default_timezone_set('America/Sao_Paulo');
+if($this->foto == "usuario.jpg"){
+	$usuarioFoto = URL_BASE.'assets/img/'.$this->foto;
+}else{
+	$usuarioFoto = URL_BASE.'assets/img/usuarios/'.$_SESSION['logado'].'/'.$this->foto;
+}
 ?>
 <div class="container">
 	<header>
@@ -22,7 +27,7 @@ date_default_timezone_set('America/Sao_Paulo');
 			  </li>
 			</ul>
 			<button class="foto dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<img src="<?= URL_BASE ?>assets/img/<?= $this->foto; ?>" width="60" alt="Usuário" class="d-inline-block align-top rounded-circle">
+				<img src="<?=$usuarioFoto?>" width="60" alt="Usuário" class="d-inline-block align-top rounded-circle">
 			</button>
 			
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -39,8 +44,8 @@ date_default_timezone_set('America/Sao_Paulo');
 <div class="container-fluid bg-padrao pt-5 pb-5 text-center">
 	<h1 class="text-uppercase m-0 p-0">
 		<?php 
-			$usuario = $_SESSION['nome_do_usuario'];
-			$usuario = explode(" ", $usuario);
+			$nome 			= $_SESSION['nome_do_usuario'];
+			$sobrenome 		= $_SESSION['sobrenome_do_usuario'];
 
 			$hora = date("H:i:s");
 
@@ -58,4 +63,4 @@ date_default_timezone_set('America/Sao_Paulo');
 				break;
 			}
 		?>
-		<?=$cumprimento.", ".$usuario[0]; ?>!
+		<?=$cumprimento.", ".$nome." ".$sobrenome; ?>!

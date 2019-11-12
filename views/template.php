@@ -7,6 +7,7 @@
     <title><?= NOME_DO_SITE ?> - <?=$this->titulo;?></title>
     <link rel="stylesheet" href="<?= URL_BASE ?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= URL_BASE ?>assets/css/estilo.css">
+    <link rel="stylesheet" href="<?= URL_BASE ?>assets/css/croppie.css">
     <script src="https://kit.fontawesome.com/9e8cae89ef.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -21,6 +22,7 @@
 <script type="text/javascript" src="<?= URL_BASE ?>assets/js/jquery.mask.min.js"></script>
 <script type="text/javascript" src="<?= URL_BASE ?>assets/js/sweetalert.min.js"></script>
 <script type="text/javascript" src="<?= URL_BASE ?>assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?= URL_BASE ?>assets/js/croppie.min.js"></script>
 <script type="text/javascript" src="<?= URL_BASE ?>assets/js/script.js"></script>
 <script type="text/javascript" src="<?= URL_BASE ?>assets/js/controleDeOrcamento.js"></script>
 </body>

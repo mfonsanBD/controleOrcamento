@@ -402,6 +402,54 @@ $(document).ready(function(){
 	    }
 	};
 	$('#telefone').mask(SPMaskBehavior, spOptions);
+
+	$image_crop = $('#image_demo').croppie({
+		enableExif: true,
+		viewport:{
+			width: 300,
+			height: 300,
+			type: 'circle'
+		},
+		boundary:{
+			width: 300,
+			height: 300
+		}
+	});
+
+	$('#foto').on('change', function(){
+		var reader = new FileReader();
+		reader.onload = function(event){
+			$image_crop.croppie('bind', {
+				url: event.target.result
+			});
+		}
+		reader.readAsDataURL(this.files[0]);
+		$('#modalCorteImagem').modal('show');
+	});
+
+	$('#cortarImagem').click(function(event){
+		$image_crop.croppie('result', {
+			type: 'canvas',
+			size: 'viewport'
+		}).then(function(resposta){
+			$.ajax({
+				url: 'http://localhost/gcc/configuracoes/alteraImagem',
+				type: 'POST',
+				data: {"foto": resposta},
+				success: function(dados){
+					$('#modalCorteImagem').modal('hide');
+					alert(dados);
+					// if(dados == "nao_permitido"){
+					// 	swal({
+					// 		title: "Aviso!", 
+					// 		text: "O tipo de arquivo escolhido não é permitido. Por favor, selecione outra imagem.", 
+					// 		icon: "warning"
+					// 	});
+					// }
+				}
+			});
+		})
+	});
 });
 
 //Controle de Empresas

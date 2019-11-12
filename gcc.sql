@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           10.1.37-MariaDB - mariadb.org binary distribution
+-- Versão do servidor:           10.1.32-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win32
 -- HeidiSQL Versão:              10.2.0.5599
 -- --------------------------------------------------------
@@ -24,12 +24,12 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `permissao_empresa` int(1) NOT NULL DEFAULT '0',
   `id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id_empresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela gcc.empresa: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
 INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `email_empresa`, `site_empresa`, `telefone_empresa`, `whatsapp_empresa`, `foto_empresa`, `permissao_empresa`, `id_usuario`) VALUES
-	(1, 'Grupo HR Segurança', 'contato@grupohrseguranca.com.br', 'https://grupohrseguranca.com.br', '(22) 99929-5067', '(22) 99929-5067', 'imagem-de-apresentacao.jpg', 0, 22);
+	(1, 'Grupo HR Segurança', 'contato@grupohrseguranca.com.br', 'https://grupohrseguranca.com.br', '(22) 99929-5067', '(22) 99929-5067', 'imagem-de-apresentacao.jpg', 1, 22);
 /*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela gcc.orcamento_c
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `perguntas_frequentes` (
   `pergunta_pf` varchar(100) NOT NULL,
   `resposta_pf` text NOT NULL,
   PRIMARY KEY (`id_pf`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela gcc.perguntas_frequentes: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `perguntas_frequentes` DISABLE KEYS */;
@@ -99,7 +99,8 @@ INSERT INTO `perguntas_frequentes` (`id_pf`, `pergunta_pf`, `resposta_pf`) VALUE
 	(9, 'Teste', 'yah!'),
 	(10, 'Mike?', 'Sim, eu.'),
 	(11, 'É você?', 'Sim'),
-	(12, 'Oi?', 'oi');
+	(12, 'Oi?', 'oi'),
+	(13, 'Pateta?', 'Não, Pato Donald.');
 /*!40000 ALTER TABLE `perguntas_frequentes` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela gcc.resposta
@@ -137,22 +138,23 @@ DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
+  `sobrenome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `senha` varchar(32) NOT NULL,
   `tipo` int(1) NOT NULL,
-  `foto` varchar(32) DEFAULT NULL,
+  `foto` varchar(36) NOT NULL DEFAULT 'usuario.jpg',
   `permissao` int(1) NOT NULL,
-  `hash` varchar(32) DEFAULT NULL,
+  `hash` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela gcc.usuario: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `foto`, `permissao`, `hash`) VALUES
-	(1, 'Mike Fonseca dos Santos', 'mike@gmail.com', '202cb962ac59075b964b07152d234b70', 0, 'usuario.jpg', 1, NULL),
-	(21, 'André Luis Castro', 'andreluis.castro@hotmail.com', 'd2e66a2f1c7aff96cee5470dbaa59e8e', 0, 'usuario.jpg', 1, 'b91f1a7d6ed9e097c174844687ee480f'),
-	(22, 'Vladmir Rijo', 'ceo@grupohrseguranca.com.br', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 1, '64105d5d58da0e4446022b0e4017fb34'),
-	(26, 'Márcio Ortiz', 'mo@m8d.com.br', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 1, '71a6702523e4d51f0d7e617b6e8e2997');
+INSERT INTO `usuario` (`id`, `nome`, `sobrenome`, `email`, `senha`, `tipo`, `foto`, `permissao`, `hash`) VALUES
+	(1, 'Mike', 'Santos', 'mike@gmail.com', '202cb962ac59075b964b07152d234b70', 0, '32bd334b5e93fd5c6dc33e0b88e54f2c.jpg', 1, ''),
+	(21, 'André', 'Luis Castro', 'andreluis.castro@hotmail.com', 'd2e66a2f1c7aff96cee5470dbaa59e8e', 0, '16404990ab25839b203b8f1efab20c4a.jpg', 1, 'b91f1a7d6ed9e097c174844687ee480f'),
+	(22, 'Rijo', 'HR', 'ceo@grupohrseguranca.com.br', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 1, '64105d5d58da0e4446022b0e4017fb34'),
+	(26, 'Márcio', 'Ortiz', 'mo@m8d.com.br', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 1, '71a6702523e4d51f0d7e617b6e8e2997');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
