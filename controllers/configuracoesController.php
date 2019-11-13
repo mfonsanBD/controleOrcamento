@@ -50,20 +50,26 @@ class configuracoesController extends controller{
 			$permitidos = array('data:image/jpeg', 'data:image/png', 'data:image/jpg');
 
 			if (in_array($array1[0], $permitidos)) {
-			
-			$dados = base64_decode($array2[1]);
-			$nome_da_foto = md5(time().rand(0, 99999)).'.jpg';
+				$dados = base64_decode($array2[1]);
+				$nome_da_foto = md5($id).'.jpg';
+
 				if(is_dir('assets/img/usuarios/'.$_SESSION['logado'].'/')){
 					file_put_contents('assets/img/usuarios/'.$_SESSION['logado'].'/'.$nome_da_foto, $dados);
 				}else{
 					mkdir('assets/img/usuarios/'.$_SESSION['logado'].'/');
 					file_put_contents('assets/img/usuarios/'.$_SESSION['logado'].'/'.$nome_da_foto, $dados);
 				}
+
 				$u = new Usuario();
-				if($u->alteraFoto($nome_da_foto, $id)){
-					echo "1";
+
+				if($u->verificaFoto($nome_da_foto)){
+					echo "2";
 				}else{
-					echo "0";
+					if($u->alteraFoto($nome_da_foto, $id)){
+						echo "1";
+					}else{
+						echo "0";
+					}
 				}
 			}
 		}

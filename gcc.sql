@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           10.1.37-MariaDB - mariadb.org binary distribution
+-- Versão do servidor:           10.1.32-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win32
 -- HeidiSQL Versão:              10.2.0.5599
 -- --------------------------------------------------------
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   PRIMARY KEY (`id_empresa`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela gcc.empresa: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela gcc.empresa: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
 INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `email_empresa`, `site_empresa`, `telefone_empresa`, `whatsapp_empresa`, `foto_empresa`, `permissao_empresa`, `id_usuario`) VALUES
 	(1, 'Grupo HR Segurança', 'contato@grupohrseguranca.com.br', 'https://grupohrseguranca.com.br', '(22) 99929-5067', '(22) 99929-5067', 'imagem-de-apresentacao.jpg', 1, 22);
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `perguntas_frequentes` (
   PRIMARY KEY (`id_pf`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela gcc.perguntas_frequentes: ~8 rows (aproximadamente)
+-- Copiando dados para a tabela gcc.perguntas_frequentes: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `perguntas_frequentes` DISABLE KEYS */;
 INSERT INTO `perguntas_frequentes` (`id_pf`, `pergunta_pf`, `resposta_pf`) VALUES
 	(1, 'Qual?', 'Essa'),
@@ -151,8 +151,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Copiando dados para a tabela gcc.usuario: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`id`, `nome`, `sobrenome`, `email`, `senha`, `tipo`, `foto`, `permissao`, `hash`) VALUES
-	(1, 'Mike', 'Santos', 'mike@gmail.com', '202cb962ac59075b964b07152d234b70', 0, '18a1cc1c295000bea57f2b96150b3c27.jpg', 1, ''),
-	(21, 'André', 'Luis Castro', 'andreluis.castro@hotmail.com', 'd2e66a2f1c7aff96cee5470dbaa59e8e', 0, '16404990ab25839b203b8f1efab20c4a.jpg', 1, 'b91f1a7d6ed9e097c174844687ee480f'),
+	(1, 'Mike', 'Santos', 'mike@gmail.com', '202cb962ac59075b964b07152d234b70', 0, 'c4ca4238a0b923820dcc509a6f75849b.jpg', 1, ''),
+	(21, 'André', 'Luis Castro', 'andreluis.castro@hotmail.com', 'd2e66a2f1c7aff96cee5470dbaa59e8e', 0, '3c59dc048e8850243be8079a5c74d079.jpg', 1, 'b91f1a7d6ed9e097c174844687ee480f'),
 	(22, 'Rijo', 'HR', 'ceo@grupohrseguranca.com.br', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 1, '64105d5d58da0e4446022b0e4017fb34'),
 	(26, 'Márcio', 'Ortiz', 'mo@m8d.com.br', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 1, '71a6702523e4d51f0d7e617b6e8e2997');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;

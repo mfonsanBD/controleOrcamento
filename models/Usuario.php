@@ -101,6 +101,16 @@ class Usuario extends model{
 
 		return $array;
 	}
+	public function verificaFoto($foto){
+		$sql = $this->conexao->prepare("SELECT foto FROM usuario WHERE foto = ?");
+		$sql->execute(array($foto));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	public function alteraFoto($foto, $id){
 		$sql = $this->conexao->prepare("UPDATE usuario SET foto = ? WHERE id = ?");
 		$sql->execute(array($foto, $id));

@@ -441,11 +441,29 @@ $(document).ready(function(){
 					if(dados == "1"){
 						swal({
 							title: "Parabéns!", 
-							text: "Imagem alterada com sucesso.", 
+							text: "Imagem adicionada com sucesso.",
 							icon: "success",
 							buttons: {
 								confirm: {
-								    text: "Obrigado! 🙌🏼",
+								    text: "Obrigado(a)! 🙌🏼",
+								    value: true,
+								    visible: true,
+								    className: "bg-success",
+								    closeModal: true
+								}
+							}
+						})
+						.then((ok) => {
+							window.location.reload();
+						});
+					}else if(dados == "2"){
+						swal({
+							title: "Parabéns!", 
+							text: "Imagem alterada com sucesso.",
+							icon: "success",
+							buttons: {
+								confirm: {
+								    text: "Obrigado(a)! 🙌🏼",
 								    value: true,
 								    visible: true,
 								    className: "bg-success",
@@ -492,7 +510,7 @@ function aceitaEmpresa(id){
 					icon: "success",
 					buttons: {
 						confirm: {
-						    text: "Obrigado! 🙌🏼",
+						    text: "Obrigado(a)! 🙌🏼",
 						    value: true,
 						    visible: true,
 						    className: "bg-success",
@@ -544,7 +562,7 @@ function excluiEmpresa(id){
 							icon: "success",
 							buttons: {
 								confirm: {
-								    text: "Obrigado! 🙌🏼",
+								    text: "Obrigado(a)! 🙌🏼",
 								    value: true,
 								    visible: true,
 								    className: "bg-success",
@@ -612,7 +630,7 @@ function desativarEmpresa(id){
 							icon: "success",
 							buttons: {
 								confirm: {
-								    text: "Obrigado! 🙌🏼",
+								    text: "Obrigado(a)! 🙌🏼",
 								    value: true,
 								    visible: true,
 								    className: "bg-success",
@@ -659,7 +677,7 @@ function reativarEmpresa(id){
 					icon: "success",
 					buttons: {
 						confirm: {
-						    text: "Obrigado! 🙌🏼",
+						    text: "Obrigado(a)! 🙌🏼",
 						    value: true,
 						    visible: true,
 						    className: "bg-success",
