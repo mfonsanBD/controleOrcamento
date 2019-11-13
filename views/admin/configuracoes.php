@@ -13,11 +13,11 @@ if($this->foto == "usuario.jpg"){
 <div id="modalCorteImagem" class="modal" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Corte e envio de foto</h4>
-				<button type="button" class="close" data-dismiss="modal">
-					<i class="fa fa-times"></i>
-				</button>
+			<div class="modal-header bg-padrao">
+				<h5 class="modal-title">Corte e envio de foto</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
 			</div>
 			<div class="modal-body mb-4">
 				<div class="row">

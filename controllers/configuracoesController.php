@@ -47,29 +47,25 @@ class configuracoesController extends controller{
 			$array1 = explode(";", $foto);
 			$array2 = explode(",", $array1[1]);
 
-			echo $array1[0];
+			$permitidos = array('data:image/jpeg', 'data:image/png', 'data:image/jpg');
 
-			// $permitidos = array('data:image/jpeg', 'data:image/png', 'data:image/jpg');
-
-			// if (in_array($array1[0], $permitidos)) {
+			if (in_array($array1[0], $permitidos)) {
 			
-			// $dados = base64_decode($array2[1]);
-			// $nome_da_foto = md5(time().rand(0, 99999)).'.jpg';
-			// 	if(is_dir('assets/img/usuarios/'.$_SESSION['logado'].'/')){
-			// 		file_put_contents('assets/img/usuarios/'.$_SESSION['logado'].'/'.$nome_da_foto, $dados);
-			// 	}else{
-			// 		mkdir('assets/img/usuarios/'.$_SESSION['logado'].'/');
-			// 		file_put_contents('assets/img/usuarios/'.$_SESSION['logado'].'/'.$nome_da_foto, $dados);
-			// 	}
-			// 	$u = new Usuario();
-			// 	if($u->alteraFoto($nome_da_foto, $id)){
-			// 		echo "1";
-			// 	}else{
-			// 		echo "0";
-			// 	}
-			// }else{
-			// 	echo "nao_permitido";
-			// }
+			$dados = base64_decode($array2[1]);
+			$nome_da_foto = md5(time().rand(0, 99999)).'.jpg';
+				if(is_dir('assets/img/usuarios/'.$_SESSION['logado'].'/')){
+					file_put_contents('assets/img/usuarios/'.$_SESSION['logado'].'/'.$nome_da_foto, $dados);
+				}else{
+					mkdir('assets/img/usuarios/'.$_SESSION['logado'].'/');
+					file_put_contents('assets/img/usuarios/'.$_SESSION['logado'].'/'.$nome_da_foto, $dados);
+				}
+				$u = new Usuario();
+				if($u->alteraFoto($nome_da_foto, $id)){
+					echo "1";
+				}else{
+					echo "0";
+				}
+			}
 		}
 	}
 }

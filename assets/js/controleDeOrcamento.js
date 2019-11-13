@@ -438,14 +438,40 @@ $(document).ready(function(){
 				data: {"foto": resposta},
 				success: function(dados){
 					$('#modalCorteImagem').modal('hide');
-					alert(dados);
-					// if(dados == "nao_permitido"){
-					// 	swal({
-					// 		title: "Aviso!", 
-					// 		text: "O tipo de arquivo escolhido não é permitido. Por favor, selecione outra imagem.", 
-					// 		icon: "warning"
-					// 	});
-					// }
+					if(dados == "1"){
+						swal({
+							title: "Parabéns!", 
+							text: "Imagem alterada com sucesso.", 
+							icon: "success",
+							buttons: {
+								confirm: {
+								    text: "Obrigado! 🙌🏼",
+								    value: true,
+								    visible: true,
+								    className: "bg-success",
+								    closeModal: true
+								}
+							}
+						})
+						.then((ok) => {
+							window.location.reload();
+						});
+					}else{
+						swal({
+							title: "Erro!", 
+							text: "A imagem não pôde ser alterada.", 
+							icon: "error",
+							buttons: {
+								confirm: {
+								    text: "Ok",
+								    value: true,
+								    visible: true,
+								    className: "bg-danger",
+								    closeModal: true
+								}
+							}
+						});
+					}
 				}
 			});
 		})
