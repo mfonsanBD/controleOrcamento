@@ -11,7 +11,9 @@ class painelController extends controller{
 		$id = $_SESSION['logado'];
 		$infoContas = $u->contaInfos($id);
 
-		$this->foto = $infoContas['foto'];
+		$this->fotoUsuario 	= $infoContas['foto'];
+		$this->nome 		= $infoContas['nome'];
+		$this->sobrenome 	= $infoContas['sobrenome'];
 
 		$this->titulo = "Painel de Controle";
 
@@ -29,11 +31,13 @@ class painelController extends controller{
 
 				$empresasAguardandoAprovacao 		= $e->aguardandoAprovacao();
 				$empresasEmAtividade 				= $e->empresasEmAtividade();
+				$empresaDesativada 					= $e->desativada();
 
 				$dados['qtdUsuarios'] 				= $qtdUsuarios;
 				$dados['qtdEmpresas'] 				= $qtdEmpresas;
 				$dados['aguardandoAprovacao'] 		= $empresasAguardandoAprovacao;
 				$dados['emAtividade'] 				= $empresasEmAtividade;
+				$dados['desativada'] 				= $empresaDesativada;
 
 				$this->loadTemplate('admin/painel', $dados);
 			break;

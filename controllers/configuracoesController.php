@@ -14,7 +14,9 @@ class configuracoesController extends controller{
 				$id = $_SESSION['logado'];
 				$infoContas = $u->contaInfos($id);
 
-				$this->foto = $infoContas['foto'];
+				$this->fotoUsuario 	= $infoContas['foto'];
+				$this->nome 		= $infoContas['nome'];
+				$this->sobrenome 	= $infoContas['sobrenome'];
 
 				$dados['mostraInfos'] = $infoContas;
 				$this->loadTemplate('admin/configuracoes', $dados);
@@ -50,8 +52,8 @@ class configuracoesController extends controller{
 			$permitidos = array('data:image/jpeg', 'data:image/png', 'data:image/jpg');
 
 			if (in_array($array1[0], $permitidos)) {
-				$dados = base64_decode($array2[1]);
-				$nome_da_foto = md5($id).'.jpg';
+			$dados = base64_decode($array2[1]);
+			$nome_da_foto = md5($id).'.jpg';
 
 				if(is_dir('assets/img/usuarios/'.$_SESSION['logado'].'/')){
 					file_put_contents('assets/img/usuarios/'.$_SESSION['logado'].'/'.$nome_da_foto, $dados);
@@ -59,9 +61,9 @@ class configuracoesController extends controller{
 					mkdir('assets/img/usuarios/'.$_SESSION['logado'].'/');
 					file_put_contents('assets/img/usuarios/'.$_SESSION['logado'].'/'.$nome_da_foto, $dados);
 				}
-
+				
 				$u = new Usuario();
-
+				
 				if($u->verificaFoto($nome_da_foto)){
 					echo "2";
 				}else{
@@ -71,6 +73,144 @@ class configuracoesController extends controller{
 						echo "0";
 					}
 				}
+			}
+		}
+	}
+	public function verificaCampos(){
+		$id = $_SESSION['logado'];
+
+		$u = new Usuario();
+		$dados = $u->verificaCampos($id);
+
+		$array = array(
+			'nome' => $dados['nome'],
+			'sobrenome' => $dados['sobrenome'],
+			'email' => $dados['email']
+		);
+
+		echo json_encode($array);
+	}
+	public function alteraDados(){
+		if(isset($_POST) && !empty($_POST)){
+			$nome 			= addslashes($_POST['nome']);
+			$sobrenome 		= addslashes($_POST['sobrenome']);
+			$email 			= addslashes($_POST['email']);
+			$id = $_SESSION['logado'];
+
+			$u = new Usuario();
+			if($u->alteraDados($nome, $sobrenome, $email, $id)){
+				echo "1";
+			}else{
+				echo "0";
+			}
+		}
+	}
+	public function alteraNome(){
+		if(isset($_POST['nome']) && !empty($_POST['nome'])){
+			$nome = addslashes($_POST['nome']);
+			$id = $_SESSION['logado'];
+
+			$u = new Usuario();
+			if($u->alteraNome($nome, $id)){
+				echo "1";
+			}else{
+				echo "0";
+			}
+		}
+	}
+	public function alteraSobrenome(){
+		if(isset($_POST['sobrenome']) && !empty($_POST['sobrenome'])){
+			$sobrenome = addslashes($_POST['sobrenome']);
+			$id = $_SESSION['logado'];
+
+			$u = new Usuario();
+			if($u->alteraSobrenome($sobrenome, $id)){
+				echo "1";
+			}else{
+				echo "0";
+			}
+		}
+	}
+	public function alteraEmail(){
+		if(isset($_POST['email']) && !empty($_POST['email'])){
+			$email = addslashes($_POST['email']);
+			$id = $_SESSION['logado'];
+
+			$u = new Usuario();
+			if($u->alteraEmail($email, $id)){
+				echo "1";
+			}else{
+				echo "0";
+			}
+		}
+	}
+	public function alteraNomeSobrenome(){
+		if(isset($_POST) && !empty($_POST)){
+			$nome 			= addslashes($_POST['nome']);
+			$sobrenome 		= addslashes($_POST['sobrenome']);
+			$id = $_SESSION['logado'];
+
+			$u = new Usuario();
+			if($u->alteraNomeSobrenome($nome, $sobrenome, $id)){
+				echo "1";
+			}else{
+				echo "0";
+			}
+		}
+	}
+	public function alteraNomeEmail(){
+		if(isset($_POST) && !empty($_POST)){
+			$nome 			= addslashes($_POST['nome']);
+			$email 			= addslashes($_POST['email']);
+			$id = $_SESSION['logado'];
+
+			$u = new Usuario();
+			if($u->alteraNomeEmail($nome, $email, $id)){
+				echo "1";
+			}else{
+				echo "0";
+			}
+		}
+	}
+	public function alteraSobrenomeEmail(){
+		if(isset($_POST) && !empty($_POST)){
+			$sobrenome 		= addslashes($_POST['sobrenome']);
+			$email 			= addslashes($_POST['email']);
+			$id = $_SESSION['logado'];
+
+			$u = new Usuario();
+			if($u->alteraSobrenomeEmail($sobrenome, $email, $id)){
+				echo "1";
+			}else{
+				echo "0";
+			}
+		}
+	}
+	public function verificaSenhaAtual(){
+		if(isset($_POST['senha']) && !empty($_POST['senha'])){
+			$senha = md5(addslashes($_POST['senha']));
+			$id = $_SESSION['logado'];
+
+			$u = new Usuario();
+
+			if($u->verificaSenha($senha, $id)){
+				echo "1";
+			}else{
+				echo "0";
+			}
+		}
+	}
+	public function alteraSenha(){
+		if(isset($_POST['senha']) && !empty($_POST['senha'])){
+			$senha = md5(addslashes($_POST['senha']));
+			$id = $_SESSION['logado'];
+
+			$u = new Usuario();
+
+			if($u->alteraSenha($senha, $id)){
+				echo "1";
+			}else{
+				echo "0";
 			}
 		}
 	}

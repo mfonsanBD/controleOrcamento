@@ -10,9 +10,24 @@ class PerguntasFrequentes extends model{
 			return false;
 		}
 	}
-	public function listaFaqs(){
+	public function qtdFaqs(){
 		$array = array();
-		$sql = $this->conexao->prepare("SELECT * FROM perguntas_frequentes ORDER BY id_pf DESC");
+		$sql = $this->conexao->prepare("SELECT COUNT(*) AS pf FROM perguntas_frequentes");
+		$sql->execute();
+
+		if ($sql->rowCount() > 0) {
+			$array = $sql->fetch();
+		}
+
+		return $array['pf'];
+	}
+	public function listaFaqs($p, $pfpp){
+		$offset = ($p - 1)*$pfpp;
+		$array = array();
+		$sql = $this->conexao->prepare("
+			SELECT * FROM perguntas_frequentes 
+			ORDER BY id_pf DESC
+			LIMIT $offset, $pfpp");
 		$sql->execute();
 
 		if($sql->rowCount() > 0){

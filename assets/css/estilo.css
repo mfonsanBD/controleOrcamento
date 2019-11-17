@@ -18,11 +18,23 @@ body{
 	font-family: 'Montserrat', sans-serif;
     background-color: #f9f9f9 !important;
 }
+select{
+    font-family: 'GoogleRegular' !important;
+}
+.modal-dialog{
+    max-width: 650px;
+}
+#carregando,
+#novasenha,
+#whatsapp{
+    display: none;
+}
 .col-form-label{
     padding-bottom: 0 !important;
 }
 .family-titulo{
     font-family: 'Montserrat', sans-serif !important;
+    letter-spacing: -0.3px;
 }
 label{
     margin-bottom: 0;
@@ -210,6 +222,9 @@ button.border-padrao:hover{
 .bg-padrao{
 	background-color: #005e76;
 	color: #FFFFFF !important;
+}
+.bg-secundario{
+    background-color: #ceedf5 !important;
 }
 button.bg-padrao:hover{
     background-color: #004253;

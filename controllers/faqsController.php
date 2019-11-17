@@ -11,7 +11,9 @@ class faqsController extends controller{
 		$id = $_SESSION['logado'];
 		$infoContas = $u->contaInfos($id);
 
-		$this->foto = $infoContas['foto'];
+		$this->fotoUsuario 	= $infoContas['foto'];
+		$this->nome 		= $infoContas['nome'];
+		$this->sobrenome 	= $infoContas['sobrenome'];
 
 		$this->titulo = "Perguntas Frequentes";
 
@@ -19,10 +21,21 @@ class faqsController extends controller{
 			case 0:
 
 				$pf = new PerguntasFrequentes();
+
+				$qtdFaqs = $pf->qtdFaqs();
+				$dados['qtdFaqs'] = $qtdFaqs;
 				
-				$listaDePF = $pf->listaFaqs();
+				$this->p = 1;
+				$pfpp = 5;
+				if (isset($_GET['p']) && !empty($_GET['p'])) {
+					$this->p = addslashes($_GET['p']);
+				}
+				$totalPaginas = ceil($qtdFaqs/$pfpp);
+				
+				$listaDePF = $pf->listaFaqs($this->p, $pfpp);
 
 				$dados['listaDePF'] = $listaDePF;
+				$dados['totalPaginas'] = $totalPaginas;
 
 				$this->loadTemplate('admin/faqs', $dados);
 			break;

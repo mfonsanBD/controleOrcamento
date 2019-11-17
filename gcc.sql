@@ -20,16 +20,14 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `site_empresa` varchar(100) NOT NULL,
   `telefone_empresa` varchar(15) NOT NULL,
   `whatsapp_empresa` varchar(15) NOT NULL,
-  `foto_empresa` varchar(36) NOT NULL,
+  `foto_empresa` varchar(36) NOT NULL DEFAULT 'empresa.jpg',
   `permissao_empresa` int(1) NOT NULL DEFAULT '0',
   `id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id_empresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela gcc.empresa: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela gcc.empresa: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
-INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `email_empresa`, `site_empresa`, `telefone_empresa`, `whatsapp_empresa`, `foto_empresa`, `permissao_empresa`, `id_usuario`) VALUES
-	(1, 'Grupo HR Segurança', 'contato@grupohrseguranca.com.br', 'https://grupohrseguranca.com.br', '(22) 99929-5067', '(22) 99929-5067', 'imagem-de-apresentacao.jpg', 1, 22);
 /*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela gcc.orcamento_c
@@ -88,19 +86,12 @@ CREATE TABLE IF NOT EXISTS `perguntas_frequentes` (
   `pergunta_pf` varchar(100) NOT NULL,
   `resposta_pf` text NOT NULL,
   PRIMARY KEY (`id_pf`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela gcc.perguntas_frequentes: ~7 rows (aproximadamente)
+-- Copiando dados para a tabela gcc.perguntas_frequentes: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `perguntas_frequentes` DISABLE KEYS */;
 INSERT INTO `perguntas_frequentes` (`id_pf`, `pergunta_pf`, `resposta_pf`) VALUES
-	(1, 'Qual?', 'Essa'),
-	(7, 'Testando?', 'Sim'),
-	(8, 'Eu', 'Tu'),
-	(9, 'Teste', 'yah!'),
-	(10, 'Mike?', 'Sim, eu.'),
-	(11, 'É você?', 'Sim'),
-	(12, 'Oi?', 'oi'),
-	(13, 'Pateta?', 'Não, Pato Donald.');
+	(14, 'Eu posso entrar em contato diretamente com meus futuros clientes?', 'Sim. Basta acessar sua conta e sua lista de leads será exibida e ali estará as informações de contato dos mesmos. Então você pode clicar no botão de ligar ou mandar mensagem pelo whatsapp.');
 /*!40000 ALTER TABLE `perguntas_frequentes` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela gcc.resposta
@@ -145,16 +136,17 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `foto` varchar(36) NOT NULL DEFAULT 'usuario.jpg',
   `permissao` int(1) NOT NULL,
   `hash` varchar(32) NOT NULL,
+  `codigo_redefinicao` varchar(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela gcc.usuario: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` (`id`, `nome`, `sobrenome`, `email`, `senha`, `tipo`, `foto`, `permissao`, `hash`) VALUES
-	(1, 'Mike', 'Santos', 'mike@gmail.com', '202cb962ac59075b964b07152d234b70', 0, 'c4ca4238a0b923820dcc509a6f75849b.jpg', 1, ''),
-	(21, 'André', 'Luis Castro', 'andreluis.castro@hotmail.com', 'd2e66a2f1c7aff96cee5470dbaa59e8e', 0, '3c59dc048e8850243be8079a5c74d079.jpg', 1, 'b91f1a7d6ed9e097c174844687ee480f'),
-	(22, 'Rijo', 'HR', 'ceo@grupohrseguranca.com.br', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 1, '64105d5d58da0e4446022b0e4017fb34'),
-	(26, 'Márcio', 'Ortiz', 'mo@m8d.com.br', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 1, '71a6702523e4d51f0d7e617b6e8e2997');
+INSERT INTO `usuario` (`id`, `nome`, `sobrenome`, `email`, `senha`, `tipo`, `foto`, `permissao`, `hash`, `codigo_redefinicao`) VALUES
+	(1, 'Mike', 'Santos', 'mike.santos@gmail.com', '202cb962ac59075b964b07152d234b70', 0, 'c4ca4238a0b923820dcc509a6f75849b.jpg', 1, '', NULL),
+	(21, 'André', 'Luis', 'andreluis.castro@hotmail.com', 'd2e66a2f1c7aff96cee5470dbaa59e8e', 0, '3c59dc048e8850243be8079a5c74d079.jpg', 1, 'b91f1a7d6ed9e097c174844687ee480f', NULL),
+	(56, 'Juliete', 'Oliveira', 'juju@gmail.com', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 1, '0d82d6baa31cbd3336d56fe6c7a48e2d', 'b5zlwq'),
+	(57, 'Izis', 'Chaves', 'izis.chaves@gmail.com', '202cb962ac59075b964b07152d234b70', 1, 'usuario.jpg', 1, 'd3fac12e505810f248d8480608be8283', NULL);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

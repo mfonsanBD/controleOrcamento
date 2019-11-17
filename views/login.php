@@ -6,16 +6,15 @@
 	</div>
 </header>
 
-<div class="login-cadastro">
+<div class="login-cadastro mb-5">
 	<div class="container-form" id="container">
 		<div class="form-container sign-up-container">
 		     <form method="POST" id="cadastro">
 		        <h2 class="text-padrao text-uppercase mb-3">Crie Sua Conta</h2>
-		        <input type="text" id="nome" placeholder="Nome Completo" />
-		        <span class="form-text text-warning m-0 p-0" id="erroNome"></span>
-		        <input type="email" id="email" placeholder="E-mail" />
-		        <span class="form-text text-warning m-0 p-0" id="erroEmail"></span>
-		        <input type="password" id="senha" placeholder="Senha" onkeyup="validarForcaSenha()" />
+		        <input type="text" id="nome" placeholder="Nome: *" />
+		        <input type="text" id="sobrenome" placeholder="Sobrenome: *" />
+		        <input type="email" id="email" placeholder="E-mail: *" />
+		        <input type="password" id="senha" placeholder="Senha: *" onkeyup="validarForcaSenha()" />
 		        <div id="forca" class="w-12">
 		        	<p class="m-0 p-0 text-black-50" id="numeros">*Números</p>
 		        	<p class="m-0 p-0 text-black-50" id="maiuscula">*Letras Maiúsculas</p>
@@ -24,18 +23,20 @@
 		        	<p class="mt-0 ml-0 mr-0 mb-2 p-0 text-black-50" id="especiais">*Caracteres Especiais</p>
 		        	<p class="m-0 p-0 text-danger" id="forcaSenha"></p>
 		        </div>
-		        <span class="form-text text-warning m-0 p-0" id="erroSenha"></span>
-		        <input type="password" id="cSenha" placeholder="Confirmar Senha" />
-		        <span class="form-text text-warning mt-0 ml-0 mr-0 mb-4 p-0" id="erroCSenha"></span>
+		        <input type="password" id="cSenha" placeholder="Confirmar Senha: *" />
 		        <button type="submit">Cadastrar</button>
 		    </form>
 		</div>
 		<div class="form-container sign-in-container">
-		    <form method="POST" id="login">
+		    <form method="POST" id="login" class="mb-5">
 		        <h2 class="text-padrao text-uppercase">Olá, Tudo bem?</h2>
 		        <span>Acesse sua conta e vamos ao trabalho!</span>
 		        <input type="email" id="lemail" placeholder="E-mail" />
 		        <input type="password" id="lsenha" placeholder="Senha" />
+				<p class="m-0 p-0" id="carregando">
+					<i class="fas fa-spinner fa-spin text-dark mt-3 mb-3"></i> 
+					Carregando...
+				</p>
 		        <a class="text-secondary mt-2 mb-3" href="<?=URL_BASE?>login/esqueci">Esqueci minha senha.</a>
 		        <button type="submit">Acessar</button>
 		    </form>

@@ -16,9 +16,13 @@ require 'topo.php';
       <div class="modal-body">
         <form class="bg-light" id="editaSU">
           <div class="form-group text-left">
-            <label for="nsenha" class="col-form-label">Nova Senha:</label>
+            <label for="nsenha" class="col-form-label">Nova Senha: 
+				<span class="m-0 p-0 text-danger">*</span>
+			</label>
             <input type="password" id="nsenha">
-            <label for="cnsenha" class="col-form-label">Confirmar Nova Senha:</label>
+            <label for="cnsenha" class="col-form-label">Confirmar Nova Senha: 
+				<span class="m-0 p-0 text-danger">*</span>
+			</label>
             <input type="password" id="cnsenha">
           </div>
 		  <div class="modal-footer">
@@ -63,13 +67,25 @@ require 'topo.php';
       <div class="modal-body">
         <form class="bg-light" id="adicionaUsuario">
           <div class="form-group text-left">
-            <label for="nome" class="col-form-label">Nome:</label>
+            <label for="nomeu" class="col-form-label">Nome: 
+				<span class="m-0 p-0 text-danger">*</span>
+			</label>
             <input type="text" id="nomeu">
-            <label for="email" class="col-form-label">E-mail:</label>
+            <label for="sobrenomeu" class="col-form-label">Sobrenome: 
+				<span class="m-0 p-0 text-danger">*</span>
+			</label>
+            <input type="text" id="sobrenomeu">
+            <label for="emailu" class="col-form-label">E-mail: 
+				<span class="m-0 p-0 text-danger">*</span>
+			</label>
             <input type="text" id="emailu">
-            <label for="senha" class="col-form-label">Senha:</label>
+            <label for="senhau" class="col-form-label">Senha: 
+				<span class="m-0 p-0 text-danger">*</span>
+			</label>
             <input type="password" id="senhau">
-            <label for="csenha" class="col-form-label">Confirmar Senha:</label>
+            <label for="csenhau" class="col-form-label">Confirmar Senha: 
+				<span class="m-0 p-0 text-danger">*</span>
+			</label>
             <input type="password" id="csenhau">
           </div>
 		  <div class="modal-footer">
@@ -84,15 +100,18 @@ require 'topo.php';
 <div class="container">
 	<div class="pt-5 pb-5 text-center">
 		<h3 class="text-uppercase titulo_pagina mb-5"><?=$this->titulo;?></h3>
-		<button class="btn bg-padrao shadow-sm ml-1 rounded-lg" data-toggle="modal" data-target="#addU">
+		<button class="btn bg-padrao btn-sm shadow-sm ml-1 rounded-lg" data-toggle="modal" data-target="#addU">
 			<i class="fa fa-plus"></i>
 			<span class="m-0 p-0 text-white">Adicionar Usuário</span>
 		</button>
 	</div>
 	<div class="row">
-		<div class="col-lg-12">
-			<?php foreach ($listaUsuarios as $lu): ?>
-				<div class="col-md-12 bg-white rounded-lg pt-3 pb-3 mb-4 shadow-sm">
+		<div class="col-lg-12 mb-4">
+			<?php
+				if($qtdUsuarios != 0){
+					foreach ($listaUsuarios as $lu): 
+			?>
+				<div class="col-md-12 bg-white rounded-lg pt-3 pb-3 mb-3 shadow-sm">
 					<div class="row">
 						<div class="col-md-1 align-self-center">
 							<img src="<?=URL_BASE?>assets/img/<?=$lu['foto']?>" class="rounded-circle" width="70" alt="">
@@ -125,9 +144,9 @@ require 'topo.php';
 								}
 							?>
 						</div>
-						<div class="col-md-3 align-self-center">
+						<div class="col-md-3 align-self-center text-center">
 							<h6 class="mb-1">Ação:</h6>
-							<button id="ueditar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEdUs" data-id="<?= $lu['id']; ?>" data-nome="<?= $lu['nome']." ".$lu['sobrenome'];?>">
+							<button id="ueditar" type="button" class="btn bg-padrao btn-sm" data-toggle="modal" data-target="#modalEdUs" data-id="<?= $lu['id']; ?>" data-nome="<?= $lu['nome']." ".$lu['sobrenome'];?>">
 								<i class="fa fa-edit"></i> Editar
 							</button>
 							<button id="uexcluir" value="<?= $lu['id']; ?>" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalExUs" data-id="<?= $lu['id']; ?>" data-nome="<?= $lu['nome']." ".$lu['sobrenome'];?>">
@@ -135,22 +154,82 @@ require 'topo.php';
 						</div>
 					</div>
 				</div>
-			<?php endforeach; ?>
+			<?php 
+					endforeach;
+				}else{
+			?>
+	          <div class="col-md-6 offset-md-3 bg-secundario rounded-lg p-0 mb-5">
+	            <div class="row">
+	              <div class="col-md-1">
+	                <div class="bg-padrao text-white text-center pt-3 pb-3 pl-5 pr-5">
+	                  !
+	                </div>
+	              </div>
+	              <div class="col-md-11">
+	                <div class="text-padrao text-center pt-3 pb-3">
+	                  <p class="pt-1 m-0">Nenhum usuário encontrado.</p>
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+			<?php		
+				}
+			?>
 		</div>
 	</div>
-	<div class="col-lg-6 pag offset-lg-3">
-		<nav aria-label="Page navigation example">
-		  <ul class="pagination justify-content-center">
-		    <li class="page-item disabled">
-		      <a class="page-link text-padrao" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
-		    </li>
-		    <li class="page-item active"><a class="page-link text-padrao" href="#">1</a></li>
-		    <li class="page-item"><a class="page-link text-padrao" href="#">2</a></li>
-		    <li class="page-item"><a class="page-link text-padrao" href="#">3</a></li>
-		    <li class="page-item">
-		      <a class="page-link text-padrao" href="#">Próximo</a>
-		    </li>
-		  </ul>
-		</nav>
+	<div class="col-lg-12 p-0 pag">
+		<div class="row">
+			<div class="col-md-6 text-left">
+				<p class="pt-2 pb-2 m-0 text-secondary">
+				<?php
+				switch ($qtdUsuarios) {
+					case '0':
+						echo $qtdUsuarios." usuário encontrado.";
+					break;
+
+					case '1':
+						echo $qtdUsuarios." usuário encontrado.";
+					break;
+					
+					default:
+						echo $qtdUsuarios." usuários encontrados.";
+					break;
+				}
+				?>
+				</p>
+			</div>
+			<div class="col-md-5 p-0 pr-2 m-0">
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination justify-content-end">
+				    <?php for($i=1; $i<=$totalPaginas;$i++):?>
+						<li class="page-item <?= ($this->p == $i)?'active':''; ?>">
+							<a class="page-link text-padrao" href="<?=URL_BASE;?>usuario/?p=<?=$i?>">
+								<?= ($i) ?>
+							</a>
+						</li>
+					<?php endfor; ?>
+				  </ul>
+				</nav>
+			</div>
+			<div class="col-md-1 ml-0 pl-0 text-right">
+				<p class="pt-2 pb-2 m-0 text-secondary">
+				  <?php
+				    switch ($totalPaginas) {
+				      case '0':
+				        echo $totalPaginas." páginas.";
+				      break;
+
+				      case '1':
+				        echo $totalPaginas." página.";
+				      break;
+				      
+				      default:
+				        echo $totalPaginas." páginas.";
+				      break;
+				    }
+				  ?>
+				</p>
+			</div>
+		</div>
 	</div>
 </div>

@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Template de Email</title>
+	<title>Template E-mail Confirma Cadastro</title>
 </head>
 <body>
 	<div style="width: 600px; line-height: 1.5; background-color: #f9f9f9; font-family: 'Helvetica', Geneva, sans-serif;">
@@ -23,7 +23,7 @@
 			<?php
 				$codigo = md5(time().rand(0,9999));
 			?>
-			<a style="background-color: #005E76; color: #FFFFFF; padding: 10px 20px; text-decoration: none;" href="<?=URL_BASE?>confirma/confirmacao-de-cadastro/?codigo=<?=$codigo?>">
+			<a style="background-color: #005E76; color: #FFFFFF; padding: 10px 20px; text-decoration: none;" href="<?=URL_BASE?>login/confirmacao-de-cadastro/?codigo=<?=$codigo?>">
 				Confirmar
 			</a>
 		</p>

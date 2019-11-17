@@ -33,14 +33,26 @@ class Empresa extends model{
 
 		return $array['ea'];
 	}
-	public function listaEmpresas(){
+	public function desativada(){
+		$array = array();
+		$sql = $this->conexao->prepare("SELECT COUNT(*) AS ed FROM empresa WHERE permissao_empresa = 2");
+		$sql->execute();
+
+		if ($sql->rowCount() > 0) {
+			$array = $sql->fetch();
+		}
+
+		return $array['ed'];
+	}
+	public function listaEmpresas($p, $epp){
+		$offset = ($p - 1)*$epp;
+
 		$array = array();
 		$sql = $this->conexao->prepare("
-			SELECT e.*, u.* 
-			FROM empresa AS e
-			INNER JOIN usuario AS u
-			ON e.id_usuario = u.id
-		");
+			SELECT * FROM empresa
+			ORDER BY id_empresa DESC
+			LIMIT $offset, $epp");
+
 		$sql->execute();
 
 		if ($sql->rowCount() > 0) {

@@ -16,7 +16,8 @@
 	$this->loadViewInTemplate($viewNome, $dados);
 ?>
 
-<footer class="text-padrao text-center bg-white fixed-bottom pt-3 pb-3">&copy; 2019 - Controle de Orçamentos</footer>
+<footer class="text-padrao text-center fixed-bottom bg-white pt-3 pb-3">&copy; <?= date("Y"); ?> - Controle de Orçamentos</footer>
+
 <script type="text/javascript" src="<?= URL_BASE ?>assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="<?= URL_BASE ?>assets/js/Chart.min.js"></script>
 <script type="text/javascript" src="<?= URL_BASE ?>assets/js/jquery.mask.min.js"></script>

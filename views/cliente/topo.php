@@ -1,9 +1,9 @@
 <?php
 date_default_timezone_set('America/Sao_Paulo');
-if($this->fotoUsuario == "usuario.jpg"){
-	$usuarioFoto = URL_BASE.'assets/img/'.$this->fotoUsuario;
+if($this->foto == "usuario.jpg"){
+	$usuarioFoto = URL_BASE.'assets/img/'.$this->foto;
 }else{
-	$usuarioFoto = URL_BASE.'assets/img/usuarios/'.$_SESSION['logado'].'/'.$this->fotoUsuario;
+	$usuarioFoto = URL_BASE.'assets/img/usuarios/'.$_SESSION['logado'].'/'.$this->foto;
 }
 ?>
 <div class="container">
@@ -44,18 +44,14 @@ if($this->fotoUsuario == "usuario.jpg"){
 <div class="container-fluid bg-padrao pt-5 pb-5 text-center">
 	<h1 class="text-uppercase m-0 p-0">
 		<?php
-			if((date("d/m") >= "04/11") && (date("d/m", strtotime("+1 year")) <= "20/03")){
-				$hora = date("H", strtotime("-1 hour"));
-			}else{
-				$hora = date("H");
-			}
+			$hora = date("H:i:s");
 
 			switch ($hora) {
-				case (($hora) >= "00" && $hora < "12"):
+				case (($hora) >= "00:00:00" && $hora < "13:00:00"):
 					$cumprimento = "Bom dia";
 				break;
 
-				case ($hora >= "13" && $hora < "18"):
+				case ($hora >= "13:00:00" && $hora < "19:00:00"):
 					$cumprimento = "Boa tarde";
 				break;
 				

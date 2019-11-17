@@ -17,10 +17,24 @@ class usuarioController extends controller{
 		$id = $_SESSION['logado'];
 		$infoContas = $u->contaInfos($id);
 
-		$this->foto = $infoContas['foto'];
+		$this->fotoUsuario 	= $infoContas['foto'];
+		$this->nome 		= $infoContas['nome'];
+		$this->sobrenome 	= $infoContas['sobrenome'];
+
+		$qtdUsuarios = $u->qtdUsuarios();
+		$dados['qtdUsuarios'] = $qtdUsuarios;
 		
-		$listaUsuarios = $u->listaUsuarios();
+		$this->p = 1;
+		$upp = 5;
+		if (isset($_GET['p']) && !empty($_GET['p'])) {
+			$this->p = addslashes($_GET['p']);
+		}
+		$totalPaginas = ceil($qtdUsuarios/$upp);
+		
+		$listaUsuarios = $u->listaUsuarios($this->p, $upp);
+
 		$dados['listaUsuarios'] = $listaUsuarios;
+		$dados['totalPaginas'] = $totalPaginas;
 
 		$this->loadTemplate('admin/usuario', $dados);
 	}
@@ -68,12 +82,13 @@ class usuarioController extends controller{
 		}
 		$u = new Usuario();
 		if(isset($_POST) && !empty($_POST)){
-			$nome 		= $_POST['nome'];
-			$email 		= $_POST['email'];
-			$senha 		= $_POST['senha'];
+			$nome 		= addslashes($_POST['nome']);
+			$sobrenome 	= addslashes($_POST['sobrenome']);
+			$email 		= addslashes($_POST['email']);
+			$senha 		= md5($_POST['senha']);
 			$codigo		= md5(time().rand(0, 9999));
 
-			if($u->addU($nome, $email, md5($senha), $codigo)){
+			if($u->addU($nome, $sobrenome, $email, $senha, $codigo)){
 				echo "1";
 			}else{
 				echo "0";

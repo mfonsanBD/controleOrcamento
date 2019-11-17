@@ -71,16 +71,19 @@ var configE = {
 		datasets: [{
 			data: [
 				<?= $aguardandoAprovacao; ?>,
-				<?= $emAtividade; ?>
+				<?= $emAtividade; ?>,
+				<?= $desativada; ?>
 			],
 			backgroundColor: [
 				'#6C757D',
-				'#28A745'
+				'#28A745',
+				'#dc3545'
 			]
 		}],
 		labels: [
 			'Aguardando Aprovação',
-			'Em Atividade'
+			'Em Atividade',
+			'Desativada'
 		]
 	},
 	options: {
@@ -90,7 +93,6 @@ var configE = {
 		}
 	}
 };
-
 var configO = {
 	type: 'doughnut',
 	data: {

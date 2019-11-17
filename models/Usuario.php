@@ -8,8 +8,6 @@ class Usuario extends model{
 			$dado = $sql->fetch();
 
 			$_SESSION['logado'] 					= $dado['id'];
-			$_SESSION['nome_do_usuario'] 			= $dado['nome'];
-			$_SESSION['sobrenome_do_usuario'] 		= $dado['sobrenome'];
 			$_SESSION['permissao'] 					= $dado['permissao'];
 			$_SESSION['tipo'] 						= $dado['tipo'];
 
@@ -39,9 +37,14 @@ class Usuario extends model{
 
 		return $array['c'];
 	}
-	public function listaUsuarios(){
+	public function listaUsuarios($p, $upp){
+		$offset = ($p - 1)*$upp;
 		$array = array();
-		$sql = $this->conexao->prepare("SELECT * FROM usuario WHERE tipo = 1 ORDER BY id DESC LIMIT 10");
+		$sql = $this->conexao->prepare("
+			SELECT * FROM usuario 
+			WHERE tipo = 1 
+			ORDER BY id DESC 
+			LIMIT $offset, $upp");
 		$sql->execute();
 
 		if ($sql->rowCount() > 0) {
@@ -50,31 +53,90 @@ class Usuario extends model{
 
 		return $array;
 	}
+	public function idNomeUsuario(){
+		$array = array();
+		$sql = $this->conexao->prepare("SELECT id, nome, sobrenome FROM usuario WHERE tipo = 1");
+		$sql->execute();
+
+		if($sql->rowCount() > 0){
+			$array = $sql->fetchAll();
+		}
+
+		return $array;
+	}
+	public function verificaEmail($email){
+		$sql = $this->conexao->prepare("SELECT email FROM usuario WHERE email = ?");
+		$sql->execute(array($email));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function getNome($email){
+		$sql = $this->conexao->prepare("SELECT nome FROM usuario WHERE email = ?");
+		$sql->execute(array($email));
+
+		if($sql->rowCount() > 0){
+			return $sql->fetch();
+		}
+	}
+	public function redefinirSenha($hash, $codigo, $email){
+		$sql = $this->conexao->prepare("UPDATE usuario SET hash = ?, codigo_redefinicao = ? WHERE email = ?");
+		$sql->execute(array($hash, $codigo, $email));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function verificaCodigo($hash, $codigo){
+		$sql = $this->conexao->prepare("SELECT * FROM usuario WHERE hash = ? AND codigo_redefinicao = ?");
+		$sql->execute(array($hash, $codigo));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function redefinir($senha, $hash){
+		$sql = $this->conexao->prepare("UPDATE usuario SET senha = ? WHERE hash = ?");
+		$sql->execute(array($senha, $hash));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function cadastrar($nome, $sobrenome, $email, $senha, $codigo){
+		$sql = $this->conexao->prepare("INSERT INTO usuario SET nome = ?, sobrenome = ?, email = ?, senha = ?, tipo = 1, foto = 'usuario.jpg', permissao = 0, hash = ?");
+		$sql->execute(array($nome, $sobrenome, $email, $senha, $codigo));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function addU($nome, $sobrenome, $email, $senha, $codigo){
+		$sql = $this->conexao->prepare("INSERT INTO usuario SET nome = ?, sobrenome = ?, email = ?, senha = ?, tipo = 1, foto = 'usuario.jpg', permissao = 1, hash = ?");
+		$sql->execute(array($nome, $sobrenome, $email, $senha, $codigo));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	public function alteraSenhaUsuario($senha, $id){
 		$sql = $this->conexao->prepare("UPDATE usuario SET senha = ? WHERE id = ?");
 		$sql->execute(array($senha, $id));
 
 		if ($sql->rowCount() > 0) {
-			return true;
-		}else{
-			return false;
-		}
-	}
-	public function cadastrar($nome, $email, $senha, $codigo){
-		$sql = $this->conexao->prepare("INSERT INTO usuario SET nome = ?, email = ?, senha = ?, tipo = 1, foto = 'usuario.jpg', permissao = 0, hash = ?");
-		$sql->execute(array($nome, $email, $senha, $codigo));
-
-		if($sql->rowCount() > 0){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	public function addU($nome, $email, $senha, $codigo){
-		$sql = $this->conexao->prepare("INSERT INTO usuario SET nome = ?, email = ?, senha = ?, tipo = 1, foto = 'usuario.jpg', permissao = 1, hash = ?");
-		$sql->execute(array($nome, $email, $senha, $codigo));
-
-		if($sql->rowCount() > 0){
 			return true;
 		}else{
 			return false;
@@ -114,6 +176,104 @@ class Usuario extends model{
 	public function alteraFoto($foto, $id){
 		$sql = $this->conexao->prepare("UPDATE usuario SET foto = ? WHERE id = ?");
 		$sql->execute(array($foto, $id));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function verificaCampos($id){
+		$sql = $this->conexao->prepare("SELECT nome, sobrenome, email FROM usuario WHERE id = ?");
+		$sql->execute(array($id));
+
+		if($sql->rowCount() > 0){
+			return $sql->fetch();
+		}
+	}
+	public function alteraDados($nome, $sobrenome, $email, $id){
+		$sql = $this->conexao->prepare("UPDATE usuario SET nome = ?, sobrenome = ?, email = ? WHERE id = ?");
+		$sql->execute(array($nome, $sobrenome, $email, $id));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function alteraNome($nome, $id){
+		$sql = $this->conexao->prepare("UPDATE usuario SET nome = ? WHERE id = ?");
+		$sql->execute(array($nome, $id));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function alteraSobrenome($sobrenome, $id){
+		$sql = $this->conexao->prepare("UPDATE usuario SET sobrenome = ? WHERE id = ?");
+		$sql->execute(array($sobrenome, $id));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function alteraEmail($email, $id){
+		$sql = $this->conexao->prepare("UPDATE usuario SET email = ? WHERE id = ?");
+		$sql->execute(array($email, $id));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function alteraNomeSobrenome($nome, $sobrenome, $id){
+		$sql = $this->conexao->prepare("UPDATE usuario SET nome = ?, sobrenome = ? WHERE id = ?");
+		$sql->execute(array($nome, $sobrenome, $id));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function alteraNomeEmail($nome, $email, $id){
+		$sql = $this->conexao->prepare("UPDATE usuario SET nome = ?, email = ? WHERE id = ?");
+		$sql->execute(array($nome, $email, $id));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function alteraSobrenomeEmail($sobrenome, $email, $id){
+		$sql = $this->conexao->prepare("UPDATE usuario SET sobrenome = ?, email = ? WHERE id = ?");
+		$sql->execute(array($sobrenome, $email, $id));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function verificaSenha($senha, $id){
+		$sql = $this->conexao->prepare("SELECT senha FROM usuario WHERE senha = ? AND id = ?");
+		$sql->execute(array($senha, $id));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function alteraSenha($senha, $id){
+		$sql = $this->conexao->prepare("UPDATE usuario SET senha = ? WHERE id = ?");
+		$sql->execute(array($senha, $id));
 
 		if($sql->rowCount() > 0){
 			return true;

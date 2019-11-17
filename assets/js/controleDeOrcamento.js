@@ -11,26 +11,196 @@ $(document).ready(function(){
 	});
 	$("#esqueci").on("submit", function(e){
 		e.preventDefault();
-
 		var email = $("#eemail").val();
 
 		if(email == ""){
 			swal({
-				title: "Aviso!", 
-				text: "Para redefinir sua senha é obrigatório que nos envie seu e-mail cadastrado no sistema.", 
-				icon: "warning"
+				title: "Atenção!",
+				text: "Para redefinir sua senha é importante que nos envie seu e-mail cadastrado no sistema.",
+				icon: "warning",
+				buttons: {
+					confirm: {
+					    text: "Ok, vou enviar!",
+					    value: true,
+					    visible: true,
+					    className: "bg-warning",
+					    closeModal: true
+					}
+				}
 			});
-			return false;
+		}else{
+			$.ajax({
+				url: 'http://localhost/gcc/login/verificaEmail/',
+				type: 'POST',
+				data: {email:email},
+				success: function(dados){
+					if(dados == "1"){
+						$.ajax({
+							url: 'http://localhost/gcc/login/redefinirSenha/',
+							type: 'POST',
+							data: {email:email},
+							success: function(dados){
+								if(dados == "1"){
+									swal({
+										title: "Parabéns!", 
+										text: "Encaminhamos para seu e-mail um passo a passo do que você deverá fazer para redefinir sua senha.",
+										icon: "success",
+										buttons: {
+											confirm: {
+											    text: "Obrigado! 🙌🏼",
+											    value: true,
+											    visible: true,
+											    className: "bg-success",
+											    closeModal: true
+											}
+										}
+									})
+									.then((resposta) => {
+										window.location.href = 'http://localhost/gcc';
+									});
+								}else{
+									
+								}
+							}
+						});
+					}else{
+						swal({
+							title: "Atenção!",
+							text: "O e-mail que você digitou não consta em nosso sistema.",
+							icon: "warning",
+							buttons: {
+								confirm: {
+								    text: "Ok, vou corrigir!",
+								    value: true,
+								    visible: true,
+								    className: "bg-warning",
+								    closeModal: true
+								}
+							}
+						});
+					}
+				}
+			});
+		}
+	});
+	$("#codigoRedefinicao").on("submit", function(e){
+		e.preventDefault();
+		var codigo 	= $("#codigo").val();
+		var hash 	= $("#hash").val();
+
+		if(codigo == ""){
+			swal({
+				title: "Atenção!",
+				text: "Para redefinir sua senha, digite o código enviado por e-mail.",
+				icon: "warning",
+				buttons: {
+					confirm: {
+					    text: "Ok, vou digitar!",
+					    value: true,
+					    visible: true,
+					    className: "bg-warning",
+					    closeModal: true
+					}
+				}
+			});
+		}else{
+			$.ajax({
+				url: 'http://localhost/gcc/login/verificaCodigo/',
+				type: 'POST',
+				data: {codigo:codigo, hash:hash},
+				success: function(dados){
+					if(dados == "1"){
+						$("#codigos").hide();
+						$("#novasenha").show();
+					}else{
+						swal({
+							title: "Atenção!",
+							text: "O código que você digitou não consta em nosso sistema.",
+							icon: "warning",
+							buttons: {
+								confirm: {
+								    text: "Ok, vou corrigir!",
+								    value: true,
+								    visible: true,
+								    className: "bg-warning",
+								    closeModal: true
+								}
+							}
+						});
+					}
+				}
+			});
+		}
+	});
+	$("#camposNovaSenha").on("submit", function(event){
+		event.preventDefault();
+		var nova 		= $('#nsenha').val();
+		var cnova 		= $('#cnsenha').val();
+		var hash		= $('#hash').val();
+
+		if(nova != '' && cnova != ''){
+			if(nova == cnova){
+				$.ajax({
+					url: 'http://localhost/gcc/login/redefinir',
+					type: 'POST',
+					data: {senha:nova, hash:hash},
+					success: function(senha){
+						if(senha == "1"){
+							swal({
+								title: "Parabéns!", 
+								text: "Senha redefinida com sucesso.",
+								icon: "success",
+								buttons: {
+									confirm: {
+									    text: "Obrigado! 🙌🏼",
+									    value: true,
+									    visible: true,
+									    className: "bg-success",
+									    closeModal: true
+									}
+								}
+							})
+							.then((resposta) => {
+								window.location.href = 'http://localhost/gcc/';
+							});
+						}
+					}
+				});
+			}else{
+				swal({
+					title: "Atenção!",
+					text: "As NOVAS SENHAS não coincidem.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
 		}else{
 			swal({
-				title: "Obrigado!", 
-				text: "Estaremos enviando uma senha provisória para seu e-mail com o passo a passo do que você deverá fazer para redefinir sua senha.", 
-				icon: "success"
+				title: "Atenção!",
+				text: "Para redefinir sua senha, é necessário preencher os campos.",
+				icon: "warning",
+				buttons: {
+					confirm: {
+					    text: "Ok, vou preencher!",
+					    value: true,
+					    visible: true,
+					    className: "bg-warning",
+					    closeModal: true
+					}
+				}
 			});
 		}
 	});
 
-	//Controle de Usuário
+	//Controle do administrador sobre: Usuário
 	$('#addU').on('show.bs.modal', function(event){
 		var button = $(event.relatedTarget);
 		var id = button.data('id');
@@ -42,96 +212,257 @@ $(document).ready(function(){
 		$("#adicionarUsuario").on("click", function(e){
 			e.preventDefault();
 			var nome 		= $("#nomeu").val();
+			var sobrenome 	= $("#sobrenomeu").val();
 			var email 		= $("#emailu").val();
 			var senha 		= $("#senhau").val();
 			var csenha 		= $("#csenhau").val();
 
 			if(nome == ''){
 				swal({
-					title: "Aviso!", 
-					text: "O campo NOME COMPLETO é obrigatório.", 
-					icon: "warning"
+					title: "Atenção!",
+					text: "O campo NOME é obrigatório.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
 				});
 			}
 			else if(!isNaN(nome)){
 				swal({
-					title: "Aviso!", 
-					text: "O campo NOME COMPLETO não permite números.",
-					icon: "warning"
+					title: "Atenção!",
+					text: "O campo NOME não permite números.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
 				});
 			}
 			else if(nome.length < 3){
 				swal({
-					title: "Aviso!", 
-					text: "O campo NOME COMPLETO deve conter pelo menos 3 caracteres.",
-					icon: "warning"
+					title: "Atenção!",
+					text: "O campo NOME deve conter pelo menos 3 caracteres.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(sobrenome == ''){
+				swal({
+					title: "Atenção!",
+					text: "O campo SOBRENOME é obrigatório.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(!isNaN(sobrenome)){
+				swal({
+					title: "Atenção!",
+					text: "O campo SOBRENOME não permite números.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(sobrenome.length < 3){
+				swal({
+					title: "Atenção!",
+					text: "O campo SOBRENOME deve conter pelo menos 3 caracteres.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
 				});
 			}
 			else if(email == ''){
 				swal({
-					title: "Aviso!", 
-					text: "O campo E-MAIL é obrigatório.", 
-					icon: "warning"
+					title: "Atenção!",
+					text: "O campo E-MAIL é obrigatório.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
 				});
 			}
 			else if(!emailValido(email)){
 				swal({
-					title: "Aviso!", 
-					text: "Digite um e-mail válido.", 
-					icon: "warning"
+					title: "Atenção!",
+					text: "Digite um e-mail válido.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
 				});
 			}
 			else if(senha == ''){
 				swal({
-					title: "Aviso!", 
-					text: "O campo SENHA é obrigatório.", 
-					icon: "warning"
+					title: "Atenção!",
+					text: "O campo SENHA é obrigatório.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
 				});
 			}
 			else if(csenha == ''){
 				swal({
-					title: "Aviso!", 
-					text: "O campo COMFIRMAR SENHA é obrigatório.", 
-					icon: "warning"
+					title: "Atenção!",
+					text: "O campo COMFIRMAR SENHA é obrigatório.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
 				});
 			}
 			else if(csenha != senha){
 				swal({
-					title: "Aviso!", 
-					text: "As senhas não coincidem.", 
-					icon: "warning"
-				});
-			}else{
-				// alert(nome+' - '+email+' - '+senha+' - '+csenha);
-				$.ajax({
-					url: 'http://localhost/gcc/usuario/adminAddU/',
-					type: 'POST',
-					data: {nome:nome, email:email, senha:senha},
-					success: function(dados){
-						if(dados == 1){
-							swal({
-								title: "Parabéns!", 
-								text: "Usuário adicionado com sucesso!", 
-								icon: "success"
-							})
-							.then((resposta) => {
-								$('#modalEdUs').modal('hide');
-								window.location.reload();
-							});
-						}else{
-							swal({
-								title: "Erro!", 
-								text: "O usuário não pôde ser adicionado.", 
-								icon: "error"
-							})
-							.then((resposta) => {
-								$('#modalEdUs').modal('hide');
-							});
-						};
+					title: "Atenção!",
+					text: "As senhas não coincidem.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
 					}
 				});
-
-				$("#adicionaUsuario")[0].reset();
+			}else{
+				$.ajax({
+					url: 'http://localhost/gcc/login/verificaEmail/',
+					type: 'POST',
+					data: {email:email},
+					success: function(dados){
+						if(dados == "1"){
+							swal({
+								title: "Atenção!",
+								text: "O e-mail que você digitou já consta em nosso sistema.",
+								icon: "warning",
+								buttons: {
+									confirm: {
+									    text: "Ok, vou corrigir!",
+									    value: true,
+									    visible: true,
+									    className: "bg-warning",
+									    closeModal: true
+									}
+								}
+							});
+						}else{
+							$.ajax({
+								url: 'http://localhost/gcc/usuario/adminAddU/',
+								type: 'POST',
+								data: {nome:nome, sobrenome:sobrenome, email:email, senha:senha},
+								success: function(dados){
+									if(dados == 1){
+										swal({
+											title: "Parabéns!", 
+											text: "Usuário adicionado com sucesso!", 
+											icon: "success",
+											buttons: {
+												confirm: {
+												    text: "Obrigado! 🙌🏼",
+												    value: true,
+												    visible: true,
+												    className: "bg-success",
+												    closeModal: true
+												}
+											}
+										})
+										.then((resposta) => {
+											$('#modalEdUs').modal('hide');
+											window.location.reload();
+										});
+									}else{
+										swal({
+											title: "Erro!", 
+											text: "O usuário não pôde ser adicionado.", 
+											icon: "error",
+											buttons: {
+												confirm: {
+												    text: "Ok",
+												    value: true,
+												    visible: true,
+												    className: "bg-danger",
+												    closeModal: true
+												}
+											}
+										})
+										.then((resposta) => {
+											$('#modalEdUs').modal('hide');
+										});
+									};
+								}
+							});
+							$("#adicionaUsuario")[0].reset();
+						}
+					}
+				});
 			}
 
 			function emailValido($email){
@@ -157,16 +488,34 @@ $(document).ready(function(){
 
 			if(novaSenha == '' && cNovaSenha == ''){
 				swal({
-					title: "Aviso!", 
-					text: "Os campos não podem estar vazios.", 
-					icon: "warning"
+					title: "Atenção!",
+					text: "Os campos não podem estar vazios.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
 				});
 			}else{
 				if(novaSenha != cNovaSenha){
 					swal({
-						title: "Aviso!", 
-						text: "As senhas não coincidem!", 
-						icon: "warning"
+						title: "Atenção!",
+						text: "As senhas não coincidem.",
+						icon: "warning",
+						buttons: {
+							confirm: {
+							    text: "Ok, vou corrigir!",
+							    value: true,
+							    visible: true,
+							    className: "bg-warning",
+							    closeModal: true
+							}
+						}
 					});
 				}else{
 					$.ajax({
@@ -178,7 +527,16 @@ $(document).ready(function(){
 								swal({
 									title: "Parabéns!", 
 									text: "Senha alterada com sucesso!", 
-									icon: "success"
+									icon: "success",
+									buttons: {
+										confirm: {
+										    text: "Obrigado! 🙌🏼",
+										    value: true,
+										    visible: true,
+										    className: "bg-success",
+										    closeModal: true
+										}
+									}
 								})
 								.then((resposta) => {
 									$('#modalEdUs').modal('hide');
@@ -187,7 +545,16 @@ $(document).ready(function(){
 								swal({
 									title: "Erro!", 
 									text: "A senha não pôde ser alterada.", 
-									icon: "error"
+									icon: "error",
+									buttons: {
+										confirm: {
+										    text: "Ok",
+										    value: true,
+										    visible: true,
+										    className: "bg-danger",
+										    closeModal: true
+										}
+									}
 								})
 								.then((resposta) => {
 									$('#modalEdUs').modal('hide');
@@ -219,7 +586,16 @@ $(document).ready(function(){
 						swal({
 							title: "Parabéns!", 
 							text: "Usuário excluído com sucesso!", 
-							icon: "success"
+							icon: "success",
+							buttons: {
+								confirm: {
+								    text: "Obrigado! 🙌🏼",
+								    value: true,
+								    visible: true,
+								    className: "bg-success",
+								    closeModal: true
+								}
+							}
 						})
 						.then((resposta) => {
 							$('#modalExUs').modal('hide');
@@ -229,7 +605,16 @@ $(document).ready(function(){
 						swal({
 							title: "Erro!", 
 							text: "Usuário não pôde ser excluído.", 
-							icon: "error"
+							icon: "error",
+							buttons: {
+								confirm: {
+								    text: "Ok",
+								    value: true,
+								    visible: true,
+								    className: "bg-danger",
+								    closeModal: true
+								}
+							}
 						})
 						.then((resposta) => {
 							$('#modalExUs').modal('hide');
@@ -240,7 +625,7 @@ $(document).ready(function(){
 		});
 	});
 
-	//Controle de Perguntas Frequentes
+	//Controle do administrador sobre: Perguntas Frequentes
 	$('#addPF').on('show.bs.modal', function(event){
 		var button = $(event.relatedTarget); // Button that triggered the modal
 		var modal = $(this);
@@ -254,13 +639,31 @@ $(document).ready(function(){
 				swal({
 					title: "Atenção!", 
 					text: "O campo PERGUNTA não pode estar vazio.", 
-					icon: "warning"
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
 				});
 			}else if(resposta == ''){
 				swal({
 					title: "Atenção!", 
 					text: "O campo RESPOSTA não pode estar vazio.", 
-					icon: "warning"
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
 				});
 			}else{
 				$.ajax({
@@ -272,7 +675,16 @@ $(document).ready(function(){
 							swal({
 								title: "Parabéns!", 
 								text: "Pergunta Frequente adicionada com sucesso.", 
-								icon: "success"
+								icon: "success",
+								buttons: {
+									confirm: {
+									    text: "Obrigado! 🙌🏼",
+									    value: true,
+									    visible: true,
+									    className: "bg-success",
+									    closeModal: true
+									}
+								}
 							})
 							.then((atualizou) => {
 								$('#addPF').modal('hide');
@@ -282,7 +694,16 @@ $(document).ready(function(){
 							swal({
 								title: "Erro!",
 								text: "Pergunta Frequente não pôde ser adicionada.", 
-								icon: "error"
+								icon: "error",
+								buttons: {
+									confirm: {
+									    text: "Ok",
+									    value: true,
+									    visible: true,
+									    className: "bg-danger",
+									    closeModal: true
+									}
+								}
 							})
 							.then((resposta) => {
 								$('#addPF').modal('hide');
@@ -311,7 +732,16 @@ $(document).ready(function(){
 				swal({
 					title: "Aviso!", 
 					text: "Para editar é necessário que pelo menos um campo seja preenchido.", 
-					icon: "warning"
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou preencher!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
 				});
 			}else{
 				if(novapergunta == '' && novaresposta != ''){
@@ -328,7 +758,16 @@ $(document).ready(function(){
 							swal({
 								title: "Parabéns!", 
 								text: "Pergunta Frequente alterada com sucesso!", 
-								icon: "success"
+								icon: "success",
+								buttons: {
+									confirm: {
+									    text: "Obrigado! 🙌🏼",
+									    value: true,
+									    visible: true,
+									    className: "bg-success",
+									    closeModal: true
+									}
+								}
 							})
 							.then((resposta) => {
 								$('#modalEdPF').modal('hide');
@@ -338,7 +777,16 @@ $(document).ready(function(){
 							swal({
 								title: "Erro!", 
 								text: "A pergunta frequente não pôde ser alterada.", 
-								icon: "error"
+								icon: "error",
+								buttons: {
+									confirm: {
+									    text: "Ok",
+									    value: true,
+									    visible: true,
+									    className: "bg-danger",
+									    closeModal: true
+									}
+								}
 							})
 							.then((resposta) => {
 								$('#modalEdPF').modal('hide');
@@ -369,7 +817,16 @@ $(document).ready(function(){
 						swal({
 							title: "Parabéns!", 
 							text: "Pergunta Frequente excluída com sucesso!", 
-							icon: "success"
+							icon: "success",
+							buttons: {
+								confirm: {
+								    text: "Obrigado! 🙌🏼",
+								    value: true,
+								    visible: true,
+								    className: "bg-success",
+								    closeModal: true
+								}
+							}
 						})
 						.then((resposta) => {
 							$('#modalExPF').modal('hide');
@@ -379,7 +836,16 @@ $(document).ready(function(){
 						swal({
 							title: "Erro!", 
 							text: "A pergunta frequente não pôde ser excluída.", 
-							icon: "error"
+							icon: "error",
+							buttons: {
+								confirm: {
+								    text: "Ok",
+								    value: true,
+								    visible: true,
+								    className: "bg-danger",
+								    closeModal: true
+								}
+							}
 						})
 						.then((resposta) => {
 							$('#modalExPF').modal('hide');
@@ -388,6 +854,286 @@ $(document).ready(function(){
 				}
 			});
 		});
+	});
+
+	//Controle do administrador sobre: Empresa
+	$('#addEmpresa').on('show.bs.modal', function(){
+		var button = $(event.relatedTarget);
+		var modal = $(this);
+		modal.find('.modal-title').text('Adicionar Empresa');
+
+		$("#adicionaEmpresa").on("submit", function(e){
+			e.preventDefault();
+			var nome 		= $("#nomeu").val();
+			var sobrenome 	= $("#sobrenomeu").val();
+			var email 		= $("#emailu").val();
+			var senha 		= $("#senhau").val();
+			var csenha 		= $("#csenhau").val();
+
+			if(nome == ''){
+				swal({
+					title: "Atenção!",
+					text: "O campo NOME é obrigatório.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(!isNaN(nome)){
+				swal({
+					title: "Atenção!",
+					text: "O campo NOME não permite números.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(nome.length < 3){
+				swal({
+					title: "Atenção!",
+					text: "O campo NOME deve conter pelo menos 3 caracteres.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(sobrenome == ''){
+				swal({
+					title: "Atenção!",
+					text: "O campo SOBRENOME é obrigatório.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(!isNaN(sobrenome)){
+				swal({
+					title: "Atenção!",
+					text: "O campo SOBRENOME não permite números.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(sobrenome.length < 3){
+				swal({
+					title: "Atenção!",
+					text: "O campo SOBRENOME deve conter pelo menos 3 caracteres.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(email == ''){
+				swal({
+					title: "Atenção!",
+					text: "O campo E-MAIL é obrigatório.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(!emailValido(email)){
+				swal({
+					title: "Atenção!",
+					text: "Digite um e-mail válido.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(senha == ''){
+				swal({
+					title: "Atenção!",
+					text: "O campo SENHA é obrigatório.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(csenha == ''){
+				swal({
+					title: "Atenção!",
+					text: "O campo COMFIRMAR SENHA é obrigatório.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(csenha != senha){
+				swal({
+					title: "Atenção!",
+					text: "As senhas não coincidem.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}else{
+				$.ajax({
+					url: 'http://localhost/gcc/login/verificaEmail/',
+					type: 'POST',
+					data: {email:email},
+					success: function(dados){
+						if(dados == "1"){
+							swal({
+								title: "Atenção!",
+								text: "O e-mail que você digitou já consta em nosso sistema.",
+								icon: "warning",
+								buttons: {
+									confirm: {
+									    text: "Ok, vou corrigir!",
+									    value: true,
+									    visible: true,
+									    className: "bg-warning",
+									    closeModal: true
+									}
+								}
+							});
+						}else{
+							$.ajax({
+								url: 'http://localhost/gcc/usuario/adminAddU/',
+								type: 'POST',
+								data: {nome:nome, sobrenome:sobrenome, email:email, senha:senha},
+								success: function(dados){
+									if(dados == 1){
+										swal({
+											title: "Parabéns!", 
+											text: "Usuário adicionado com sucesso!", 
+											icon: "success",
+											buttons: {
+												confirm: {
+												    text: "Obrigado! 🙌🏼",
+												    value: true,
+												    visible: true,
+												    className: "bg-success",
+												    closeModal: true
+												}
+											}
+										})
+										.then((resposta) => {
+											$('#modalEdUs').modal('hide');
+											window.location.reload();
+										});
+									}else{
+										swal({
+											title: "Erro!", 
+											text: "O usuário não pôde ser adicionado.", 
+											icon: "error",
+											buttons: {
+												confirm: {
+												    text: "Ok",
+												    value: true,
+												    visible: true,
+												    className: "bg-danger",
+												    closeModal: true
+												}
+											}
+										})
+										.then((resposta) => {
+											$('#modalEdUs').modal('hide');
+										});
+									};
+								}
+							});
+							$("#adicionaUsuario")[0].reset();
+						}
+					}
+				});
+			}
+
+			function emailValido($email){
+				var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+				return emailReg.test($email);
+			}
+		});
+		$("#cancela").on("click", function(){
+			$("#adicionaUsuario")[0].reset();
+		});
+	});
+	// $("#adicionaEmpresa").on("submit", function(event){
+	// 	event.preventDefault();
+	// 	var gerente = $("select[name=gerente]").val();
+	// 	alert(gerente);
+	// });
+	$('#wpp').click(function(){
+		$("#whatsapp").toggle();
 	});
 
 	$("#voltaAoInicio").click(function(){
@@ -401,7 +1147,7 @@ $(document).ready(function(){
 	      field.mask(SPMaskBehavior.apply({}, arguments), options);
 	    }
 	};
-	$('#telefone').mask(SPMaskBehavior, spOptions);
+	$('.telefone').mask(SPMaskBehavior, spOptions);
 
 	$image_crop = $('#image_demo').croppie({
 		enableExif: true,
@@ -415,7 +1161,6 @@ $(document).ready(function(){
 			height: 300
 		}
 	});
-
 	$('#foto').on('change', function(){
 		var reader = new FileReader();
 		reader.onload = function(event){
@@ -426,7 +1171,6 @@ $(document).ready(function(){
 		reader.readAsDataURL(this.files[0]);
 		$('#modalCorteImagem').modal('show');
 	});
-
 	$('#cortarImagem').click(function(event){
 		$image_crop.croppie('result', {
 			type: 'canvas',
@@ -441,11 +1185,11 @@ $(document).ready(function(){
 					if(dados == "1"){
 						swal({
 							title: "Parabéns!", 
-							text: "Imagem adicionada com sucesso.",
+							text: "Imagem adicionada com sucesso.", 
 							icon: "success",
 							buttons: {
 								confirm: {
-								    text: "Obrigado(a)! 🙌🏼",
+								    text: "Obrigado! 🙌🏼",
 								    value: true,
 								    visible: true,
 								    className: "bg-success",
@@ -459,11 +1203,11 @@ $(document).ready(function(){
 					}else if(dados == "2"){
 						swal({
 							title: "Parabéns!", 
-							text: "Imagem alterada com sucesso.",
+							text: "Imagem alterada com sucesso.", 
 							icon: "success",
 							buttons: {
 								confirm: {
-								    text: "Obrigado(a)! 🙌🏼",
+								    text: "Obrigado! 🙌🏼",
 								    value: true,
 								    visible: true,
 								    className: "bg-success",
@@ -494,6 +1238,446 @@ $(document).ready(function(){
 			});
 		})
 	});
+	$('#configInfos').click(function(event){
+		event.preventDefault();
+
+		var nome 		= $('#nome').val();
+		var sobrenome 	= $('#sobrenome').val();
+		var email 		= $('#email').val();
+
+		if(nome != '' && sobrenome != '' && email != ''){
+			if(nome.length < 3){
+				swal({
+					title: "Atenção!",
+					text: "O campo NOME deve conter pelo menos 3 caracteres.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(!isNaN(nome)){
+				swal({
+					title: "Atenção!",
+					text: "O campo NOME não permite números.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(sobrenome.length < 3){
+				swal({
+					title: "Atenção!",
+					text: "O campo SOBRENOME deve conter pelo menos 3 caracteres.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(!isNaN(sobrenome)){
+				swal({
+					title: "Atenção!",
+					text: "O campo SOBRENOME não permite números.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else if(!emailValido(email)){
+				swal({
+					title: "Atenção!",
+					text: "Digite um E-MAIL válido.",
+					icon: "warning",
+					buttons: {
+						confirm: {
+						    text: "Ok, vou corrigir!",
+						    value: true,
+						    visible: true,
+						    className: "bg-warning",
+						    closeModal: true
+						}
+					}
+				});
+			}
+			else{
+				$.ajax({
+					url: 'http://localhost/gcc/configuracoes/verificaCampos',
+					dataType: 'json',
+					success: function(dados){
+						if(dados.nome != nome && dados.sobrenome != sobrenome && dados.email != email){
+							$.ajax({
+								url: 'http://localhost/gcc/configuracoes/alteraDados',
+								type: 'POST',
+								data: {nome:nome, sobrenome:sobrenome, email:email},
+								success: function(dados){
+									if(dados == "1"){
+										swal({
+											title: "Parabéns!", 
+											text: "Dados alterados com sucesso.",
+											icon: "success",
+											buttons: {
+												confirm: {
+												    text: "Obrigado! 🙌🏼",
+												    value: true,
+												    visible: true,
+												    className: "bg-success",
+												    closeModal: true
+												}
+											}
+										})
+										.then((resposta) => {
+											window.location.reload();
+										});
+									}
+								}
+							});
+						}else{
+							if(dados.nome == nome && dados.sobrenome == sobrenome && dados.email == email){
+								swal({
+									title: "Atenção!",
+									text: "Todas as informações são atuais.",
+									icon: "warning",
+									buttons: {
+										confirm: {
+										    text: "Ok, obrigado!",
+										    value: true,
+										    visible: true,
+										    className: "bg-warning",
+										    closeModal: true
+										}
+									}
+								});
+							}else{
+								if(dados.nome != nome && dados.sobrenome == sobrenome && dados.email == email){
+									$.ajax({
+										url: 'http://localhost/gcc/configuracoes/alteraNome',
+										type: 'POST',
+										data: {nome:nome},
+										success: function(nome){
+											if(nome == "1"){
+												swal({
+													title: "Parabéns!", 
+													text: "Nome alterado com sucesso.",
+													icon: "success",
+													buttons: {
+														confirm: {
+														    text: "Obrigado! 🙌🏼",
+														    value: true,
+														    visible: true,
+														    className: "bg-success",
+														    closeModal: true
+														}
+													}
+												})
+												.then((resposta) => {
+													window.location.reload();
+												});
+											}
+										}
+									});
+								}
+								else if(dados.nome == nome && dados.sobrenome != sobrenome && dados.email == email){
+									$.ajax({
+										url: 'http://localhost/gcc/configuracoes/alteraSobrenome',
+										type: 'POST',
+										data: {sobrenome:sobrenome},
+										success: function(sobrenome){
+											if(sobrenome == "1"){
+												swal({
+													title: "Parabéns!", 
+													text: "Sobrenome alterado com sucesso.",
+													icon: "success",
+													buttons: {
+														confirm: {
+														    text: "Obrigado! 🙌🏼",
+														    value: true,
+														    visible: true,
+														    className: "bg-success",
+														    closeModal: true
+														}
+													}
+												})
+												.then((resposta) => {
+													window.location.reload();
+												});
+											}
+										}
+									});
+								}
+
+								else if(dados.nome == nome && dados.sobrenome == sobrenome && dados.email != email){
+									$.ajax({
+										url: 'http://localhost/gcc/configuracoes/alteraEmail',
+										type: 'POST',
+										data: {email:email},
+										success: function(email){
+											if(email == "1"){
+												swal({
+													title: "Parabéns!", 
+													text: "E-mail alterado com sucesso. Ele só passará a valer a partir do próximo login.",
+													icon: "success",
+													buttons: {
+														confirm: {
+														    text: "Obrigado! 🙌🏼",
+														    value: true,
+														    visible: true,
+														    className: "bg-success",
+														    closeModal: true
+														}
+													}
+												})
+												.then((resposta) => {
+													window.location.reload();
+												});
+											}
+										}
+									});
+								}
+								else if(dados.nome != nome && dados.sobrenome != sobrenome && dados.email == email){
+
+									$.ajax({
+										url: 'http://localhost/gcc/configuracoes/alteraNomeSobrenome',
+										type: 'POST',
+										data: {nome:nome, sobrenome:sobrenome},
+										success: function(dados){
+											if(dados == "1"){
+												swal({
+													title: "Parabéns!", 
+													text: "Nome e Sobrenome alterados com sucesso.",
+													icon: "success",
+													buttons: {
+														confirm: {
+														    text: "Obrigado! 🙌🏼",
+														    value: true,
+														    visible: true,
+														    className: "bg-success",
+														    closeModal: true
+														}
+													}
+												})
+												.then((resposta) => {
+													window.location.reload();
+												});
+											}
+										}
+									});
+								}
+								else if(dados.nome != nome && dados.sobrenome == sobrenome && dados.email != email){
+									$.ajax({
+										url: 'http://localhost/gcc/configuracoes/alteraNomeEmail',
+										type: 'POST',
+										data: {nome:nome, email:email},
+										success: function(dados){
+											if(dados == "1"){
+												swal({
+													title: "Parabéns!", 
+													text: "Nome e E-mail alterados com sucesso.",
+													icon: "success",
+													buttons: {
+														confirm: {
+														    text: "Obrigado! 🙌🏼",
+														    value: true,
+														    visible: true,
+														    className: "bg-success",
+														    closeModal: true
+														}
+													}
+												})
+												.then((resposta) => {
+													window.location.reload();
+												});
+											}
+										}
+									});
+								}else{
+									$.ajax({
+										url: 'http://localhost/gcc/configuracoes/alteraSobrenomeEmail',
+										type: 'POST',
+										data: {sobrenome:sobrenome, email:email},
+										success: function(dados){
+											if(dados == "1"){
+												swal({
+													title: "Parabéns!", 
+													text: "Sobrenome e E-mail alterados com sucesso.",
+													icon: "success",
+													buttons: {
+														confirm: {
+														    text: "Obrigado! 🙌🏼",
+														    value: true,
+														    visible: true,
+														    className: "bg-success",
+														    closeModal: true
+														}
+													}
+												})
+												.then((resposta) => {
+													window.location.reload();
+												});
+											}
+										}
+									});
+								}
+							}
+						}
+					}
+				});
+			}
+		}else{
+			swal({
+				title: "Atenção!",
+				text: "Todos os campos são obrigatórios.",
+				icon: "warning",
+				buttons: {
+					confirm: {
+					    text: "Ok, vou corrigir!",
+					    value: true,
+					    visible: true,
+					    className: "bg-warning",
+					    closeModal: true
+					}
+				}
+			});
+		}
+
+		function emailValido($email){
+			var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+			return emailReg.test($email);
+		}
+	});
+	$('#configSenha').click(function(event){
+		event.preventDefault();
+
+		var atual 		= $('#atual').val();
+		var nova 		= $('#nova').val();
+		var cnova 		= $('#cnova').val();
+
+		if(atual != '' && nova != '' && cnova != ''){
+			$.ajax({
+				url: 'http://localhost/gcc/configuracoes/verificaSenhaAtual',
+				type: 'POST',
+				data: {senha:atual},
+				success: function(senha){
+					if(senha == "1"){
+						if(nova == cnova){
+							$.ajax({
+								url: 'http://localhost/gcc/configuracoes/alteraSenha',
+								type: 'POST',
+								data: {senha:nova},
+								success: function(senha){
+									if(senha == "1"){
+										swal({
+											title: "Parabéns!", 
+											text: "Senha alterada com sucesso.",
+											icon: "success",
+											buttons: {
+												confirm: {
+												    text: "Obrigado! 🙌🏼",
+												    value: true,
+												    visible: true,
+												    className: "bg-success",
+												    closeModal: true
+												}
+											}
+										})
+										.then((resposta) => {
+											window.location.reload();
+										});
+									}else{
+										swal({
+											title: "Erro!", 
+											text: "A senha não pôde ser alterada.",
+											icon: "error",
+											buttons: {
+												confirm: {
+												    text: "Ok",
+												    value: true,
+												    visible: true,
+												    className: "bg-danger",
+												    closeModal: true
+												}
+											}
+										});
+									}
+								}
+							});
+						}else{
+							swal({
+								title: "Atenção!",
+								text: "As NOVAS SENHAS não coincidem.",
+								icon: "warning",
+								buttons: {
+									confirm: {
+									    text: "Ok, vou corrigir!",
+									    value: true,
+									    visible: true,
+									    className: "bg-warning",
+									    closeModal: true
+									}
+								}
+							});
+						}
+					}else{
+						swal({
+							title: "Atenção!",
+							text: "Sua SENHA ATUAL está incorreta.",
+							icon: "warning",
+							buttons: {
+								confirm: {
+								    text: "Ok, vou corrigir!",
+								    value: true,
+								    visible: true,
+								    className: "bg-warning",
+								    closeModal: true
+								}
+							}
+						});
+					}
+				}
+			});
+		}else{
+			swal({
+				title: "Atenção!",
+				text: "Os campos de senha são obrigatórios.",
+				icon: "warning",
+				buttons: {
+					confirm: {
+					    text: "Ok, vou corrigir!",
+					    value: true,
+					    visible: true,
+					    className: "bg-warning",
+					    closeModal: true
+					}
+				}
+			});
+		}
+	});
 });
 
 //Controle de Empresas
@@ -510,7 +1694,7 @@ function aceitaEmpresa(id){
 					icon: "success",
 					buttons: {
 						confirm: {
-						    text: "Obrigado(a)! 🙌🏼",
+						    text: "Obrigado! 🙌🏼",
 						    value: true,
 						    visible: true,
 						    className: "bg-success",
@@ -562,7 +1746,7 @@ function excluiEmpresa(id){
 							icon: "success",
 							buttons: {
 								confirm: {
-								    text: "Obrigado(a)! 🙌🏼",
+								    text: "Obrigado! 🙌🏼",
 								    value: true,
 								    visible: true,
 								    className: "bg-success",
@@ -630,7 +1814,7 @@ function desativarEmpresa(id){
 							icon: "success",
 							buttons: {
 								confirm: {
-								    text: "Obrigado(a)! 🙌🏼",
+								    text: "Obrigado! 🙌🏼",
 								    value: true,
 								    visible: true,
 								    className: "bg-success",
@@ -677,7 +1861,7 @@ function reativarEmpresa(id){
 					icon: "success",
 					buttons: {
 						confirm: {
-						    text: "Obrigado(a)! 🙌🏼",
+						    text: "Obrigado! 🙌🏼",
 						    value: true,
 						    visible: true,
 						    className: "bg-success",

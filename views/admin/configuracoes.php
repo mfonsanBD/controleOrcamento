@@ -1,10 +1,10 @@
 <?php 
 require 'topo.php';
 
-if($this->foto == "usuario.jpg"){
-	$usuarioFoto = URL_BASE.'assets/img/'.$this->foto;
+if($this->fotoUsuario == "usuario.jpg"){
+	$usuarioFoto = URL_BASE.'assets/img/'.$this->fotoUsuario;
 }else{
-	$usuarioFoto = URL_BASE.'assets/img/usuarios/'.$_SESSION['logado'].'/'.$this->foto;
+	$usuarioFoto = URL_BASE.'assets/img/usuarios/'.$_SESSION['logado'].'/'.$this->fotoUsuario;
 }
 ?>
 	</h1>
@@ -41,7 +41,7 @@ if($this->foto == "usuario.jpg"){
 	</div>
 	<div class="col-lg-8 offset-lg-2 text-center pag">
 		<img src="<?=$usuarioFoto?>" width="120" alt="Usuário" class="d-inline-block align-top rounded-circle mb-4">
-		<form method="POST" enctype="multipart/form-data" id="dados" class="col-lg-12">
+		<form method="POST" class="col-lg-12 bg-transparent mb-5">
 			<label for="foto" class="text-black-50 label_foto">Clique aqui e escolha uma imagem para o seu perfil</label>
 			<input type="file" id="foto" class="mb-5" accept="image/png, image/jpeg">
 			<div class="form-row text-left col-lg-12 m-0 p-0">
@@ -60,22 +60,33 @@ if($this->foto == "usuario.jpg"){
 					<input type="email" id="email" class="resposta" value="<?=$mostraInfos['email'];?>">
 				</div>
 			</div>
-			<div class="form-row text-left col-lg-12 mt-0 ml-0 mr-0 mb-5 p-0">
+			<button type="submit" id="configInfos" class="btn bg-padrao">
+				<i class="fas fa-check"></i> Salvar Informações
+			</button>
+		</form>
+		<form method="POST" class="col-lg-12 bg-transparent pt-5">
+			<div class="form-row text-left col-lg-12 mt-0 ml-0 mr-0 p-0">
 				<div class="form-group col-lg-4">
-					<label for="atual">Senha Atual:</label>
+					<label for="atual">Senha Atual: 
+						<span class="m-0 p-0 text-danger">*</span>
+					</label>
 					<input type="password" id="atual" class="resposta">
 				</div>
 				<div class="form-group col-lg-4">
-					<label for="nova">Nova Senha:</label>
+					<label for="nova">Nova Senha: 
+						<span class="m-0 p-0 text-danger">*</span>
+					</label>
 					<input type="password" id="nova" class="resposta">
 				</div>
 				<div class="form-group col-lg-4">
-					<label for="cnova">Confirma Nova Senha:</label>
+					<label for="cnova">Confirma Nova Senha: 
+						<span class="m-0 p-0 text-danger">*</span>
+					</label>
 					<input type="password" id="cnova" class="resposta">
 				</div>
 			</div>
-			<button type="submit" class="btn bg-padrao">
-				<i class="fas fa-check"></i> Salvar Configurações
+			<button type="submit" id="configSenha" class="btn bg-padrao">
+				<i class="fas fa-check"></i> Salvar Nova Senha
 			</button>
 		</form>
 	</div>
