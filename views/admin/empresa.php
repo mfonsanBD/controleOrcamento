@@ -193,18 +193,9 @@ if($this->fotoUsuario == "usuario.jpg"){
 				endforeach;
 			}else{
 		?>
-          <div class="col-md-6 offset-md-3 bg-secundario rounded-lg p-0 mb-5">
-            <div class="row">
-              <div class="col-md-1">
-                <div class="bg-padrao text-white text-center pt-3 pb-3 pl-5 pr-5">
-                  !
-                </div>
-              </div>
-              <div class="col-md-11">
-                <div class="text-padrao text-center pt-3 pb-3">
-                  <p class="pt-1 m-0">Nenhuma empresa encontrada.</p>
-                </div>
-              </div>
+          <div class="col-md-4 offset-md-4 bg-secundario rounded-lg p-0 mb-5">
+            <div class="text-padrao text-center pt-3 pb-3">
+              <p class="p-0 m-0">Nenhuma empresa encontrada.</p>
             </div>
           </div>
 		<?php		
