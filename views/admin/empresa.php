@@ -22,62 +22,64 @@ if($this->fotoUsuario == "usuario.jpg"){
         <form class="bg-light" id="adicionaEmpresa">
           	<div class="form-group text-left">
 	            <div class="form-row text-left col-lg-12 m-0 p-0">
-					<div class="form-group col-lg-6">
+					<div class="form-group col-lg-12">
 						<label for="nomeEmpresa">Nome da Empresa: 
 							<span class="m-0 p-0 text-danger">*</span>
 						</label>
-						<input type="text" id="nomeEmpresa">
+						<input type="text" id="nomeEmpresa" placeholder="Ex.: Minha Empresa">
 					</div>
-					<div class="form-group col-lg-6">
+					<div class="form-group col-lg-12">
 						<label for="emailEmpresa">E-mail: 
 							<span class="m-0 p-0 text-danger">*</span>
 						</label>
-						<input type="email" id="emailEmpresa">
+						<input type="email" id="emailEmpresa" placeholder="Ex.: minhaempresa@gmail.com">
 					</div>
 					<div class="form-group col-lg-12">
 						<label for="siteEmpresa">Site:</label>
-						<input type="text" id="siteEmpresa">
+						<input type="text" id="siteEmpresa" placeholder="Ex.: http://minhaempresa.com.br">
 					</div>
 					<div class="form-group col-lg-12">
 						<label for="telefoneEmpresa">Telefone: 
 							<span class="m-0 p-0 text-danger">*</span>
 						</label>
-						<input type="text" id="telefoneEmpresa" class="telefone">
+						<input type="text" id="telefoneEmpresa" class="telefone" placeholder="Ex.: 21xxxxxxxx | 21xxxxxxxxx">
 					</div>
 					<div class="form-group col-lg-12">
 						<div class="row">
 							<div class="col-md-1">
-								<button type="button" class="btn bg-padrao btn-sm pt-0 pb-0" id="wpp">
-									<i class="fa fa-check"></i>-
+								<button type="button" class="btn btn-sm pt-0 pb-0 text-white bg-secondary" id="wpp">
+									<i class="fa fa-check"></i>
 								</button>
 							</div>
-							<div class="col-md-11 pt-1 pb-3 pl-0">
+							<div class="col-md-11 pt-1 pb-3 pl-2">
 								<p class="p-0 m-0">Marque esta opção para adicionar o WhatsApp da empresa.</p>
 							</div>
 						</div>
 					</div>
 					<div class="form-group col-lg-12" id="whatsapp">
 						<label for="whatsappEmpresa">WhatsApp:</label>
-						<input type="text" id="whatsappEmpresa" class="telefone">
+						<input type="text" id="whatsappEmpresa" class="telefone" placeholder="Ex.: 21xxxxxxxxx">
 					</div>
 					<div class="form-group col-lg-12">
 						<label>Gerente: 
 							<span class="m-0 p-0 text-danger">*</span>
-						</label><br>
-						<select id="gerente" name="gerente">
-								<option value="" disabled selected>Selecione um gerente...</option>
+						</label>
+						<div class="input-group mb-3">
+						  <select class="custom-select" id="gerente">
+						    <option value="" disabled selected>Selecione um gerente...</option>
 							<?php foreach($usuarios as $usuario): ?>
-								<option value="<?=$usuario['id']?>">
+								<option class="opcoes" value="<?=$usuario['id']?>">
 									<?=$usuario['nome']." ".$usuario['sobrenome']?>
 								</option>
 							<?php endforeach; ?>
-						</select>
+						  </select>
+						</div>
 					</div>
 				</div>
           	</div>
 		  <div class="modal-footer">
 		    <button type="button" id="cancela" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-		    <button type="button" class="btn bg-padrao"><i class="fa fa-check"></i> Adicionar</button>
+		    <button type="submit" class="btn bg-padrao"><i class="fa fa-check"></i> Adicionar</button>
 		  </div>
         </form>
       </div>

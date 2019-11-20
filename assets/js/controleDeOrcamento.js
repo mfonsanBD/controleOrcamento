@@ -1127,12 +1127,229 @@ $(document).ready(function(){
 			$("#adicionaUsuario")[0].reset();
 		});
 	});
-	// $("#adicionaEmpresa").on("submit", function(event){
-	// 	event.preventDefault();
-	// 	var gerente = $("select[name=gerente]").val();
-	// 	alert(gerente);
-	// });
+	$("#adicionaEmpresa").on("submit", function(event){
+		event.preventDefault();
+		var nomeEmpresa 		= $("#nomeEmpresa").val();
+		var emailEmpresa 		= $("#emailEmpresa").val();
+		var siteEmpresa 		= $("#siteEmpresa").val();
+		var telefoneEmpresa 	= $("#telefoneEmpresa").val();
+		var whatsappEmpresa 	= $("#whatsappEmpresa").val();
+		var idGerente 			= $("#gerente option:selected").val();
+
+		if(nomeEmpresa == ''){
+			swal({
+				title: "Atenção!",
+				text: "O campo NOME DA EMPRESA é obrigatório.",
+				icon: "warning",
+				buttons: {
+					confirm: {
+					    text: "Ok, vou corrigir!",
+					    value: true,
+					    visible: true,
+					    className: "bg-warning",
+					    closeModal: true
+					}
+				}
+			});
+		}
+		else if(nomeEmpresa.length < 3){
+			swal({
+				title: "Atenção!",
+				text: "O campo NOME DA EMPRESA deve conter pelo menos 3 caracteres.",
+				icon: "warning",
+				buttons: {
+					confirm: {
+					    text: "Ok, vou corrigir!",
+					    value: true,
+					    visible: true,
+					    className: "bg-warning",
+					    closeModal: true
+					}
+				}
+			});
+		}
+		else if(emailEmpresa == ''){
+			swal({
+				title: "Atenção!",
+				text: "O campo E-MAIL é obrigatório.",
+				icon: "warning",
+				buttons: {
+					confirm: {
+					    text: "Ok, vou corrigir!",
+					    value: true,
+					    visible: true,
+					    className: "bg-warning",
+					    closeModal: true
+					}
+				}
+			});
+		}
+		else if(siteEmpresa == ''){
+			swal({
+				title: "Atenção!",
+				text: "O campo SITE é obrigatório.",
+				icon: "warning",
+				buttons: {
+					confirm: {
+					    text: "Ok, vou corrigir!",
+					    value: true,
+					    visible: true,
+					    className: "bg-warning",
+					    closeModal: true
+					}
+				}
+			});
+		}
+		else if(!urlValido(siteEmpresa)){
+			swal({
+				title: "Atenção!",
+				text: "Digite um SITE válido.",
+				icon: "warning",
+				buttons: {
+					confirm: {
+					    text: "Ok, vou corrigir!",
+					    value: true,
+					    visible: true,
+					    className: "bg-warning",
+					    closeModal: true
+					}
+				}
+			});
+		}
+		else if(telefoneEmpresa == ''){
+			swal({
+				title: "Atenção!",
+				text: "O campo TELEFONE é obrigatório.",
+				icon: "warning",
+				buttons: {
+					confirm: {
+					    text: "Ok, vou corrigir!",
+					    value: true,
+					    visible: true,
+					    className: "bg-warning",
+					    closeModal: true
+					}
+				}
+			});
+		}
+		else if(whatsappEmpresa == ''){
+			swal({
+				title: "Atenção!",
+				text: "O campo WHATSAPP é obrigatório.",
+				icon: "warning",
+				buttons: {
+					confirm: {
+					    text: "Ok, vou corrigir!",
+					    value: true,
+					    visible: true,
+					    className: "bg-warning",
+					    closeModal: true
+					}
+				}
+			});
+		}
+		else if(idGerente == ''){
+			swal({
+				title: "Atenção!",
+				text: "O campo GERENTE é obrigatório.",
+				icon: "warning",
+				buttons: {
+					confirm: {
+					    text: "Ok, vou corrigir!",
+					    value: true,
+					    visible: true,
+					    className: "bg-warning",
+					    closeModal: true
+					}
+				}
+			});
+		}
+		else{
+			$.ajax({
+				url: 'http://localhost/gcc/login/verificaEmail/',
+				type: 'POST',
+				data: {email:email},
+				success: function(dados){
+					if(dados == "1"){
+						swal({
+							title: "Atenção!",
+							text: "O e-mail que você digitou já consta em nosso sistema.",
+							icon: "warning",
+							buttons: {
+								confirm: {
+								    text: "Ok, vou corrigir!",
+								    value: true,
+								    visible: true,
+								    className: "bg-warning",
+								    closeModal: true
+								}
+							}
+						});
+					}else{
+						$.ajax({
+							url: 'http://localhost/gcc/usuario/adminAddU/',
+							type: 'POST',
+							data: {nome:nome, sobrenome:sobrenome, email:email, senha:senha},
+							success: function(dados){
+								if(dados == 1){
+									swal({
+										title: "Parabéns!", 
+										text: "Usuário adicionado com sucesso!", 
+										icon: "success",
+										buttons: {
+											confirm: {
+											    text: "Obrigado! 🙌🏼",
+											    value: true,
+											    visible: true,
+											    className: "bg-success",
+											    closeModal: true
+											}
+										}
+									})
+									.then((resposta) => {
+										$('#modalEdUs').modal('hide');
+										window.location.reload();
+									});
+								}else{
+									swal({
+										title: "Erro!", 
+										text: "O usuário não pôde ser adicionado.", 
+										icon: "error",
+										buttons: {
+											confirm: {
+											    text: "Ok",
+											    value: true,
+											    visible: true,
+											    className: "bg-danger",
+											    closeModal: true
+											}
+										}
+									})
+									.then((resposta) => {
+										$('#modalEdUs').modal('hide');
+									});
+								};
+							}
+						});
+						$("#adicionaUsuario")[0].reset();
+					}
+				}
+			});
+		}
+		function urlValido($siteEmpresa) {
+			var urlReg = /^(https?|s?ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i;
+			return urlReg.test($siteEmpresa);
+		}
+	});
 	$('#wpp').click(function(){
+		var classe = $('#wpp').attr('class');
+		if(classe == 'btn btn-sm pt-0 pb-0 text-white bg-secondary'){
+			$('#wpp').removeClass('bg-secondary');
+			$('#wpp').addClass('bg-success');
+		}else{
+			$('#wpp').removeClass('bg-success');
+			$('#wpp').addClass('bg-secondary');
+		}
 		$("#whatsapp").toggle();
 	});
 

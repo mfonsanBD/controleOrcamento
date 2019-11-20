@@ -266,17 +266,20 @@ button.btn_filtro:hover{
 .menuativo{
     color: #005e76 !important;
 }
-input{
+.btn:focus,
+.swal-button:focus{
+    box-shadow: none !important;
+}
+input, select{
 	font-family: 'GoogleRegular' !important;
-	background-color: #EEEEEE;
+	background-color: #EEEEEE !important;
     color: #888888;
-    border: none;
+    border: none !important;
     border-radius: 10px;
     padding: 12px 15px;
     margin: 8px 0;
     width: 100%;
 }
-
 input.pergunta{
     font-family: 'GoogleRegular' !important;
     background-color: #FFFFFF;
