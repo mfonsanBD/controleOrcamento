@@ -1,6 +1,7 @@
 <?php 
 session_start();
 require 'configuracao.php';
+require 'routers.php';
 
 spl_autoload_register(function($classe){
 	if (file_exists('controllers/'.$classe.'.php')) {

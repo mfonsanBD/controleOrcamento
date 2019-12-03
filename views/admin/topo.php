@@ -34,7 +34,7 @@ if($this->fotoUsuario == "usuario.jpg"){
 				<a class="dropdown-item pt-3 pb-3 icones text-secondary" href="<?= URL_BASE ?>configuracoes">
 					<i class="fas fa-cog"></i> Configurações
 				</a>
-				<a class="dropdown-item pt-3 pb-3 bg-danger text-light icones" href="<?=URL_BASE?>login/sair">
+				<a class="dropdown-item pt-3 pb-3 bg-danger text-light icones" href="<?=URL_BASE?>sair">
 					<i class="fas fa-power-off"></i> Sair
 				</a>
 			</div>

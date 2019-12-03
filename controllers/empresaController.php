@@ -118,4 +118,8 @@ class empresaController extends controller{
 			}
 		}
 	}
+	public function abrir($id, $slug){
+		echo "Id: ".$id."<br>";
+		echo "Slug: ".$slug;
+	}
 }
