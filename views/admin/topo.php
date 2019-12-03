@@ -44,18 +44,18 @@ if($this->fotoUsuario == "usuario.jpg"){
 <div class="container-fluid bg-padrao pt-5 pb-5 text-center">
 	<h1 class="text-uppercase m-0 p-0">
 		<?php
-			if((date("d/m") >= "04/11") && (date("d/m", strtotime("+1 year")) <= "20/03")){
-				$hora = date("H", strtotime("-1 hour"));
-			}else{
+			if((date("d/m") >= "04/11") && (date("d/m") <= "20/03")){
 				$hora = date("H");
+			}else{
+				$hora = date("H", strtotime("-1 hour"));
 			}
 
 			switch ($hora) {
-				case (($hora) >= "00" && $hora < "12"):
+				case ($hora >= "00") && ($hora < "12"):
 					$cumprimento = "Bom dia";
 				break;
 
-				case ($hora >= "13" && $hora < "18"):
+				case ($hora >= "12") && ($hora < "18"):
 					$cumprimento = "Boa tarde";
 				break;
 				
@@ -64,4 +64,4 @@ if($this->fotoUsuario == "usuario.jpg"){
 				break;
 			}
 		?>
-		<?=$cumprimento.", ".$this->nome." ".$this->sobrenome; ?>!
+		<?=$cumprimento.", ".$this->nome." ".$this->sobrenome?>!
