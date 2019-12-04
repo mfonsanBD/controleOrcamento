@@ -44,10 +44,10 @@ if($this->fotoUsuario == "usuario.jpg"){
 <div class="container-fluid bg-padrao pt-5 pb-5 text-center">
 	<h1 class="text-uppercase m-0 p-0">
 		<?php
-			if((date("d/m") >= "04/11") && (date("d/m") <= "20/03")){
-				$hora = date("H");
-			}else{
+			if(date("d/m") < "20/03" && date("d/m") > "04/11"){
 				$hora = date("H", strtotime("-1 hour"));
+			}else{
+				$hora = date("H");
 			}
 
 			switch ($hora) {
