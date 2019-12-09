@@ -24,7 +24,7 @@
 		</p>
 		<p style="padding: 0 20px 30px">
 			<?php $hash = md5(time().rand(0,9999));?>
-			<a style="background-color: #005E76; color: #FFFFFF; padding: 10px 20px; text-decoration: none;" href="<?=URL_BASE?>login/redefinicaoDeSenha/?hash=<?=$hash?>" target="_blank">
+			<a style="background-color: #005E76; color: #FFFFFF; padding: 10px 20px; text-decoration: none;" href="<?=URL_BASE?>esqueci/redefinicaoDeSenha/?hash=<?=$hash?>" target="_blank">
 				Redefinir
 			</a>
 		</p>

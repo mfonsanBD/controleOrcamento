@@ -37,7 +37,7 @@
 					<i class="fas fa-spinner fa-spin text-dark mt-3 mb-3"></i> 
 					Carregando...
 				</p>
-		        <a class="text-secondary mt-2 mb-3" href="<?=URL_BASE?>esqueci-minha-senha">Esqueci minha senha.</a>
+		        <a class="text-secondary mt-2 mb-3" href="<?=URL_BASE?>esqueci">Esqueci minha senha.</a>
 		        <button type="submit">Acessar</button>
 		    </form>
 		</div>

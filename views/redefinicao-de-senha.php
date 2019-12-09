@@ -13,8 +13,7 @@
 		<input type="hidden" id="hash" value="<?=$hash?>">
 		<input type="text" id="codigo" maxlength="6" class="mb-4" placeholder="Código de verificação" />
 		<button type="submit">
-			Enviar
-			<img src="<?=URL_BASE?>assets/img/enviar.svg" width="20" class="ml-1 icones" alt="Enviar">
+			<i class="fa fa-check"></i> Enviar
 		</button>
 	</form>
 </div>
@@ -25,8 +24,7 @@
 		<input type="password" id="nsenha" placeholder="Nova Senha" />
 		<input type="password" id="cnsenha" class="mb-4" placeholder="Confirmar Nova Senha" />
 		<button type="submit">
-			Enviar
-			<img src="<?=URL_BASE?>assets/img/enviar.svg" width="20" class="ml-1 icones" alt="Enviar">
+			<i class="fa fa-check"></i> Enviar
 		</button>
 	</form>
 </div>

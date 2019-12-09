@@ -12,8 +12,7 @@
 	<form method="POST" id="esqueci">
 		<input type="email" id="eemail" class="mb-4" placeholder="E-mail" />
 		<button type="submit">
-			Enviar
-			<img src="<?=URL_BASE?>assets/img/enviar.svg" width="20" class="ml-1 icones" alt="Enviar">
+			<i class="fa fa-check"></i> Enviar
 		</button>
 	</form>
 </div>

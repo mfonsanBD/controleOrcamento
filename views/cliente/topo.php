@@ -1,9 +1,9 @@
 <?php
 date_default_timezone_set('America/Sao_Paulo');
-if($this->foto == "usuario.jpg"){
-	$usuarioFoto = URL_BASE.'assets/img/'.$this->foto;
+if($this->fotoUsuario == "usuario.jpg"){
+	$usuarioFoto = URL_BASE.'assets/img/'.$this->fotoUsuario;
 }else{
-	$usuarioFoto = URL_BASE.'assets/img/usuarios/'.$_SESSION['logado'].'/'.$this->foto;
+	$usuarioFoto = URL_BASE.'assets/img/usuarios/'.$_SESSION['logado'].'/'.$this->fotoUsuario;
 }
 ?>
 <div class="container">
@@ -34,7 +34,7 @@ if($this->foto == "usuario.jpg"){
 				<a class="dropdown-item pt-3 pb-3 icones text-secondary" href="<?= URL_BASE ?>configuracoes">
 					<i class="fas fa-cog"></i> Configurações
 				</a>
-				<a class="dropdown-item pt-3 pb-3 bg-danger text-light icones" href="<?=URL_BASE?>login/sair">
+				<a class="dropdown-item pt-3 pb-3 bg-danger text-light icones" href="<?=URL_BASE?>sair">
 					<i class="fas fa-power-off"></i> Sair
 				</a>
 			</div>

@@ -30,13 +30,13 @@ $(document).ready(function(){
 			});
 		}else{
 			$.ajax({
-				url: 'http://localhost/gcc/login/verificaEmail/',
+				url: 'http://localhost/gcc/esqueci/verificaEmail/',
 				type: 'POST',
 				data: {email:email},
 				success: function(dados){
 					if(dados == "1"){
 						$.ajax({
-							url: 'http://localhost/gcc/login/redefinirSenha/',
+							url: 'http://localhost/gcc/esqueci/redefinirSenha/',
 							type: 'POST',
 							data: {email:email},
 							success: function(dados){
@@ -91,7 +91,7 @@ $(document).ready(function(){
 		if(codigo == ""){
 			swal({
 				title: "Atenção!",
-				text: "Para redefinir sua senha, digite o código enviado por e-mail.",
+				text: "Para redefinir sua senha digite o código de verificação enviado por e-mail.",
 				icon: "warning",
 				buttons: {
 					confirm: {
@@ -105,7 +105,7 @@ $(document).ready(function(){
 			});
 		}else{
 			$.ajax({
-				url: 'http://localhost/gcc/login/verificaCodigo/',
+				url: 'http://localhost/gcc/esqueci/verificaCodigo/',
 				type: 'POST',
 				data: {codigo:codigo, hash:hash},
 				success: function(dados){
@@ -141,7 +141,7 @@ $(document).ready(function(){
 		if(nova != '' && cnova != ''){
 			if(nova == cnova){
 				$.ajax({
-					url: 'http://localhost/gcc/login/redefinir',
+					url: 'http://localhost/gcc/esqueci/redefinir/',
 					type: 'POST',
 					data: {senha:nova, hash:hash},
 					success: function(senha){
@@ -156,6 +156,24 @@ $(document).ready(function(){
 									    value: true,
 									    visible: true,
 									    className: "bg-success",
+									    closeModal: true
+									}
+								}
+							})
+							.then((resposta) => {
+								window.location.href = 'http://localhost/gcc/';
+							});
+						}else{
+							swal({
+								title: "Erro!",
+								text: "A senha não pôde ser redefinida. Tente novamente mais tarde.",
+								icon: "error",
+								buttons: {
+									confirm: {
+									    text: "Ok!",
+									    value: true,
+									    visible: true,
+									    className: "bg-danger",
 									    closeModal: true
 									}
 								}
@@ -185,7 +203,7 @@ $(document).ready(function(){
 		}else{
 			swal({
 				title: "Atenção!",
-				text: "Para redefinir sua senha, é necessário preencher os campos.",
+				text: "Para redefinir sua senha é necessário preencher os campos.",
 				icon: "warning",
 				buttons: {
 					confirm: {
