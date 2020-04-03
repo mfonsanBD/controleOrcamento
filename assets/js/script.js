@@ -10,276 +10,74 @@ signInButton.addEventListener('click', () => {
     container.classList.remove('right-panel-active');
 });
 
+urlSite = window.location.href;
+
 $(document).ready(function(){
 	$("#cadastro").on("submit", function(e){
 		e.preventDefault();
+		var nome 			= $("#nome").val();
+		var sobrenome 		= $("#sobrenome").val();
+		var email 			= $("#email").val();
+		var senha 			= $("#senha").val();
+		var confirmaSenha	= $("#cSenha").val();
 
-		if($("#nome").val() == ''){
-			swal({
-				title: "Atenção!",
-				text: "O campo NOME é obrigatório.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+		if(nome == ''){
+			warning("O campo NOME é obrigatório.");
 		}
-		else if(!isNaN($("#nome").val())){
-			swal({
-				title: "Atenção!",
-				text: "O campo NOME não permite números.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+		else if(!isNaN(nome)){
+			warning("O campo NOME não permite números.");
 		}
-		else if($("#nome").val().length < 3){
-			swal({
-				title: "Atenção!",
-				text: "O campo NOME deve conter pelo menos 3 caracteres.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+		else if(nome.length < 3){
+			warning("O campo NOME deve conter pelo menos 3 caracteres.");
 		}
-		else if($("#sobrenome").val() == ''){
-			swal({
-				title: "Atenção!",
-				text: "O campo SOBRENOME é obrigatório.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+		else if(sobrenome == ''){
+			warning("O campo SOBRENOME é obrigatório.");
 		}
-		else if(!isNaN($("#sobrenome").val())){
-			swal({
-				title: "Atenção!",
-				text: "O campo SOBRENOME não permite números.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+		else if(!isNaN(sobrenome)){
+			warning("O campo SOBRENOME não permite números.");
 		}
-		else if($("#sobrenome").val().length < 3){
-			swal({
-				title: "Atenção!",
-				text: "O campo SOBRENOME deve conter pelo menos 3 caracteres.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+		else if(sobrenome.length < 3){
+			warning("O campo SOBRENOME deve conter pelo menos 3 caracteres.");
 		}
-		else if($("#email").val() == ''){
-			swal({
-				title: "Atenção!",
-				text: "O campo E-MAIL é obrigatório.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+		else if(email == ''){
+			warning("O campo E-MAIL é obrigatório.");
 		}
-		else if(!emailValido($("#email").val())){
-			swal({
-				title: "Atenção!",
-				text: "Digite um E-MAIL válido.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+		else if(!emailValido(email)){
+			warning("Digite um E-MAIL válido.");
 		}
-		else if($("#senha").val() == ''){
-			swal({
-				title: "Atenção!",
-				text: "O campo SENHA é obrigatório.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+		else if(senha == ''){
+			warning("O campo SENHA é obrigatório.");
 			$("#forcaSenha").html('');
 		}
 		else if(validarForcaSenha() < 70){
-			swal({
-				title: "Atenção!",
-				text: "Para a segurança das suas informações, sua senha precisa ser mais forte.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+			warning("Para a segurança das suas informações, sua senha precisa ser mais forte.");
 		}
-		else if($("#cSenha").val() == ''){
-			swal({
-				title: "Atenção!",
-				text: "O campo CONFIRMAR SENHA é obrigatório.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+		else if(confirmaSenha == ''){
+			warning("O campo CONFIRMAR SENHA é obrigatório.");
 		}
-		else if($("#cSenha").val() != $("#senha").val()){
-			swal({
-				title: "Atenção!",
-				text: "As senhas não coincidem.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+		else if(confirmaSenha != senha){
+			warning("As senhas não coincidem.");
 		}else{
-			var nome 		= $("#nome").val();
-			var sobrenome 	= $("#sobrenome").val();
-			var email 		= $("#email").val();
-			var senha 		= $("#senha").val();
-
 			$.ajax({
-				url: 'http://localhost/gcc/login/verificaEmail/',
+				url: urlSite+'/verificaEmail/',
 				type: 'POST',
 				data: {email:email},
 				success: function(dados){
 					if(dados == "1"){
-						swal({
-							title: "Atenção!",
-							text: "O e-mail que você digitou já consta em nosso sistema.",
-							icon: "warning",
-							buttons: {
-								confirm: {
-								    text: "Ok, vou corrigir!",
-								    value: true,
-								    visible: true,
-								    className: "bg-warning",
-								    closeModal: true
-								}
-							}
-						});
+						warning("O e-mail que você digitou já consta em nosso sistema.");
 					}else{
 						$.ajax({
-							url: 'http://localhost/gcc/login/cadastro/',
+							url: urlSite+'/cadastro/',
 							type: 'POST',
 							data: {nome:nome, sobrenome:sobrenome, email:email, senha:senha},
 							success: function(dados){
-								swal({
-									title: "Parabéns!", 
-									text: "Cadastro realizado com sucesso.",
-									icon: "success",
-									buttons: {
-										confirm: {
-										    text: "Obrigado! 🙌🏼",
-										    value: true,
-										    visible: true,
-										    className: "bg-success",
-										    closeModal: true
-										}
-									}
-								});
-								$("#cadastro")[0].reset();
-								
-								$("#oito").removeClass("text-danger");
-								$("#oito").removeClass("text-warning");
-								$("#oito").removeClass("text-success");
-								$("#oito").addClass("text-black-50");
-
-								$("#minuscula").removeClass("text-danger");
-								$("#minuscula").removeClass("text-warning");
-								$("#minuscula").removeClass("text-success");
-								$("#minuscula").addClass("text-black-50");
-
-								$("#numeros").removeClass("text-danger");
-								$("#numeros").removeClass("text-warning");
-								$("#numeros").removeClass("text-success");
-								$("#numeros").addClass("text-black-50");
-
-								$("#maiuscula").removeClass("text-danger");
-								$("#maiuscula").removeClass("text-warning");
-								$("#maiuscula").removeClass("text-success");
-								$("#maiuscula").addClass("text-black-50");
-
-								$("#especiais").removeClass("text-danger");
-								$("#especiais").removeClass("text-warning");
-								$("#especiais").removeClass("text-success");
-								$("#especiais").addClass("text-black-50");
-
-								$("#forcaSenha").html('');
+								if(dados == 1){
+									success("Cadastro realizado com sucesso.");
+									resetaSenhaCadastro();
+								}else{
+									error("Não foi possível realizar seu cadastro. Tente novamente mais tarde!");
+									resetaSenhaCadastro();
+								}
 							}
 						});
 					}
@@ -469,4 +267,88 @@ function validarForcaSenha(){
 	}
 
 	return forca;
+}
+function warning(text){
+	swal({
+		title: "Atenção!",
+		text: text,
+		icon: "warning",
+		buttons: {
+			confirm: {
+				text: "Ok, vou corrigir!",
+				value: true,
+				visible: true,
+				className: "bg-warning",
+				closeModal: true
+			}
+		}
+	});
+}
+function error(text){
+	swal({
+		title: "Erro!", 
+		text: text, 
+		icon: "error",
+		buttons: {
+			confirm: {
+				text: "Ok",
+				value: true,
+				visible: true,
+				className: "bg-danger",
+				closeModal: true
+			}
+		}
+	})
+	.then((resposta) => {
+		window.location.reload();
+	});
+}
+function success(text){
+	swal({
+		title: "Parabéns!", 
+		text: text, 
+		icon: "success",
+		buttons: {
+			confirm: {
+				text: "Obrigado! 🙌🏼",
+				value: true,
+				visible: true,
+				className: "bg-success",
+				closeModal: true
+			}
+		}
+	})
+	.then((resposta) => {
+		window.location.reload();
+	});
+}
+function resetaSenhaCadastro(){
+	$("#cadastro")[0].reset();
+									
+	$("#oito").removeClass("text-danger");
+	$("#oito").removeClass("text-warning");
+	$("#oito").removeClass("text-success");
+	$("#oito").addClass("text-black-50");
+
+	$("#minuscula").removeClass("text-danger");
+	$("#minuscula").removeClass("text-warning");
+	$("#minuscula").removeClass("text-success");
+	$("#minuscula").addClass("text-black-50");
+
+	$("#numeros").removeClass("text-danger");
+	$("#numeros").removeClass("text-warning");
+	$("#numeros").removeClass("text-success");
+	$("#numeros").addClass("text-black-50");
+
+	$("#maiuscula").removeClass("text-danger");
+	$("#maiuscula").removeClass("text-warning");
+	$("#maiuscula").removeClass("text-success");
+	$("#maiuscula").addClass("text-black-50");
+
+	$("#especiais").removeClass("text-danger");
+	$("#especiais").removeClass("text-warning");
+	$("#especiais").removeClass("text-success");
+	$("#especiais").addClass("text-black-50");
+
+	$("#forcaSenha").html('');
 }

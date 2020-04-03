@@ -1,5 +1,9 @@
 <?php
-class configuracoesController extends controller{
+namespace Controllers;
+use \Core\Controller;
+use \Models\Usuario;
+
+class ConfiguracoesController extends Controller{
 	public function index(){
 		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
 			header("Location: ".URL_BASE);
@@ -76,141 +80,46 @@ class configuracoesController extends controller{
 			}
 		}
 	}
-	public function verificaCampos(){
-		$id = $_SESSION['logado'];
-
-		$u = new Usuario();
-		$dados = $u->verificaCampos($id);
-
-		$array = array(
-			'nome' => $dados['nome'],
-			'sobrenome' => $dados['sobrenome'],
-			'email' => $dados['email']
-		);
-
-		echo json_encode($array);
-	}
 	public function alteraDados(){
 		if(isset($_POST) && !empty($_POST)){
 			$nome 			= addslashes($_POST['nome']);
 			$sobrenome 		= addslashes($_POST['sobrenome']);
 			$email 			= addslashes($_POST['email']);
-			$id = $_SESSION['logado'];
+			$id 			= $_SESSION['logado'];
 
 			$u = new Usuario();
 			if($u->alteraDados($nome, $sobrenome, $email, $id)){
-				echo "1";
+				echo 1;
 			}else{
-				echo "0";
-			}
-		}
-	}
-	public function alteraNome(){
-		if(isset($_POST['nome']) && !empty($_POST['nome'])){
-			$nome = addslashes($_POST['nome']);
-			$id = $_SESSION['logado'];
-
-			$u = new Usuario();
-			if($u->alteraNome($nome, $id)){
-				echo "1";
-			}else{
-				echo "0";
-			}
-		}
-	}
-	public function alteraSobrenome(){
-		if(isset($_POST['sobrenome']) && !empty($_POST['sobrenome'])){
-			$sobrenome = addslashes($_POST['sobrenome']);
-			$id = $_SESSION['logado'];
-
-			$u = new Usuario();
-			if($u->alteraSobrenome($sobrenome, $id)){
-				echo "1";
-			}else{
-				echo "0";
-			}
-		}
-	}
-	public function alteraEmail(){
-		if(isset($_POST['email']) && !empty($_POST['email'])){
-			$email = addslashes($_POST['email']);
-			$id = $_SESSION['logado'];
-
-			$u = new Usuario();
-			if($u->alteraEmail($email, $id)){
-				echo "1";
-			}else{
-				echo "0";
-			}
-		}
-	}
-	public function alteraNomeSobrenome(){
-		if(isset($_POST) && !empty($_POST)){
-			$nome 			= addslashes($_POST['nome']);
-			$sobrenome 		= addslashes($_POST['sobrenome']);
-			$id = $_SESSION['logado'];
-
-			$u = new Usuario();
-			if($u->alteraNomeSobrenome($nome, $sobrenome, $id)){
-				echo "1";
-			}else{
-				echo "0";
-			}
-		}
-	}
-	public function alteraNomeEmail(){
-		if(isset($_POST) && !empty($_POST)){
-			$nome 			= addslashes($_POST['nome']);
-			$email 			= addslashes($_POST['email']);
-			$id = $_SESSION['logado'];
-
-			$u = new Usuario();
-			if($u->alteraNomeEmail($nome, $email, $id)){
-				echo "1";
-			}else{
-				echo "0";
-			}
-		}
-	}
-	public function alteraSobrenomeEmail(){
-		if(isset($_POST) && !empty($_POST)){
-			$sobrenome 		= addslashes($_POST['sobrenome']);
-			$email 			= addslashes($_POST['email']);
-			$id = $_SESSION['logado'];
-
-			$u = new Usuario();
-			if($u->alteraSobrenomeEmail($sobrenome, $email, $id)){
-				echo "1";
-			}else{
-				echo "0";
+				echo 0;
 			}
 		}
 	}
 	public function verificaSenhaAtual(){
 		if(isset($_POST['senha']) && !empty($_POST['senha'])){
-			$senha = md5(addslashes($_POST['senha']));
-			$id = $_SESSION['logado'];
+			$senha 	= md5(addslashes($_POST['senha']));
+			$id 	= $_SESSION['logado'];
 
 			$u = new Usuario();
 
 			if($u->verificaSenha($senha, $id)){
-				echo "1";
+				echo 1;
 			}else{
-				echo "0";
+				echo 0;
 			}
 		}
 	}
 	public function alteraSenha(){
 		if(isset($_POST['senha']) && !empty($_POST['senha'])){
-			$senha = md5(addslashes($_POST['senha']));
-			$id = $_SESSION['logado'];
+			$senha 	= md5(addslashes($_POST['senha']));
+			$id 	= $_SESSION['logado'];
 
 			$u = new Usuario();
 
 			if($u->alteraSenha($senha, $id)){
-				echo "1";
+				echo 1;
 			}else{
-				echo "0";
+				echo 0;
 			}
 		}
 	}

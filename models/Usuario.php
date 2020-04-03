@@ -1,5 +1,8 @@
 <?php
-class Usuario extends model{
+namespace Models;
+use \Core\Model;
+
+class Usuario extends Model{
 	public function login($email, $senha){
 		$sql = $this->conexao->prepare("SELECT * FROM usuario WHERE email = ? AND senha = ?");
 		$sql->execute(array($email, $senha));
@@ -74,6 +77,27 @@ class Usuario extends model{
 			return false;
 		}
 	}
+	public function addU($nome, $sobrenome, $email, $senha, $codigo){
+		$sql = $this->conexao->prepare("INSERT INTO usuario SET nome = ?, sobrenome = ?, email = ?, senha = ?, tipo = 1, foto = 'usuario.jpg', permissao = 1, hash = ?");
+		$sql->execute(array($nome, $sobrenome, $email, $senha, $codigo));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function excluiU($id){
+		$sql = $this->conexao->prepare("DELETE FROM usuario WHERE id = ?");
+		$sql->execute(array($id));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	public function getNome($email){
 		$sql = $this->conexao->prepare("SELECT nome FROM usuario WHERE email = ?");
 		$sql->execute(array($email));
@@ -122,29 +146,9 @@ class Usuario extends model{
 			return false;
 		}
 	}
-	public function addU($nome, $sobrenome, $email, $senha, $codigo){
-		$sql = $this->conexao->prepare("INSERT INTO usuario SET nome = ?, sobrenome = ?, email = ?, senha = ?, tipo = 1, foto = 'usuario.jpg', permissao = 1, hash = ?");
-		$sql->execute(array($nome, $sobrenome, $email, $senha, $codigo));
-
-		if($sql->rowCount() > 0){
-			return true;
-		}else{
-			return false;
-		}
-	}
 	public function alteraSenhaUsuario($senha, $id){
 		$sql = $this->conexao->prepare("UPDATE usuario SET senha = ? WHERE id = ?");
 		$sql->execute(array($senha, $id));
-
-		if ($sql->rowCount() > 0) {
-			return true;
-		}else{
-			return false;
-		}
-	}
-	public function excluiU($id){
-		$sql = $this->conexao->prepare("DELETE FROM usuario WHERE id = ?");
-		$sql->execute(array($id));
 
 		if ($sql->rowCount() > 0) {
 			return true;
@@ -183,77 +187,9 @@ class Usuario extends model{
 			return false;
 		}
 	}
-	public function verificaCampos($id){
-		$sql = $this->conexao->prepare("SELECT nome, sobrenome, email FROM usuario WHERE id = ?");
-		$sql->execute(array($id));
-
-		if($sql->rowCount() > 0){
-			return $sql->fetch();
-		}
-	}
 	public function alteraDados($nome, $sobrenome, $email, $id){
 		$sql = $this->conexao->prepare("UPDATE usuario SET nome = ?, sobrenome = ?, email = ? WHERE id = ?");
 		$sql->execute(array($nome, $sobrenome, $email, $id));
-
-		if($sql->rowCount() > 0){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	public function alteraNome($nome, $id){
-		$sql = $this->conexao->prepare("UPDATE usuario SET nome = ? WHERE id = ?");
-		$sql->execute(array($nome, $id));
-
-		if($sql->rowCount() > 0){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	public function alteraSobrenome($sobrenome, $id){
-		$sql = $this->conexao->prepare("UPDATE usuario SET sobrenome = ? WHERE id = ?");
-		$sql->execute(array($sobrenome, $id));
-
-		if($sql->rowCount() > 0){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	public function alteraEmail($email, $id){
-		$sql = $this->conexao->prepare("UPDATE usuario SET email = ? WHERE id = ?");
-		$sql->execute(array($email, $id));
-
-		if($sql->rowCount() > 0){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	public function alteraNomeSobrenome($nome, $sobrenome, $id){
-		$sql = $this->conexao->prepare("UPDATE usuario SET nome = ?, sobrenome = ? WHERE id = ?");
-		$sql->execute(array($nome, $sobrenome, $id));
-
-		if($sql->rowCount() > 0){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	public function alteraNomeEmail($nome, $email, $id){
-		$sql = $this->conexao->prepare("UPDATE usuario SET nome = ?, email = ? WHERE id = ?");
-		$sql->execute(array($nome, $email, $id));
-
-		if($sql->rowCount() > 0){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	public function alteraSobrenomeEmail($sobrenome, $email, $id){
-		$sql = $this->conexao->prepare("UPDATE usuario SET sobrenome = ?, email = ? WHERE id = ?");
-		$sql->execute(array($sobrenome, $email, $id));
 
 		if($sql->rowCount() > 0){
 			return true;

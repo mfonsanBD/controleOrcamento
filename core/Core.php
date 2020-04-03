@@ -1,4 +1,6 @@
 <?php
+namespace Core;
+
 class Core{
 	public function run(){
 		$url = '/';
@@ -29,16 +31,21 @@ class Core{
 			}
 
 		}else{
-			$controllerAtual = 'loginController';
+			$controllerAtual = 'LoginController';
 			$actionAtual = 'index';
 		}
 
-		if(!file_exists('controllers/'.$controllerAtual.'.php') || !method_exists($controllerAtual, $actionAtual)){
-			$controllerAtual = 'notfoundController';
+		$controllerAtual = ucfirst($controllerAtual);
+
+		$prefixo = '\Controllers\\';
+
+		if(!file_exists('Controllers/'.$controllerAtual.'.php') || !method_exists($prefixo.$controllerAtual, $actionAtual)){
+			$controllerAtual = 'NotFoundController';
 			$actionAtual = 'index';
 		}
 		
-		$c = new $controllerAtual();
+		$novoController = $prefixo.$controllerAtual;
+		$c = new $novoController();
 		call_user_func_array(array($c, $actionAtual), $parametro); 
 	}
 

@@ -1,5 +1,8 @@
 <?php
-class PerguntasFrequentes extends model{
+namespace Models;
+use \Core\Model;
+
+class PerguntasFrequentes extends Model{
 	public function adicionaPF($pergunta, $resposta){
 		$sql = $this->conexao->prepare("INSERT INTO perguntas_frequentes SET pergunta_pf = ?, resposta_pf = ?");
 		$sql->execute(array($pergunta, $resposta));

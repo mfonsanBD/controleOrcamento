@@ -1,5 +1,8 @@
 <?php
-class Empresa extends model{
+namespace Models;
+use \Core\Model;
+
+class Empresa extends Model{
 	public function qtdEmpresas(){
 		$array = array();
 		$sql = $this->conexao->prepare("SELECT COUNT(*) AS c FROM empresa");
@@ -81,6 +84,16 @@ class Empresa extends model{
 			return false;
 		}
 	}
+	public function adminAddEmpresa($idGerente, $nomeEmpresa, $emailEmpresa, $siteEmpresa, $telefoneEmpresa, $whatsappEmpresa, $slug){
+		$sql = $this->conexao->prepare("INSERT INTO empresa SET id_usuario = ?, nome_empresa = ?, email_empresa = ?, site_empresa = ?, telefone_empresa = ?, whatsapp_empresa = ?, slug_empresa = ?");
+		$sql->execute(array($idGerente, $nomeEmpresa, $emailEmpresa, $siteEmpresa, $telefoneEmpresa, $whatsappEmpresa, $slug));
+
+		if($sql->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	public function excluiEmpresa($id){
 		$sql = $this->conexao->prepare("DELETE FROM empresa WHERE id_empresa = ?");
 		$sql->execute(array($id));
@@ -91,8 +104,4 @@ class Empresa extends model{
 			return false;
 		}
 	}
-	// public function cadastrar($nome, $email, $senha, $codigo){
-	// 	$sql = $this->conexao->prepare("INSERT INTO empresa SET nome = ?, email = ?, senha = ?, tipo = 1, foto = 'usuario.jpg', permissao = 0, hash = ?");
-	// 	$sql->execute(array($nome, $email, $senha, $codigo));
-	// }
 }

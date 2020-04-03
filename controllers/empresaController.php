@@ -1,5 +1,10 @@
 <?php
-class empresaController extends controller{
+namespace Controllers;
+use \Core\Controller;
+use \Models\Usuario;
+use \Models\Empresa;
+
+class EmpresaController extends Controller{
 	public function index(){
 		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
 			header("Location: ".URL_BASE);
@@ -64,6 +69,51 @@ class empresaController extends controller{
 			break;
 		}
 	}
+	public function adminAddEmpresa(){
+		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
+			header("Location: ".URL_BASE);
+			exit();
+		}
+		
+		$e = new Empresa();
+		
+		if(isset($_POST) && !empty($_POST)){
+			$idGerente			= addslashes(trim($_POST['idGerente']));
+			$nomeEmpresa 		= addslashes(trim($_POST['nomeEmpresa']));
+			$emailEmpresa 		= addslashes(trim($_POST['emailEmpresa']));
+			$siteEmpresa 		= addslashes(trim($_POST['siteEmpresa']));
+			$telefoneEmpresa	= addslashes(trim($_POST['telefoneEmpresa']));
+			$whatsappEmpresa	= addslashes(trim($_POST['whatsappEmpresa']));
+			$slug				= addslashes(trim($_POST['slug']));
+
+			if($e->adminAddEmpresa($idGerente, $nomeEmpresa, $emailEmpresa, $siteEmpresa, $telefoneEmpresa, $whatsappEmpresa, $slug))
+			{
+				echo 1;
+			}
+			else
+			{
+				echo 0;
+			}
+		}
+	}
+	public function AdminDeleteEmpresa(){
+		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
+			header("Location: ".URL_BASE);
+			exit();
+		}
+
+		if(isset($_POST['id']) && !empty($_POST['id'])){
+			$id = $_POST['id'];
+
+			$e = new Empresa();
+
+			if($e->excluiEmpresa($id)){
+				echo 1;
+			}else{
+				echo 0;
+			}
+		}
+	}
 	public function aceita(){
 		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
 			header("Location: ".URL_BASE);
@@ -94,24 +144,6 @@ class empresaController extends controller{
 			$e = new Empresa();
 
 			if($e->desativaEmpresa($id)){
-				echo "1";
-			}else{
-				echo "0";
-			}
-		}
-	}
-	public function exclui(){
-		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
-			header("Location: ".URL_BASE);
-			exit();
-		}
-
-		if(isset($_POST['id']) && !empty($_POST['id'])){
-			$id = $_POST['id'];
-
-			$e = new Empresa();
-
-			if($e->excluiEmpresa($id)){
 				echo "1";
 			}else{
 				echo "0";

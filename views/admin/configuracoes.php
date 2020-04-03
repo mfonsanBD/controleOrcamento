@@ -64,7 +64,7 @@ if($this->fotoUsuario == "usuario.jpg"){
 				<i class="fas fa-check"></i> Salvar Informações
 			</button>
 		</form>
-		<form method="POST" class="col-lg-12 bg-transparent pt-5">
+		<form method="POST" class="col-lg-12 bg-transparent"></form>
 			<div class="form-row text-left col-lg-12 mt-0 ml-0 mr-0 p-0">
 				<div class="form-group col-lg-4">
 					<label for="atual">Senha Atual: 
@@ -85,7 +85,7 @@ if($this->fotoUsuario == "usuario.jpg"){
 					<input type="password" id="cnova" class="resposta">
 				</div>
 			</div>
-			<button type="submit" id="configSenha" class="btn bg-padrao">
+			<button type="submit" id="configSenhas" class="btn bg-padrao">
 				<i class="fas fa-check"></i> Salvar Nova Senha
 			</button>
 		</form>

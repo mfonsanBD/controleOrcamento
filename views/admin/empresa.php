@@ -86,6 +86,27 @@ if($this->fotoUsuario == "usuario.jpg"){
     </div>
   </div>
 </div>
+<div class="modal fade" id="deleteEmpresa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content bg-light">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title text-white" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="bg-light" id="excluiSU"> 
+      		<p class="texto-confirmacao"></p>       
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i>  Não, cancelar.</button>
+				<button type="button" id="excluirSU" class="btn bg-danger text-white"><i class="fas fa-trash-alt"></i> Sim, excluir.</button>
+			</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container">
 	<div class="pt-5 pb-5">
 		<h3 class="text-uppercase text-center titulo_pagina mb-5"><?=$this->titulo;?></h3>
@@ -169,7 +190,7 @@ if($this->fotoUsuario == "usuario.jpg"){
 											echo '<button type="button" class="btn btn-warning btn-sm pl-4 pr-4 text-white" onclick="desativarEmpresa('.$le['id_empresa'].')">
 													<i class="fa fa-times fa-lg"></i> Dasativar
 												</button>
-												<button type="button" class="btn btn-danger btn-sm pl-4 pr-4" onclick="excluiEmpresa('.$le['id_empresa'].')">
+												<button type="button" class="btn btn-danger btn-sm pl-4 pr-4" data-toggle="modal" data-target="#deleteEmpresa" data-id="'.$le['id_empresa'].'" data-nome="'.$le['nome_empresa'].'">
 													<i class="fas fa-trash-alt"></i> Excluir
 												</button>
 											';
@@ -178,7 +199,7 @@ if($this->fotoUsuario == "usuario.jpg"){
 											echo '<button type="button" class="btn btn-success btn-sm pl-4 pr-4" onclick="reativarEmpresa('.$le['id_empresa'].')">
 													<i class="fa fa-check"></i> Reativar
 												</button>
-												<button type="button" class="btn btn-danger btn-sm pl-4 pr-4" onclick="excluiEmpresa('.$le['id_empresa'].')">
+												<button type="button" class="btn btn-danger btn-sm pl-4 pr-4" data-toggle="modal" data-target="#deleteEmpresa" data-id="'.$le['id_empresa'].'" data-nome="'.$le['nome_empresa'].'">
 													<i class="fas fa-trash-alt"></i> Excluir
 												</button>
 											';

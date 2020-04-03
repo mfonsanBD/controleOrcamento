@@ -25,6 +25,6 @@
 <script type="text/javascript" src="<?= URL_BASE ?>assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?= URL_BASE ?>assets/js/croppie.min.js"></script>
 <script type="text/javascript" src="<?= URL_BASE ?>assets/js/script.js"></script>
-<script type="text/javascript" src="<?= URL_BASE ?>assets/js/controleDeOrcamento.js"></script>
+<script type="text/javascript" src="<?= URL_BASE ?>assets/js/admin.js"></script>
 </body>
 </html>

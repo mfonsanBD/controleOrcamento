@@ -1,5 +1,10 @@
 <?php
-class faqsController extends controller{
+namespace Controllers;
+use \Core\Controller;
+use \Models\Usuario;
+use \Models\PerguntasFrequentes;
+
+class FaqsController extends Controller{
 	public function index(){
 		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
 			header("Location: ".URL_BASE);

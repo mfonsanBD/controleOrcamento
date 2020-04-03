@@ -1,5 +1,9 @@
 <?php
-class usuarioController extends controller{
+namespace Controllers;
+use \Core\Controller;
+use \Models\Usuario;
+
+class UsuarioController extends Controller{
 	public function index(){
 		if (empty($_SESSION['logado']) && $_SESSION['permissao'] != 1) {
 			header("Location: ".URL_BASE);
@@ -88,10 +92,15 @@ class usuarioController extends controller{
 			$senha 		= md5($_POST['senha']);
 			$codigo		= md5(time().rand(0, 9999));
 
-			if($u->addU($nome, $sobrenome, $email, $senha, $codigo)){
-				echo "1";
-			}else{
-				echo "0";
+			if($u->verificaEmail($email)){
+				echo 2;
+			}
+			else{
+				if($u->addU($nome, $sobrenome, $email, $senha, $codigo)){
+					echo 1;
+				}else{
+					echo 0;
+				}
 			}
 		}
 	}
