@@ -13,7 +13,7 @@ class LoginController extends Controller{
 		if (isset($_POST['email']) && !empty($_POST['email'])) {
 			$email = addslashes($_POST['email']);
 			$senha = md5($_POST['senha']);
-
+			
 			if($usuario->verificaPermissao($email, $senha)){
 				echo 2;
 			}else{

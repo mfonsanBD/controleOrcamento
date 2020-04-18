@@ -114,7 +114,14 @@ require 'topo.php';
 				<div class="col-md-12 bg-white rounded-lg pt-3 pb-3 mb-3 shadow-sm">
 					<div class="row">
 						<div class="col-md-1 align-self-center">
-							<img src="<?=URL_BASE?>assets/img/<?=$lu['foto']?>" class="rounded-circle" width="70" alt="">
+						<?php
+							if($lu['foto'] == "usuario.jpg"){
+								$caminhoFoto = URL_BASE."assets/img/usuario.jpg";
+							}else{
+								$caminhoFoto = URL_BASE."assets/img/usuarios/".$lu['id']."/".$lu['foto'];
+							}
+						?>
+							<img src="<?=$caminhoFoto;?>" class="rounded-circle" width="70" alt="<?=$lu['nome']." ".$lu['sobrenome'];?>">
 						</div>
 						<div class="col-md-2 align-self-center">
 							<h6 class="mb-1">Nome:</h6>

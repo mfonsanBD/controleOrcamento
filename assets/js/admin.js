@@ -211,7 +211,7 @@ $(document).ready(function(){
 		var modal = $(this);
 
 		modal.find('.modal-title').text('Excluir usuário!');
-		modal.find('.texto-confirmacao').html("Tem certeza que deseja excluir <span class=text-danger>'"+nome+"'</span>?");
+		modal.find('.texto-confirmacao').html("Tem certeza que deseja excluir <span class=text-danger>'"+nome+"'</span>?<br>Todas as informações desse usuário serão perdidas.");
 
 		$("#excluirSU").on("click", function(){
 			$.ajax({

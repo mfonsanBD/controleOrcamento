@@ -71,11 +71,17 @@ class UsuarioController extends Controller{
 
 		if(isset($_POST['id']) && !empty($_POST['id'])){
 			$id = $_POST['id'];
+			
+			$caminho = "assets/img/usuarios/".$id;
+			$foto = md5($id).".jpg";
+
+			unlink($caminho."/".$foto);
+			rmdir($caminho);
 
 			if($u->excluiU($id)){
-				echo "1";
+				echo 1;
 			}else{
-				echo "0";
+				echo 0;
 			}
 		}
 	}

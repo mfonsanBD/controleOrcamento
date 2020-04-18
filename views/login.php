@@ -33,10 +33,6 @@
 		        <span>Acesse sua conta e vamos ao trabalho!</span>
 		        <input type="email" id="lemail" placeholder="E-mail" />
 		        <input type="password" id="lsenha" placeholder="Senha" />
-				<p class="m-0 p-0" id="carregando">
-					<i class="fas fa-spinner fa-spin text-dark mt-3 mb-3"></i> 
-					Carregando...
-				</p>
 		        <a class="text-secondary mt-2 mb-3" href="<?=URL_BASE?>esqueci">Esqueci minha senha.</a>
 		        <button type="submit">Acessar</button>
 		    </form>

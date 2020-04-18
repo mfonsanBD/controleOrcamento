@@ -59,7 +59,7 @@ $(document).ready(function(){
 			warning("As senhas não coincidem.");
 		}else{
 			$.ajax({
-				url: urlSite+'/verificaEmail/',
+				url: urlSite+'login/verificaEmail/',
 				type: 'POST',
 				data: {email:email},
 				success: function(dados){
@@ -67,7 +67,7 @@ $(document).ready(function(){
 						warning("O e-mail que você digitou já consta em nosso sistema.");
 					}else{
 						$.ajax({
-							url: urlSite+'/cadastro/',
+							url: urlSite+'login/cadastro/',
 							type: 'POST',
 							data: {nome:nome, sobrenome:sobrenome, email:email, senha:senha},
 							success: function(dados){
@@ -93,82 +93,23 @@ $(document).ready(function(){
 
 	$("#login").on("submit", function(e){
 		e.preventDefault();
-
 		var email = $.trim($("#lemail").val());
 		var senha = $.trim($("#lsenha").val());
 
 		if(email.length == '' || senha == ''){
-			swal({
-				title: "Atenção!",
-				text: "Para acessar sua conta digite seu e-mail e senha.",
-				icon: "warning",
-				buttons: {
-					confirm: {
-					    text: "Ok!",
-					    value: true,
-					    visible: true,
-					    className: "bg-warning",
-					    closeModal: true
-					}
-				}
-			});
+			warning("Para acessar sua conta digite seu e-mail e senha.");
 		}else{
 			$.ajax({
-				url: 'http://localhost/gcc/login/logar',
+				url: urlSite+'login/logar/',
 				type: 'POST',
 				data: {email:email, senha:senha},
-				beforeSend: function() {
-			        $("#carregando").show();
-			    },
 				success: function(dados){
 					if(dados == 1){
-						swal({
-							title: "Parabéns!", 
-							text: "Login realizado com sucesso.",
-							icon: "success",
-							buttons: {
-								confirm: {
-								    text: "Obrigado! 🙌🏼",
-								    value: true,
-								    visible: true,
-								    className: "bg-success",
-								    closeModal: true
-								}
-							}
-						})
-						.then((resposta) => {
-							window.location.href = 'http://localhost/gcc/painel/';
-						});
+						successLogin("Login realizado com sucesso.");
 					}else if (dados == 2){
-						swal({
-							title: "Atenção!",
-							text: "Usuário ainda não confirmado. Verifique seu e-mail para confirmar seu cadastro.",
-							icon: "warning",
-							buttons: {
-								confirm: {
-								    text: "Ok, vou confirmar!",
-								    value: true,
-								    visible: true,
-								    className: "bg-warning",
-								    closeModal: true
-								}
-							}
-						});
+						warning("Usuário ainda não confirmado. Verifique seu e-mail para confirmar seu cadastro.");
 					}else{
-						swal({
-							title: "Atenção!",
-							text: "E-mail e/ou senha inválidos.",
-							icon: "warning",
-							buttons: {
-								confirm: {
-								    text: "Ok, vou corrigir!",
-								    value: true,
-								    visible: true,
-								    className: "bg-warning",
-								    closeModal: true
-								}
-							}
-						});
+						warning("E-mail e/ou senha inválidos.");
 					}
 				}
 			});
@@ -320,6 +261,25 @@ function success(text){
 	})
 	.then((resposta) => {
 		window.location.reload();
+	});
+}
+function successLogin(text){
+	swal({
+		title: "Parabéns!", 
+		text: text,
+		icon: "success",
+		buttons: {
+			confirm: {
+				text: "Obrigado! 🙌🏼",
+				value: true,
+				visible: true,
+				className: "bg-success",
+				closeModal: true
+			}
+		}
+	})
+	.then((resposta) => {
+		window.location.href = window.location.href+'painel/';
 	});
 }
 function resetaSenhaCadastro(){
